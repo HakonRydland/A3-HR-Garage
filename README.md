@@ -30,14 +30,15 @@ replacing ``_obj`` with the object in questin, note certain restrictions are in 
 ----------------------------------------------------------
 - To get the save data for the garage do 
 ```
-[] call HR_GRG_fnc_getSaveData;
+private _saveData = [] call HR_GRG_fnc_getSaveData;
 ``` 
+you can the store this somewhere like in profilenameSpace...
 Note this is a ``server only`` function
 
 ----------------------------------------------------------
 - To restore the save data for the garage do 
 ```
-[] call HR_GRG_fnc_loadSaveData;
+[_saveData] call HR_GRG_fnc_loadSaveData;
 ```
 Note this is a ``server only`` function
 
