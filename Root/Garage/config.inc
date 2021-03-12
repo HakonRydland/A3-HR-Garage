@@ -25,8 +25,8 @@ if (isNil "HR_GRG_cmdClient") then { HR_GRG_cmdClient = {
 //side declaration
 if (isNil "TeamPlayer") then {TeamPlayer = independent; publicVariable "TeamPlayer"};
 if (isNil "nameTeamPlayer") then {nameTeamPlayer = "Rebel"; publicVariable "nameTeamPlayer"};
-if (isNil "Invaders") then {Invaders = east; publicVariable "Invaders"};
-if (isNil "Occupants") then {Occupants = west; publicVariable "Occupants"};
+if (isNil "Invaders") then {Invaders = sideEnemy; publicVariable "Invaders"};
+if (isNil "Occupants") then {Occupants = sideEnemy; publicVariable "Occupants"};
 
 //ace detection
 if (isNil "HR_GRG_hasAce") then {HR_GRG_hasAce = (!isNil "ace_common_fnc_isModLoaded"); publicVariable "HR_GRG_hasAce"};
