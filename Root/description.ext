@@ -1,5 +1,5 @@
 #include "Garage\Dialogs.hpp"
 class CfgFunctions {
     #include "functions.hpp"
-	#include "Garage\functions.hpp"
+    #include "Garage\functions.hpp"
 };
