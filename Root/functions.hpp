@@ -34,6 +34,5 @@ class HR
     {
         class canFight {};
         class classNameToModel {};
-        class ValidateObjects {};
     };
 };

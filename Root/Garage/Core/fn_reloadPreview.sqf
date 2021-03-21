@@ -19,6 +19,7 @@
     License: MIT License
 */
 #include "defines.inc"
+FIX_LINE_NUMBERS()
 Trace("Reloading preview");
 HR_GRG_SelectedVehicles params ["_catIndex", "_vehUID", "_class"];
 if (!isNull HR_GRG_previewVeh) then {
@@ -32,8 +33,8 @@ HR_GRG_previewVeh = _class createVehicleLocal [0,0,100000];
 HR_GRG_previewVeh enableSimulation false;
 private _cat = HR_GRG_Vehicles#_catIndex;
 private _veh = _cat get _vehUID;
-Trace_1("ReloadPreview - Veh: %1", _veh);
-Trace_1("Preview vehicle State: %1", _veh#4);
+TraceArray("ReloadPreview - Veh:", _veh);
+TraceArray("Preview vehicle State:", _veh#4);
 HR_GRG_previewVehState = _veh#4;
 [HR_GRG_previewVeh, HR_GRG_previewVehState] call HR_GRG_fnc_setState;
 HR_GRG_previewVeh allowDamage false;
