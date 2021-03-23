@@ -44,7 +44,7 @@ if (_vehNodes isEqualType []) then {
         private _type = -1;
         {
             if ((_x#0) isEqualTo _model) exitWith {_type = +(_x#3)};
-        }forEach A3A_logistics_attachmentOffset;
+        }forEach HR_logistics_attachmentOffset;
 
         //is weapon allowed
         private _vehModel = getText (configFile >> "CfgVehicles" >> typeOf HR_GRG_previewVeh >> "model");
@@ -54,7 +54,7 @@ if (_vehNodes isEqualType []) then {
             if (_wep isEqualTo _model) exitWith {
                 if (_vehModel in _blacklistVehicles) then {_allowed = false};
             };
-        } forEach A3A_logistics_weapons;
+        } forEach HR_logistics_weapons;
 
         //add entry
         if ( (_allowed) && (_type != -1) && (_capacity >= _type) && !_block) then { //static is loadable and vehicle can fit it
@@ -186,7 +186,7 @@ private _seatsInfo = composeText [
 //Cargo
 private _nodes = HR_GRG_previewVeh getVariable ["logisticsCargoNodes",nil];
 if (isNil "_nodes") then {
-    _nodes = [HR_GRG_previewVeh] call A3A_fnc_logistics_getVehicleNodes;
+    _nodes = [HR_GRG_previewVeh] call HR_fnc_logistics_getVehicleNodes;
     HR_GRG_previewVeh setVariable ["logisticsCargoNodes", _nodes];
 };
 if (_nodes isEqualType 0) then {_nodes = []};
