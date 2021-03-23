@@ -27,7 +27,7 @@ Trace("Reloading Extras");
 private _disp = findDisplay HR_GRG_IDD_Garage;
 private _ctrl = _disp displayCtrl HR_GRG_IDC_ExtraMounts;
 lbClear _ctrl;
-private _vehNodes = [HR_GRG_previewVeh] call HR_fnc_logistics_getVehicleNodes;
+private _vehNodes = [HR_GRG_previewVeh] call A3A_fnc_logistics_getVehicleNodes;
 if (_vehNodes isEqualType []) then {
     private _capacity = count _vehNodes;
     {
@@ -44,7 +44,7 @@ if (_vehNodes isEqualType []) then {
         private _type = -1;
         {
             if ((_x#0) isEqualTo _model) exitWith {_type = +(_x#3)};
-        }forEach HR_logistics_attachmentOffset;
+        }forEach A3A_logistics_attachmentOffset;
 
         //is weapon allowed
         private _vehModel = getText (configFile >> "CfgVehicles" >> typeOf HR_GRG_previewVeh >> "model");
@@ -54,7 +54,7 @@ if (_vehNodes isEqualType []) then {
             if (_wep isEqualTo _model) exitWith {
                 if (_vehModel in _blacklistVehicles) then {_allowed = false};
             };
-        } forEach HR_logistics_weapons;
+        } forEach A3A_logistics_weapons;
 
         //add entry
         if ( (_allowed) && (_type != -1) && (_capacity >= _type) && !_block) then { //static is loadable and vehicle can fit it
@@ -69,9 +69,10 @@ if (_vehNodes isEqualType []) then {
 };
 if (_reloadMounts) then { [] call HR_GRG_fnc_reloadMounts };
 
-private _customisation = [HR_GRG_previewVeh] call bis_fnc_getVehicleCustomization;
+private _customisation = [HR_GRG_previewVeh] call BIS_fnc_getVehicleCustomization;
 //textures
 HR_GRG_CurTexture = _customisation#0;
+private _badInit = HR_GRG_CurTexture isEqualTo [];
 private _ctrl = _disp displayCtrl HR_GRG_IDC_ExtraTexture;
 lbClear _ctrl;
 {
@@ -80,7 +81,11 @@ lbClear _ctrl;
     if (_displayName != "" && {!(_displayName in HR_GRG_blackListCamo)}) then {
         private _index = _ctrl lbAdd _displayName;
         _ctrl lbsetdata [_index,_cfgName];
-        _ctrl lbsetpicture [_index,checkboxTextures select ((HR_GRG_CurTexture#0) isEqualTo _cfgName)];
+        if (_badInit) then {
+            _ctrl lbsetpicture [_index,checkboxTextures#0];
+        } else {
+            _ctrl lbsetpicture [_index,checkboxTextures select ((HR_GRG_CurTexture#0) isEqualTo _cfgName)];
+        };
     };
 } foreach (configProperties [(configfile >> "CfgVehicles" >> _class >> "textureSources"),"isclass _x",true]);
 lbSort _ctrl;
@@ -181,13 +186,13 @@ private _seatsInfo = composeText [
 //Cargo
 private _nodes = HR_GRG_previewVeh getVariable ["logisticsCargoNodes",nil];
 if (isNil "_nodes") then {
-    _nodes = [HR_GRG_previewVeh] call HR_fnc_logistics_getVehicleNodes;
+    _nodes = [HR_GRG_previewVeh] call A3A_fnc_logistics_getVehicleNodes;
     HR_GRG_previewVeh setVariable ["logisticsCargoNodes", _nodes];
 };
 if (_nodes isEqualType 0) then {_nodes = []};
 private _cargoCapacity = count _nodes;
 private _availableCapacity = _cargoCapacity - HR_GRG_usedCapacity;
-private _aceCargo = if (HR_GRG_hasAce) then {
+private _aceCargo = if (hasAce) then {
     composeText [lineBreak, "    ", localize "STR_HR_GRG_InfoPanel_AceCargo"," ", str cfgAceCargo(_class)]
 } else {""};
 
