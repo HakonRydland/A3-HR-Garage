@@ -27,7 +27,7 @@ Trace("Reloading Extras");
 private _disp = findDisplay HR_GRG_IDD_Garage;
 private _ctrl = _disp displayCtrl HR_GRG_IDC_ExtraMounts;
 lbClear _ctrl;
-private _vehNodes = [HR_GRG_previewVeh] call A3A_fnc_logistics_getVehicleNodes;
+private _vehNodes = [HR_GRG_previewVeh] call HR_fnc_logistics_getVehicleNodes;
 if (_vehNodes isEqualType []) then {
     private _capacity = count _vehNodes;
     {
