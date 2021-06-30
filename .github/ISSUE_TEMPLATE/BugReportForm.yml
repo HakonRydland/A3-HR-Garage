@@ -1,10 +1,9 @@
-name: "#Bug Report"
+name: Bug Report
 description: File a bug report
 title: "[Bug]: "
 labels: [bug, triage]
 assignees:
 body:
-
   - type: textarea
     id: what-happened
     attributes:
@@ -13,7 +12,6 @@ body:
       placeholder: "A bug happened! I think this is what should have happened."
     validations:
       required: true
-
   - type: textarea
     id: reproduce
     attributes:
@@ -22,11 +20,9 @@ body:
       placeholder: By doing this when this is happening!
     validations:
       required: true
-
   - type: markdown
     attributes:
       value: If applicable, add screenshots to help explain your problem.
-
 - type: input
     id: version
     attributes:
@@ -35,7 +31,6 @@ body:
       placeholder: "Example: 2.4.1"
     validations:
       required: true
-
   - type: checkboxes
     id: code-altered
     attributes:
@@ -43,7 +38,6 @@ body:
       options:
         - label: I have altered the code in some way shape or form.
           required: false
-
   - type: textarea
     id: changed-code
     attributes:
@@ -52,7 +46,6 @@ body:
       placeholder: I changed this!
     validations:
       required: false
-
 - type: input
     id: Map
     attributes:
@@ -61,7 +54,6 @@ body:
       placeholder: "Example: Altis"
     validations:
       required: true
-
   - type: dropdown
     id: server
     attributes:
@@ -78,14 +70,12 @@ body:
         - Community Test Server 2
     validations:
       required: true
-
   - type: textarea
     id: Mods
     attributes:
       label: Mods
       description: Please copy and paste the mods loaded when the bug occured. (preset html exported from launcher, or mods loaded from server command line.)
       render: html
-
  - type: textarea
     id: additional-context
     attributes:
