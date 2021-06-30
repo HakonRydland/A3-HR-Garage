@@ -1,62 +1,93 @@
-name: Bug Report
+name: "#Bug Report"
 description: File a bug report
 title: "[Bug]: "
 labels: [bug, triage]
 assignees:
-  - octocat
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
-  - type: input
-    id: contact
-    attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
-    validations:
-      required: false
+
   - type: textarea
     id: what-happened
     attributes:
-      label: What happened?
+      label: "##Describe the bug"
       description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      placeholder: "A bug happened! I think this is what should have happened."
     validations:
       required: true
-  - type: dropdown
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: "##How to reproduce"
+      description: How can wwe reproduce this bug?
+      placeholder: By doing this when this is happening!
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: If applicable, add screenshots to help explain your problem.
+
+- type: input
     id: version
     attributes:
       label: Version
-      description: What version of our software are you running?
-      options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+      description: What version did the bug occure with?
+      placeholder: "Example: 2.4.1"
     validations:
       required: true
-  - type: dropdown
-    id: browsers
+
+  - type: checkboxes
+    id: code-altered
     attributes:
-      label: What browsers are you seeing the problem on?
+      label: Did you alter the code
+      options:
+        - label: I have altered the code in some way shape or form.
+          required: false
+
+  - type: textarea
+    id: changed-code
+    attributes:
+      label: "##What i have changed"
+      description: If you have altered the code, describe what you have changed?
+      placeholder: I changed this!
+    validations:
+      required: false
+
+- type: input
+    id: Map
+    attributes:
+      label: Map
+      description: On what map did this occur?
+      placeholder: "Example: Altis"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: server
+    attributes:
+      label: What server?
+      description: What Server did the bug occur on?
       multiple: true
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - LAN Hosted
+        - Private dedicated server
+        - Private dedicated server with Headless client(s)
+        - Community Server 1
+        - Community Server 2
+        - Community Test Server
+        - Community Test Server 2
+    validations:
+      required: true
+
   - type: textarea
-    id: logs
+    id: Mods
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
-  - type: checkboxes
-    id: terms
+      label: Mods
+      description: Please copy and paste the mods loaded when the bug occured. (preset html exported from launcher, or mods loaded from server command line.)
+      render: html
+
+ - type: textarea
+    id: additional-context
     attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
-      options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
+      label: Additional context
+      description: Additional context you think might help.
