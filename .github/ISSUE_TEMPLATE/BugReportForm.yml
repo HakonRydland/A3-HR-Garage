@@ -40,8 +40,8 @@ body:
     attributes:
       label: Have you altered the code?
       options:
-        - No
-        - Yes
+        - "No"
+        - "Yes"
     validations:
       required: true
   - type: textarea
