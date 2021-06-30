@@ -38,7 +38,6 @@ body:
       label: Did you alter the code
       options:
         - label: I have altered the code in some way shape or form.
-        - required: false
   - type: textarea
     id: changed-code
     attributes:
