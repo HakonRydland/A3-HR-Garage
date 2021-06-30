@@ -6,23 +6,25 @@ body:
   - type: textarea
     id: what-happened
     attributes:
-      label: "##Describe the bug"
+      label: Describe the bug
       description: Also tell us, what did you expect to happen?
-      placeholder: "A bug happened! I think this is what should have happened."
+      placeholder: A bug happened! I think this is what should have happened.
+      render: markdown
     validations:
       required: true
   - type: textarea
     id: reproduce
     attributes:
-      label: "##How to reproduce"
+      label: How to reproduce
       description: How can wwe reproduce this bug?
       placeholder: By doing this when this is happening!
+      render: markdown
     validations:
       required: true
   - type: markdown
     attributes:
       value: If applicable, add screenshots to help explain your problem.
-- type: input
+  - type: input
     id: version
     attributes:
       label: Version
@@ -36,16 +38,17 @@ body:
       label: Did you alter the code
       options:
         - label: I have altered the code in some way shape or form.
-          required: false
+        required: false
   - type: textarea
     id: changed-code
     attributes:
-      label: "##What i have changed"
+      label: What i have changed
       description: If you have altered the code, describe what you have changed?
       placeholder: I changed this!
+      render: markdown
     validations:
       required: false
-- type: input
+  - type: input
     id: Map
     attributes:
       label: Map
@@ -75,7 +78,7 @@ body:
       label: Mods
       description: Please copy and paste the mods loaded when the bug occured. (preset html exported from launcher, or mods loaded from server command line.)
       render: html
- - type: textarea
+  - type: textarea
     id: additional-context
     attributes:
       label: Additional context
