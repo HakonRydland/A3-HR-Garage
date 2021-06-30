@@ -35,6 +35,15 @@ body:
     attributes:
       options:
         - label: I have altered the code
+  - type: dropdown
+    id: code-altered
+    attributes:
+      label: Have you altered the code?
+      options:
+        - No
+        - Yes
+    validations:
+      required: true
   - type: textarea
     id: changed-code
     attributes:
