@@ -33,15 +33,13 @@ body:
   - type: checkboxes
     id: code-altered
     attributes:
-      label: Did you alter the code
       options:
-        - label: I have altered the code in some way shape or form.
+        - label: I have altered the code
   - type: textarea
     id: changed-code
     attributes:
       label: What i have changed
-      description: If you have altered the code, describe what you have changed?
-      placeholder: I changed this!
+      placeholder: If you have altered the code, describe what you have changed?
       render: markdown
     validations:
       required: false
