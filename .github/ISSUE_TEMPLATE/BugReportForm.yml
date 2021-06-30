@@ -30,11 +30,6 @@ body:
       placeholder: "Example: 2.4.1"
     validations:
       required: true
-  - type: checkboxes
-    id: code-altered
-    attributes:
-      options:
-        - label: I have altered the code
   - type: dropdown
     id: code-altered
     attributes:
