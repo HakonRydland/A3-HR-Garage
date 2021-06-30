@@ -79,4 +79,4 @@ body:
     id: additional-context
     attributes:
       label: Additional context
-      description: Additional context you think might help.
+      description: Additional context you think might help like the `.rpt` file.
