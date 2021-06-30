@@ -9,7 +9,6 @@ body:
       label: Describe the bug
       description: Also tell us, what did you expect to happen?
       placeholder: A bug happened! I think this is what should have happened.
-      render: markdown
     validations:
       required: true
   - type: textarea
@@ -18,7 +17,6 @@ body:
       label: How to reproduce
       description: How can wwe reproduce this bug?
       placeholder: By doing this when this is happening!
-      render: markdown
     validations:
       required: true
   - type: markdown
