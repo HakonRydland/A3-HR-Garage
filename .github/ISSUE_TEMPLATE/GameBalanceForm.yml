@@ -1,6 +1,6 @@
 name: Game balance
 description: Sugguest changes to the ballance of the mission.
-title: "[Game balance]: "
+title: "[Game balance]: <title>"
 labels: [Suggestion, Balance, triage]
 body:
   - type: textarea

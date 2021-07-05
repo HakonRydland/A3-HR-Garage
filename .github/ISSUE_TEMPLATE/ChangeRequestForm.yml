@@ -1,6 +1,6 @@
 name: Change request
 description: Request a change to an existing element of the mission.
-title: "[Change Request]: "
+title: "[Change Request]: <title>"
 labels: [Suggestion, change, triage]
 body:
   - type: textarea
