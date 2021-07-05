@@ -1,0 +1,12 @@
+name: Bug Fix
+description: Create a bug fix pull request.
+title: "[Bug Fix]: "
+labels: [Suggestion, change, triage]
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: What have you changed and why?
+      description: Describe the bug this PR resolves and how it does so.
+    validations:
+      required: true
