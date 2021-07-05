@@ -71,6 +71,13 @@ body:
         - Community Test Server 2
     validations:
       required: true
+  - type: input
+    id: Time
+    attributes:
+      label: Time bug occured (Server time/UTC)
+      placeholder: "Example: 10:45 (UTC)"
+    validations:
+      required: false
   - type: textarea
     id: Mods
     attributes:
