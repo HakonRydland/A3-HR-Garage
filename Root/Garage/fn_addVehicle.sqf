@@ -36,35 +36,6 @@ if (locked _vehicle > 1) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Locked"] re
 if (player isNotEqualTo vehicle player) exitWith { ["STR_HR_GRG_Feedback_addVehicle_inVehicle"] remoteExec ["HR_GRG_fnc_Hint"] ; false };
 if (_player distance _vehicle > 25) exitWith {["STR_HR_GRG_Feedback_addVehicle_Distance"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
-    //Valid area
-private _friendlyMarkers = markersX select {sidesX getVariable [_x,sideUnknown] == teamPlayer};
-private _inArea = _friendlyMarkers findIf { count ([_player, _vehicle] inAreaArray _x) > 1 };
-if !(_inArea > -1) exitWith {["STR_HR_GRG_Feedback_addVehicle_badLocation",[nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-
-    //No hostiles near
-private _units = (_player nearEntities ["Man",300]) select {([_x] call A3A_fnc_CanFight) && (side _x isEqualTo Occupants || side _x isEqualTo Invaders)};
-if (_units findIf {_unit = _x; _players = allPlayers select {(side _x isEqualTo teamPlayer) && (_player distance _x < 300)}; _players findIf {_x in (_unit targets [true, 300])} != -1} != -1) exitWith {
-    ["STR_HR_GRG_Feedback_addVehicle_enemiesEngaging"] remoteExec ["HR_GRG_fnc_Hint", _client];
-    false;
-};
-if (_units findIf{_player distance _x < 100} != -1) exitWith {["STR_HR_GRG_Feedback_addVehicle_enemiesNear"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-
-//LTC refund
-if (_class in [NATOSurrenderCrate, CSATSurrenderCrate]) exitWith {
-    [_vehicle,boxX,true] call A3A_fnc_ammunitionTransfer;
-    [10] remoteExec ["A3A_fnc_resourcesPlayer", _client];
-    ["STR_HR_GRG_Feedback_addVehicle_LTC"] remoteExec ["HR_GRG_fnc_Hint", _client];
-    true
-};
-
-//Utility refund
-if (_vehicle getVariable['A3A_islight',false]) exitwith{
-    [25] remoteExec ["A3A_fnc_resourcesPlayer", _client];
-    ["STR_HR_GRG_Feedback_addVehicle_LightSource_Stored"] remoteExec ["HR_GRG_fnc_Hint", _client];
-    deleteVehicle _vehicle;
-    true
-};
-
     //Towing
 if !((_vehicle getVariable ["SA_Tow_Ropes",objNull]) isEqualTo objNull) exitWith {["STR_HR_GRG_Feedback_addVehicle_SATow"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
@@ -84,27 +55,6 @@ private _capacity = 0;
 
 private _countStatics = {_x isKindOf "StaticWeapon"} count (attachedObjects _vehicle);
 if ((call HR_GRG_VehCap - _capacity) < (_countStatics + 1)) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Capacity"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };//HR_GRG_VehCap is defined in config.inc
-
-//Block air garage outside of airbase
-if (
-    (_class isKindOf "Air")
-    && {count (airportsX select {(sidesX getVariable [_x,sideUnknown] == teamPlayer) and (_player inArea _x)}) < 1} //no airports
-) exitWith {["STR_HR_GRG_Feedback_addVehicle_airBlocked", [nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-
-//here to allow adaption of external antistasi system without needing to addapt code under APL-ND
-private _broadcastReportedVehsAndStaticsToSave = {
-    publicVariable "staticsToSave";
-    publicVariable "reportedVehs";
-};
-//_this is vehicle
-private _deleteFromReportedVehsAndStaticsToSave = {
-    reportedVehs deleteAt (reportedVehs find _this);
-    staticsToSave deleteAt (staticsToSave find _this);
-};
-//_this is vehicle
-private _transferToArsenal = {
-    [_this,boxX] call A3A_fnc_ammunitionTransfer;
-};
 
 //---------------------------------------------------------|
 // Everything above this line is under the license: MIT    |
@@ -132,10 +82,6 @@ private _addVehicle = {
     private _stateData = [_this] call HR_GRG_fnc_getState;
     private _customisation = [_this] call BIS_fnc_getVehicleCustomization;
 
-    //Antistasi adaptions
-    _this call _transferToArsenal;
-    _this call _deleteFromReportedVehsAndStaticsToSave;
-
     deleteVehicle _this;
 
     //Add vehicle to garage
@@ -159,8 +105,6 @@ private _catsRequiringUpdate = [];
     _x call _addVehicle;
 } forEach attachedObjects _vehicle;
 _vehicle call _addVehicle;
-
-if (_catsRequiringUpdate isNotEqualTo []) then _broadcastReportedVehsAndStaticsToSave;
 
 //refresh category for active users
 private _refreshCode = {

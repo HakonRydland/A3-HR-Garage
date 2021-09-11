@@ -18,9 +18,14 @@
 
     License: APL-ND
 */
+
+//init stuff on client and server
 #include "config.inc"
 #include "defines.inc"
 FIX_LINE_NUMBERS()
+call HR_fnc_detector;
+
+//only server
 if (!isServer) exitWith {};
 
 Trace("Running server init");

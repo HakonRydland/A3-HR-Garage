@@ -16,7 +16,7 @@
 
     License: MIT
 */
-HR_GRG_Prefix = "Antistasi";
+HR_GRG_Prefix = "HR Garage";
 //Overwrite client
 HR_GRG_cmdClient = {
     if ((isServer && hasInterface) || {admin owner _this > 0}) then {_this} else {objNull}; //LAN Host or admin on DS or commander
@@ -24,14 +24,14 @@ HR_GRG_cmdClient = {
 
 //condition to automatically close garage/placement as if canceled
 HR_GRG_CP_closeCnd = {
-    (!([player] call A3A_fnc_canFight))
+    (!([player] call HR_fnc_canFight))
     || {(!isNull HR_GRG_accessPoint)
         && {player distance HR_GRG_accessPoint > 25}
     }
 };
 
 HR_GRG_Cnd_canAccessAir = {
-    count (airportsX select {(sidesX getVariable [_x,sideUnknown] == teamPlayer) and (HR_GRG_accessPoint inArea _x)}) > 0
+    true
 };
 
 //Lock on garaged vehicles ( Values: [{""}, { getPlayerUID player }] )
@@ -53,29 +53,21 @@ HR_GRG_blackListCamo = ["IDAP", "African Desert Extremists", "African Desert Ext
 //proxies
 HR_GRG_fnc_Hint = {
     params ["_key", ["_arguments", []]];
-    ["Garage",
-        if (_arguments isEqualTo []) then {localize _key} else {format ( [localize _key] + _arguments )}
-    ] call A3A_fnc_customHint;
+    hintSilent (if (_arguments isEqualTo []) then {localize _key} else {format ( [localize _key] + _arguments )});
 };
-HR_GRG_fnc_vehInit = {
-    if (_this isKindOf "StaticWeapon") then {staticsToSave pushBack _this; publicVariable "staticsToSave"};
-    [_this, TeamPlayer] call A3A_fnc_AIVEHinit;
-}; //is passed vehicle as _this
-HR_GRG_onOpenEvent = {
-    //hide Antistasi's top information string as it has no use in the Garage
-    ["GARAGE", true] call A3A_fnc_disableInfoBar;
-    player setCaptive false;
-};
-HR_GRG_onCloseEvent = {
-    //show Antistasi's top information string
-    ["GARAGE", false] call A3A_fnc_disableInfoBar;
-};
+HR_GRG_fnc_vehInit = {}; //is passed vehicle as _this
+HR_GRG_onOpenEvent = {};
+HR_GRG_onCloseEvent = {};
 
 //CBA settings
 if (isClass (configfile >> "CBA_Extended_EventHandlers")) then {
 
     ["HR_GRG_dLock", "CHECKBOX", ["Lock on garage", "Lock vehicles when garaged"], [HR_GRG_Prefix,"Garage"], (HR_GRG_dLock isEqualTo {getPlayerUID player}), false, {
         HR_GRG_dLock = [{""}, { getPlayerUID player }] select _this;
+    }] call CBA_fnc_addSetting;
+
+    ["HR_GRG_LogLevel", "LIST", ["Log level", "How much detail should be logged"], [HR_GRG_Prefix,"Garage"], ["Error", "Info", "Debug", "Verbose"], false, {
+        HR_GRG_LogLevel = _this;
     }] call CBA_fnc_addSetting;
 
     ["HR_GRG_Pylons_Enabled", "CHECKBOX", ["Allow pylon editing", "Allows player to configure pylons in the garage"], [HR_GRG_Prefix,"Garage"], true, true, {

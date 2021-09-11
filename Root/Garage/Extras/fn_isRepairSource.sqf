@@ -12,7 +12,7 @@
     Scope: Any
     Environment: Any
     Public: Yes
-    Dependencies: <Bool> A3A_hasAce
+    Dependencies: <Bool> HR_hasAce
 
     Example: [_veh] call HR_GRG_fnc_isRepairSource;
 
@@ -28,7 +28,7 @@ if (_vehType isEqualTo "") exitWith {false}; //null obj passed
 private _vehCfg = configFile/"CfgVehicles"/_vehType;
 if (!isClass _vehCfg) exitWith {false}; //invalid class string passed
 
-if (A3A_hasAce) then {
+if (HR_hasAce) then {
     private _value = _vehicle getVariable ["ACE_isRepairVehicle", getNumber (_vehCfg/"ace_repair_canRepair")];
     _value in [1, true];
 } else {

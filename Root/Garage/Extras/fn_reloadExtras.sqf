@@ -12,7 +12,7 @@
     Scope: Clients
     Environment: Any
     Public: [No]
-    Dependencies: A3A_hasAce
+    Dependencies: HR_hasAce
 
     Example: [true] call HR_GRG_fnc_reloadExtras;
 
@@ -27,7 +27,7 @@ Trace("Reloading Extras");
 private _disp = findDisplay HR_GRG_IDD_Garage;
 private _ctrl = _disp displayCtrl HR_GRG_IDC_ExtraMounts;
 lbClear _ctrl;
-private _vehNodes = [HR_GRG_previewVeh] call A3A_fnc_logistics_getVehicleNodes;
+private _vehNodes = [HR_GRG_previewVeh] call HR_fnc_logistics_getVehicleNodes;
 if (_vehNodes isEqualType []) then {
     private _capacity = count _vehNodes;
     {
@@ -43,7 +43,7 @@ if (_vehNodes isEqualType []) then {
         private _type = -1;
         {
             if ((_x#0) isEqualTo _model) exitWith {_type = +(_x#3)};
-        }forEach A3A_logistics_attachmentOffset;
+        }forEach HR_logistics_attachmentOffset;
 
         //is weapon allowed
         private _vehModel = getText (configFile >> "CfgVehicles" >> typeOf HR_GRG_previewVeh >> "model");
@@ -53,7 +53,7 @@ if (_vehNodes isEqualType []) then {
             if (_wep isEqualTo _model) exitWith {
                 if (_vehModel in _blacklistVehicles) then {_allowed = false};
             };
-        } forEach A3A_logistics_weapons;
+        } forEach HR_logistics_weapons;
 
         //add entry
         if ( (_allowed) && (_type != -1) && (_capacity >= _type) && !_block) then { //static is loadable and vehicle can fit it
@@ -187,13 +187,13 @@ private _seatsInfo = composeText [
 //Cargo
 private _nodes = HR_GRG_previewVeh getVariable ["logisticsCargoNodes",nil];
 if (isNil "_nodes") then {
-    _nodes = [HR_GRG_previewVeh] call A3A_fnc_logistics_getVehicleNodes;
+    _nodes = [HR_GRG_previewVeh] call HR_fnc_logistics_getVehicleNodes;
     HR_GRG_previewVeh setVariable ["logisticsCargoNodes", _nodes];
 };
 if (_nodes isEqualType 0) then {_nodes = []};
 private _cargoCapacity = count _nodes;
 private _availableCapacity = _cargoCapacity - HR_GRG_usedCapacity;
-private _aceCargo = if (A3A_hasAce) then {
+private _aceCargo = if (HR_hasAce) then {
     composeText [lineBreak, "    ", localize "STR_HR_GRG_InfoPanel_AceCargo"," ", str cfgAceCargo(_class)]
 } else {""};
 

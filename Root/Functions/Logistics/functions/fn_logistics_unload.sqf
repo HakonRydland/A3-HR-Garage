@@ -17,6 +17,8 @@
 
     Example: [_target] remoteExec ["HR_fnc_logistics_unload",2];
 */
+#include "..\..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 params ["_vehicle", ["_instant", false, [true]]];
 private _fileName = "fn_logistics_unload";
 
@@ -38,7 +40,7 @@ _updateList = {
     params ["_vehicle", "_node"];
     private _list = _vehicle getVariable ["logisticsCargoNodes",[]];
     private _index = _list find _node;
-    if (_index < 0) exitWith {[1, format ["Bad _updateList call | Vehicle: %1 | Vehicle Nodes: %2 | Node: %3", _vehicle, _list, _node], _fileName] call HR_fnc_Log};
+    if (_index < 0) exitWith { Error_3("Bad _updateList call | Vehicle: %1 | Vehicle Nodes: %2 | Node: %3", _vehicle, _list, _node) };
     _node set [0,1];
     _list set [_index, _node];
     _vehicle setVariable ["logisticsCargoNodes", _list];

@@ -12,7 +12,7 @@
     Scope: Any
     Environment: Any
     Public: Yes
-    Dependencies: <Bool> A3A_hasAce
+    Dependencies: <Bool> HR_hasAce
 
     Example: [_veh] call HR_GRG_fnc_isAmmoSource;
 
@@ -29,7 +29,7 @@ private _vehCfg = configFile/"CfgVehicles"/_vehType;
 if (!isClass _vehCfg) exitWith {false}; //invalid class string passed
 
 //check if is source
-if (A3A_hasAce) then { //Ace
+if (HR_hasAce) then { //Ace
     private _aceCurrent = _vehicle getVariable ["ace_rearm_currentSupply", 0];
     if (_aceCurrent < 0) exitWith {false};
 

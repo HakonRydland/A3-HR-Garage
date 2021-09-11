@@ -18,7 +18,8 @@
 
     License: MIT License
 */
-private _filename = "fn_logistics_tryLoad";
+#include "..\..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 if (!isServer) exitWith {};
 params ["_cargo"];
 
@@ -43,7 +44,7 @@ if (_return isEqualType 0) exitWith {
         case -7: { [format ["%1 is unable to load any cargo", _vehicleName]] remoteExec ["hint", remoteExecutedOwner] };
         case -8: { [format ["%1 does not have enough space to load %2", _vehicleName, _cargoName]] remoteExec ["hint", remoteExecutedOwner] };
         case -9: { [format ["%1 can not load cargo while units are blocking the cargo plane", _vehicleName]] remoteExec ["hint", remoteExecutedOwner] };
-        default { [1, format ["Unknown error code: %1", _return], _filename] call HR_fnc_log };
+        default { Error_1("Unkonwn error code: %1", _return) };
     };
 };
 

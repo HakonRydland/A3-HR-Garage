@@ -17,10 +17,12 @@
 
     Example: [_object] call HR_fnc_logistics_addLoadAction;
 */
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 params ["_object", ["_action", "load"]];
 
 if (isNil "HR_logistics_vehicleHardpoints") exitWith {
-    [1, "Logistics nodes not initialized", "fn_logistics_addLoadAction.sqf"] call HR_fnc_log;
+    Error("Logistics nodes not initialized");
     nil
 };
 

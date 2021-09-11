@@ -1,8 +1,22 @@
-private _unit = _this select 0;
+/*
+Author: Håkon
+Description:
+    Checks if a unit can fight
 
-if (isNull _unit) exitWith {false};
-if (!alive _unit) exitWith {false};
-if (captive _unit) exitWith {false};
-if (_unit getVariable ["incapacitated",false]) exitWith {false};
-if (_unit getVariable ["surrendered",false]) exitWith {false};
-true
+Arguments:
+0. <Object> Unit
+
+Return Value:
+<Bool> Unit can fight
+
+Scope: Any
+Environment: Any
+Public: Yes
+Dependencies:
+
+Example:
+
+License: MIT License
+*/
+params [["_unit", objNull, [objNull]]];
+alive _unit && !captive _unit;
