@@ -71,7 +71,7 @@ class HR_GRG
 //public functions
     class PublicFunctions
     {
-        file = "Garage";
+        file = "Garage\Public";
         class addVehiclesByClass {};
         class addVehicle {};
         class callbackHandler {};

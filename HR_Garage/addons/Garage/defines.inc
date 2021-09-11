@@ -1,2 +1,2 @@
 #include "CfgDefines.inc"
-#include "..\Includes\common.inc"
+#include "script_component.hpp"

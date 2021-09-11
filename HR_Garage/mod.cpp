@@ -1,0 +1,12 @@
+name = "HR Garage";
+picture = "";
+actionName = "GitHub";
+action = "https://github.com/HakonRydland/A3-HR-Garage";
+description = "HR Garage";
+logo = "";
+logoOver = "";
+tooltip = "HR Garage";
+tooltipOwned = "";
+overview = "HR Garage";
+author = "Håkon Rydland";
+overviewPicture = "";
