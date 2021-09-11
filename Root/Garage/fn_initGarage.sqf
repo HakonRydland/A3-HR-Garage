@@ -20,6 +20,7 @@
 */
 params [ ["_object", objNull, [objNull]] ];
 if (isNull _object) exitWith {false};
+if (!isMultiplayer) exitWith {false};
 private _oldID = _object getVariable ["HR_GRG_GarageID", -1];
 _object removeAction _oldID;
 
