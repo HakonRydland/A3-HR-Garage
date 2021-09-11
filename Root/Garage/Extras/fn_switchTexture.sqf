@@ -16,7 +16,7 @@
 
     Example: _this call HR_GRG_fnc_switchTexture;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
@@ -24,12 +24,12 @@ Trace("Changeing texture");
 params ["_ctrl"];
 private _index = lbCurSel _ctrl;
 _ctrl lbSetCurSel -1;
-if (_index isEqualTo -1) exitWith {};
+if (_index isEqualTo -1) exitWith {false};
 
 for "_i" from 0 to (lbSize _ctrl) -1 do { //uncheck all textures
     if ( (checkboxTextures find (_ctrl lbPicture _i)) isEqualTo 1) then { _ctrl lbSetPicture [_i, checkboxTextures#0] };
 };
 _ctrl lbSetPicture [_index, checkboxTextures#1];
-HR_GRG_CurTexture = [_ctrl lbData _index, 1];
+HR_GRG_curTexture = [_ctrl lbData _index, 1];
 
-[HR_GRG_previewVeh, HR_GRG_CurTexture, HR_GRG_CurAnims] call BIS_fnc_initVehicle;
+[HR_GRG_previewVeh, HR_GRG_curTexture, HR_GRG_curAnims] call BIS_fnc_initVehicle;

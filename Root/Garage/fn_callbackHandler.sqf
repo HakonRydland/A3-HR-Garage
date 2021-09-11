@@ -12,33 +12,34 @@
 
     Arguments:
     0. <Object> Vehicle
-    1. <String> Callback owner
+    1. <Array> Callback owner, and the callback arguments
     2. <String> Callback action
 
     Return Value:
     <Bool/Nil> Callback succesfull
 
-    Scope: Server,Server/HC,Clients,Any
-    Environment: Scheduled/unscheduled/Any
-    Public: Yes/No
+    Scope: Any
+    Environment: Any
+    Public: No
     Dependencies:
 
     Example:
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: MIT
 */
-params [["_vehicle", objNull, [objNull]], ["_callback",""], ["_action", ""]];
+params [["_vehicle", objNull, [objNull]], ["_callback",[], [[]]], ["_action", ""]];
+_callback params [["_callBackName", "", [""]], ["_arguments", []] ];
 
-switch _callback do {
+switch _callBackName do {
 
     case "BUYFIA": {
         switch _action do {
 
             case "Placed": {
                 if (player == theBoss) then {
-                    [0,(-1 * vehiclePurchase_cost)] remoteExec ["HR_fnc_resourcesFIA",2];
+                    [0,(-1 * vehiclePurchase_cost)] remoteExec ["A3A_fnc_resourcesFIA",2];
                 } else {
-                    [-1 * vehiclePurchase_cost] call HR_fnc_resourcesPlayer;
+                    [-1 * vehiclePurchase_cost] call A3A_fnc_resourcesPlayer;
                     _vehicle setVariable ["ownerX",getPlayerUID player,true];
                 };
                 vehiclePurchase_cost = 0;
@@ -52,7 +53,7 @@ switch _callback do {
         switch _action do {
 
             case "invalidPlacement": {
-                switch (build_type) do { //return inverted here so true = can place
+                switch (build_type) do { //return inverted here so true = cant place
                     case "RB": {
                         [!(isOnRoad _vehicle), "Roadblocks can only be built on roads"];
                     };
@@ -71,7 +72,19 @@ switch _callback do {
                 private _pos = getPosASL _vehicle;
                 private _dir = getDir _vehicle;
                 deleteVehicle _vehicle;
-                [_type, _pos, _dir] spawn HR_fnc_buildCreateVehicleCallback;
+                [_type, _pos, _dir] spawn A3A_fnc_buildCreateVehicleCallback;
+            };
+            default {false};
+        };
+    };
+
+    case "HCSquadVehicle": {
+        switch _action do {
+            case "invalidPlacement": {
+                [getMarkerPos respawnTeamPlayer distance _vehicle > 50, "You cant place HC vehicles further than 50m from HQ"];
+            };
+            case "Placed": {
+                (_arguments + [_vehicle]) spawn A3A_fnc_spawnHCGroup;
             };
             default {false};
         };

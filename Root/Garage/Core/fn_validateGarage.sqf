@@ -14,7 +14,7 @@
 
     Example: [] call HR_GRG_fnc_validateGarage;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
@@ -25,10 +25,9 @@ private _cfg = (configFile >> "CfgVehicles");
     private _cat = _x;
     private _catIndex = _forEachIndex;
     {
-        private _veh = _cat get _x;
-        private _class = _veh#1;
+        private _class = _y#1;
         if !(isClass (_cfg >> _class)) then {_invalidentries pushBack [_catIndex, _x]};
-    } forEach (keys _x);
+    } forEach _x;
 } forEach HR_GRG_Vehicles;
 
 {

@@ -12,18 +12,29 @@
     Scope: Any
     Environment: Any
     Public: Yes
-    Dependencies: <Bool>HR_GRG_hasAce
+    Dependencies: <Bool> A3A_hasAce
 
     Example: [_veh] call HR_GRG_fnc_isRepairSource;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
-params [ ["_vehicle", objNull, [objNull]] ];
-if (isNull _vehicle) exitWith {false};
+params [ ["_vehicle", objNull, [objNull,""]] ];
 
-if (HR_GRG_hasAce) then {
-    private _value = _vehicle getVariable ["ACE_isRepairVehicle", getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "ace_repair_canRepair")];
+//handle obj input and class input
+private _vehType = if (_vehicle isEqualType objNull) then {typeOf _vehicle} else {_vehicle};
+if (_vehicle isEqualType "") then {_vehicle = objNull};
+
+if (_vehType isEqualTo "") exitWith {false}; //null obj passed
+private _vehCfg = configFile/"CfgVehicles"/_vehType;
+if (!isClass _vehCfg) exitWith {false}; //invalid class string passed
+
+if (A3A_hasAce) then {
+    private _value = _vehicle getVariable ["ACE_isRepairVehicle", getNumber (_vehCfg/"ace_repair_canRepair")];
     _value in [1, true];
 } else {
-    getRepairCargo _vehicle > 0
+    if (isNull _vehicle) then {
+        getNumber (_vehCfg/"transportRepair") > 0
+    } else {
+        getRepairCargo _vehicle > 0
+    };
 };

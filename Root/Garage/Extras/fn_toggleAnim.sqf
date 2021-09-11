@@ -16,7 +16,7 @@
 
     Example: _this call HR_GRG_fnc_toggleAnim;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
@@ -24,7 +24,7 @@ Trace("Toggling a animation");
 params ["_ctrl"];
 private _index = lbCurSel _ctrl;
 _ctrl lbSetCurSel -1;
-if (_index isEqualTo -1) exitWith {};
+if (_index isEqualTo -1) exitWith {false};
 
 private _newIconIndex = checkboxTextures findIf { !( _x isEqualTo (_ctrl lbPicture _index) ) };
 _ctrl lbSetPicture [_index, checkboxTextures#_newIconIndex];
@@ -33,6 +33,6 @@ for "_i" from 0 to (lbsize _ctrl - 1) do {
     _anims pushback (_ctrl lbdata _i);
     _anims pushback (checkboxTextures find (_ctrl lbpicture _i));
 };
-HR_GRG_CurAnims = _anims;
+HR_GRG_curAnims = _anims;
 
-[HR_GRG_previewVeh, HR_GRG_CurTexture, HR_GRG_CurAnims] call BIS_fnc_initVehicle;
+[HR_GRG_previewVeh, HR_GRG_curTexture, HR_GRG_curAnims] call BIS_fnc_initVehicle;

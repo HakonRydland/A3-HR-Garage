@@ -18,11 +18,14 @@
 
     Example: [] call HR_GRG_fnc_onUnload
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
 Trace("Closing Garage");
+
+[] call HR_GRG_onCloseEvent;
+
 [clientOwner] remoteExecCall ["HR_GRG_fnc_removeUser",2];
 "HR_GRG_Event" addPublicVariableEventHandler {};
 "HR_GRG_Vehicles" addPublicVariableEventHandler {};
@@ -34,6 +37,7 @@ lightDetachObject HR_GRG_previewLight;
 deleteVehicle HR_GRG_previewLight;
 
 //destroy preview camera
+enableEnvironment true;
 HR_GRG_previewCam cameraEffect ["terminate","back"];
 camDestroy HR_GRG_previewCam;
 
@@ -47,13 +51,5 @@ if (!isNull HR_GRG_previewVeh) then {
 if (HR_GRG_Placing) exitWith {};
 
 //remove check out
-private _fnc = "HR_GRG_fnc_releaseAllVehicles";
-private _code = {
-    params ["_client", "_UID", "_fnc"];
-    private _recipients = +HR_GRG_Users;
-    _recipients pushBackUnique 2;
-    _recipients pushBackUnique _client;
-    [_UID] remoteExecCall [_fnc,_recipients];
-};
-HR_GRG_AccessPoint = objNull;
-[[clientOwner, getPlayerUID player, _fnc], _code] remoteExecCall ["call", 2]; //run code on server as HR_GRG_Users is maintained ONLY on the server
+[clientOwner, player, "HR_GRG_fnc_releaseAllVehicles"] remoteExecCall ["HR_GRG_fnc_execForGarageUsers", 2]; //run code on server as HR_GRG_Users is maintained ONLY on the server
+HR_GRG_accessPoint = objNull;

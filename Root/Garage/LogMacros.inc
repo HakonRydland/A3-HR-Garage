@@ -63,7 +63,7 @@
     Public: Yes
     Dependencies: SQF, LogLevel
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #define _LOG_prefix "HR Garage"
 

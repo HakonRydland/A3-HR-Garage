@@ -9,6 +9,7 @@ class HR_GRG
         class confirm {};
         class confirmPlacement {};
         class declairSources {};
+        class execForGarageUsers {};
         class genVehUID {};
         class getCatIndex {};
         class onLoad {};
@@ -76,7 +77,9 @@ class HR_GRG
         class callbackHandler {};
         class getSaveData {};
         class initGarage {};
-        class initServer {};
+        class initServer {
+            preInit = 1;
+        };
         class loadSaveData {};
     };
 };

@@ -15,9 +15,10 @@
 
     Example: [] call HR_GRG_fnc_confirm;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 HR_GRG_SelectedVehicles params ["_catIndex", "_vehUID", "_class"];
+if (_vehUID isEqualTo -1) exitWith {["STR_HR_GRG_Feedback_confirm_NullSelection"] call HR_GRG_fnc_Hint};
 
 //get mounts state
 HR_GRG_Mounts apply {
@@ -28,11 +29,14 @@ HR_GRG_Mounts apply {
 
 [
     _class
+    , nil //not used internaly
+    , nil //not used internaly
     , HR_GRG_Mounts
     , if (
             HR_GRG_Pylons_Enabled //Pylon editing enabled
             && { HR_GRG_hasAmmoSource } //or ammo source registered
     ) then {HR_GRG_Pylons} else {nil}
     , HR_GRG_previewVehState
+    , true
 ] call HR_GRG_fnc_confirmPlacement;
 closeDialog 2;

@@ -12,18 +12,28 @@
     Scope: Any
     Environment: Any
     Public: Yes
-    Dependencies: <Bool>HR_GRG_hasAce
+    Dependencies: <Bool> A3A_hasAce
 
     Example: [_veh] call HR_GRG_fnc_isFuelSource;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
-params [ ["_vehicle", objNull, [objNull]] ];
-if (isNull _vehicle) exitWith {false};
+params [ ["_vehicle", objNull, [objNull,""]] ];
 
-if (HR_GRG_hasAce) then { //Ace
-    private _vehCfg = configFile >> "CfgVehicles" >> typeOf _vehicle;
+//handle obj input and class input
+private _vehType = if (_vehicle isEqualType objNull) then {typeOf _vehicle} else {_vehicle};
+if (_vehicle isEqualType "") then {_vehicle = objNull};
+
+if (_vehType isEqualTo "") exitWith {false}; //null obj passed
+private _vehCfg = configFile/"CfgVehicles"/_vehType;
+if (!isClass _vehCfg) exitWith {false}; //invalid class string passed
+
+if (A3A_hasAce) then { //Ace
     _vehicle getVariable ["ace_refuel_currentFuelCargo", getNumber (_vehCfg >> "ace_refuel_fuelCargo")] > 0;
 } else { //Vanilla
-    getFuelCargo _vehicle > 0
+    if (isNull _vehicle) then {
+        getNumber (_vehCfg/"transportFuel") > 0
+    } else {
+        getFuelCargo _vehicle > 0
+    };
 };
