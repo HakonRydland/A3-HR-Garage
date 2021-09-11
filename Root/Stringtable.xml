@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project name="A3A-EventBase">
-    <Package name="A3A-Event">
+<Project name="HR-Garage">
+    <Package name="HR-Garage">
     <Container name="HR_GRG">
         <Key ID="STR_HR_GRG_Generic_Cancel">
             <Original>Cancel</Original>
@@ -67,24 +67,36 @@
             <English>Vehicles will be rearmed when ungaraged</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Ammo_Unavailable">
-            <Original>Vehicles won't be rearmed when ungaraged</Original>
-            <English>Vehicles won't be rearmed when ungaraged</English>
+            <Original>Vehicles won't be rearmed when ungaraged as the garage lacks a ammo source</Original>
+            <English>Vehicles won't be rearmed when ungaraged as the garage lacks a ammo source</English>
+        </Key>
+        <Key ID="STR_HR_GRG_SourcePanel_toolTip_Ammo_Disabled">
+            <Original>Rearm disabled by server</Original>
+            <English>Rearm disabled by server</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Fuel_Available">
             <Original>Vehicles will be refueled when ungaraged</Original>
             <English>Vehicles will be refueled when ungaraged</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Fuel_Unavailable">
-            <Original>Vehicles won't be refueled when ungaraged</Original>
-            <English>Vehicles won't be refueled when ungaraged</English>
+            <Original>Vehicles won't be refueled when ungaraged as the garage lacks a fuel source</Original>
+            <English>Vehicles won't be refueled when ungaraged as the garage lacks a fuel source</English>
+        </Key>
+        <Key ID="STR_HR_GRG_SourcePanel_toolTip_Fuel_Disabled">
+            <Original>Refuel disabled by server settings</Original>
+            <English>Refuel disabled by server settings</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Repair_Available">
             <Original>Vehicles will be repaired when ungaraged</Original>
             <English>Vehicles will be repaired when ungaraged</English>
         </Key>
         <Key ID="STR_HR_GRG_SourcePanel_toolTip_Repair_Unavailable">
-            <Original>Vehicles won't be repaired when ungaraged</Original>
-            <English>Vehicles won't be repaired when ungaraged</English>
+            <Original>Vehicles won't be repaired when ungaraged as the garage lacks a repair source</Original>
+            <English>Vehicles won't be repaired when ungaraged as the garage lacks a repair source</English>
+        </Key>
+        <Key ID="STR_HR_GRG_SourcePanel_toolTip_Repair_Disabled">
+            <Original>Repair disabled by server settings</Original>
+            <English>Repair disabled by server settings</English>
         </Key>
         <Key ID="STR_HR_GRG_InfoPanel_isAmmoSource">
             <Original>Vehicle is an ammo source</Original>
@@ -147,6 +159,10 @@
             <Original>You are not looking at a vehicle</Original>
             <English>You are not looking at a vehicle</English>
         </Key>
+        <Key ID="STR_HR_GRG_Feedback_confirm_NullSelection">
+            <Original>No vehicle selected</Original>
+            <English>No vehicle selected</English>
+        </Key>
         <Key ID="STR_HR_GRG_Feedback_addVehicle_SATow">
             <Original>You can't garage a Vehicle with your Tow Rope out or a Vehicle attached</Original>
             <English>You can't garage a Vehicle with your Tow Rope out or a Vehicle attached</English>
@@ -154,6 +170,10 @@
         <Key ID="STR_HR_GRG_Feedback_addVehicle_LTC">
             <Original>Loot crate stored</Original>
             <English>Loot crate stored</English>
+        </Key>
+        <Key ID="STR_HR_GRG_Feedback_addVehicle_LightSource_Stored">
+            <Original>Light stored</Original>
+            <English>Light stored</English>
         </Key>
         <Key ID="STR_HR_GRG_Feedback_addVehicle_Distance">
             <Original>You can't garage vehicles that are more than 25m away from you</Original>
@@ -169,8 +189,8 @@
         </Key>
         <!--%1 is faction name-->
         <Key ID="STR_HR_GRG_Feedback_addVehicle_badLocation">
-            <Original>You and the vehicle need to be in a %1 garrison surrounding in order to garage</Original>
-            <English>You and the vehicle need to be in a %1 garrison surrounding in order to garage</English>
+            <Original>You and the vehicle need to be in a %1 garrison surrounding in order to garage a it</Original>
+            <English>You and the vehicle need to be in a %1 garrison surrounding in order to garage a it</English>
         </Key>
         <Key ID="STR_HR_GRG_Feedback_addVehicle_enemiesEngaging">
             <Original>You can't garage vehicles while enemies are engaging you</Original>
@@ -189,6 +209,10 @@
             <Original>You can't garage this</Original>
             <English>You can't garage this</English>
         </Key>
+        <Key ID="STR_HR_GRG_Feedback_addVehicle_inVehicle">
+            <Original>You can't garage a vehicle while in another vehicle</Original>
+            <English>You can't garage a vehicle while in another vehicle</English>
+        </Key>
         <Key ID="STR_HR_GRG_Feedback_addVehicle_Crewed">
             <Original>You can't garage a vehicle with crew inside</Original>
             <English>You can't garage a vehicle with crew inside</English>
@@ -206,9 +230,15 @@
             <Original>Cant mount static</Original>
             <English>Cant mount static</English>
         </Key>
+        <Key ID="STR_HR_GRG_Feedback_checkedOutToolTip">
+            <!-- name is appended on at the start with a spcae in between-->
+            <Original>is looking at this vehicle.</Original>
+            <English>is looking at this vehicle.</English>
+        </Key>
         <Key ID="STR_HR_GRG_Feedback_LockedToolTip">
-            <Original>This vehicle is locked by another player</Original>
-            <English>This vehicle is locked by another player</English>
+            <!-- name is appended on at the end with a spcae in between-->
+            <Original>Vehicle is locked by</Original>
+            <English>Vehicle is locked by</English>
         </Key>
         <Key ID="STR_HR_GRG_Feedback_CP_Rotation">
             <!--Keybinds are hardcoded to key DIK codes: DIK_E, DIK_Q, DIK_ESCAPE, DIK_RETURN, and DIK_SPACE-->
@@ -268,6 +298,6 @@
             <Original>Driver</Original>
             <English>Driver</English>
         </Key>
-        </Container>
+    </Container>
     </Package>
 </Project>
