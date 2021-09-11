@@ -80,8 +80,6 @@
     #define Log_Trace
 #endif
 
-if (isNil "HR_GRG_LogLevel") then {HR_GRG_LogLevel = 4};
-
 //line limit handler
 #define _LOG_breakUpLogLine(LOG_LINE) call { \
     if (count LOG_LINE < 1020) exitWith {[LOG_LINE]}; \

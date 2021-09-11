@@ -1,5 +1,4 @@
-#include "\x\cba\addons\main\script_macros_common.hpp"
-#include "\x\cba\addons\xeh\script_xeh.hpp"
+#include "script_macros_common.hpp"
 
 #define DFUNC(fncName) TRIPLES(ADDON,fnc,fncName)
 #define DEFUNC(comp,fncName) TRIPLES(DOUBLES(PREFIX,comp),fnc,fncName)

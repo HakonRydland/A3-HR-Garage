@@ -1,2 +1,2 @@
 #define COMPONENT Common
-#include "\x\HR_Garage\addons\Common\Includes\script_mod.hpp"
+#include "Includes\script_mod.hpp"

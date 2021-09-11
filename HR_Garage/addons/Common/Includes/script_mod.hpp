@@ -1,6 +1,6 @@
 #define MAINPREFIX x
 #ifndef PREFIX
-    #define PREFIX HR_GRG
+    #define PREFIX HR
 #endif
 
 #include "common.inc"
@@ -12,9 +12,9 @@
 #define REQUIRED_VERSION 2.02
 
 #ifdef COMPONENT_BEAUTIFIED
-    #define COMPONENT_NAME QUOTE(HR Garage - COMPONENT_BEAUTIFIED)
+    #define COMPONENT_NAME QUOTE(PREFIX - COMPONENT_BEAUTIFIED)
 #else
-    #define COMPONENT_NAME QUOTE(HR Garage - COMPONENT)
+    #define COMPONENT_NAME QUOTE(PREFIX - COMPONENT)
 #endif
 
 #ifndef AUTHOR
