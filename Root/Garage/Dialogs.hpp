@@ -286,17 +286,6 @@ class HR_GRG_VehicleSelect
             };
         };
 
-        // Source pannel
-        /*
-        class HR_GRG_SourcePanel: HR_GRG_RscStructuredText
-        {
-            idc = HR_GRG_IDC_SourcePanel;
-            x = SCREEN_RIGHT - 39 * GRID_NOUISCALE_W;
-            y = SCREEN_BOTTOM - 52 * GRID_NOUISCALE_H;
-            w = 39 * GRID_NOUISCALE_W;
-            h = 6 * GRID_NOUISCALE_H;
-            size = TEXT_SIZE_MEDIUM;
-        };*/
         class HR_GRG_SourcePanel: HR_GRG_RscControlsGroup
         {
             x = SCREEN_RIGHT - 39 * GRID_NOUISCALE_W;
@@ -360,7 +349,6 @@ class HR_GRG_VehicleSelect
         class HR_GRG_KeyBindHint: HR_GRG_RscStructuredText
         {
             idc = HR_GRG_IDC_KeyBindHint;
-            // size = safeZoneW / safeZoneH min 1.2 / 1.2 / 37.5;
             x = SCREEN_LEFT + 39 * GRID_NOUISCALE_W;
             y = SCREEN_BOTTOM - 7 * GRID_NOUISCALE_H;
             w = 36 * GRID_NOUISCALE_W;
