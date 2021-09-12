@@ -66,7 +66,7 @@ if (isClass (configfile >> "CBA_Extended_EventHandlers")) then {
         HR_GRG_dLock = [{""}, { getPlayerUID player }] select _this;
     }] call CBA_fnc_addSetting;
 
-    ["HR_GRG_LogLevel", "LIST", ["Log level", "How much detail should be logged"], [HR_GRG_Prefix,"Garage"], [[1,2,3,4],["Error", "Info", "Debug", "Verbose"],4], false, {
+    ["HR_GRG_LogLevel", "LIST", ["Log level", "How much detail should be logged"], [HR_GRG_Prefix,"Garage"], [[1,2,3,4],["Error", "Info", "Debug", "Verbose"],3], false, {
         HR_GRG_LogLevel = _this;
     }] call CBA_fnc_addSetting;
 
