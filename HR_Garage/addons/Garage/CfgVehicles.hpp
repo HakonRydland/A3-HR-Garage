@@ -5,7 +5,7 @@ class CfgVehicles {
         scopeCurator = 2;
         vehicleClass = "Modules";
         category = QUOTE(ADDON);
-        isGlobal = 0;
+        isGlobal = 1;
         curatorCanAttach = 1;
         class Units;
         class AttributesBase;

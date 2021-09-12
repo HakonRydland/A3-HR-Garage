@@ -298,6 +298,10 @@
             <Original>Driver</Original>
             <English>Driver</English>
         </Key>
+        <Key ID="STR_HR_GRG_Modules_notMultiplayer">
+            <Original>HR Garage is only Available in multiplayer</Original>
+            <English>HR Garage is only Available in multiplayer</English>
+        </Key>
     </Container>
     </Package>
 </Project>

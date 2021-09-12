@@ -7,6 +7,10 @@ private _attached = _module getvariable ["bis_fnc_curatorAttachObject_object",ob
 if (!isNull _attached) then { _accessObjects pushBackUnique _attached };
 deleteVehicle _module;
 
+if (!isMultiplayer) exitWith {
+    ["STR_HR_GRG_Modules_notMultiplayer"] call HR_GRG_fnc_Hint;
+    Error("HR Garage is only available in multiplayer");
+};
 {
     if (isServer) then {
         [_x, clientOwner] call HR_GRG_fnc_addVehicle;
