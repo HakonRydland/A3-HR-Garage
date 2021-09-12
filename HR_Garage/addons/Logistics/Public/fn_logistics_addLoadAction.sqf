@@ -17,7 +17,7 @@
 
     Example: [_object] call HR_fnc_logistics_addLoadAction;
 */
-#include "..\..\Includes\common.inc"
+#include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
 params ["_object", ["_action", "load"]];
 

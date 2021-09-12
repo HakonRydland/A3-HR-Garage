@@ -16,5 +16,5 @@ class CfgPatches {
     };
 };
 
-#include "functions.hpp"
+#include "CfgFunctions.hpp"
 #include "Dialogs.hpp"

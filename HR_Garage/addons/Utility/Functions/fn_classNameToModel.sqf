@@ -19,7 +19,7 @@
 
     License: MIT License
 */
-#include "..\..\Includes\common.inc"
+#include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
 params [["_className", "", [""]]];
 if !(isClass (configFile/"CfgVehicles"/_className)) exitWith { Error("Invalid classname: " + _classname); "N/A" };

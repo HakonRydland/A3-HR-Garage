@@ -18,7 +18,7 @@
 
     License: MIT License
 */
-#include "..\..\..\Includes\common.inc"
+#include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
 if (!isServer) exitWith {};
 params ["_cargo"];

@@ -17,7 +17,7 @@
 
     Example: [_target] remoteExec ["HR_fnc_logistics_unload",2];
 */
-#include "..\..\..\Includes\common.inc"
+#include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
 params ["_vehicle", ["_instant", false, [true]]];
 private _fileName = "fn_logistics_unload";
