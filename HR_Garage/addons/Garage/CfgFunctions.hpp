@@ -82,12 +82,14 @@ class CfgFunctions {
             file = QPATHTOFOLDER(Public);
             class addVehiclesByClass {};
             class addVehicle {};
+            class addVehicleAction {};
             class callbackHandler {};
             class getSaveData {};
             class initGarage {};
             class initServer {
                 preInit = 1;
             };
+            class initVehicleGarageAction {};
             class loadSaveData {};
             class removeGarage {};
         };

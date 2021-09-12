@@ -18,3 +18,4 @@ class CfgPatches {
 #include "CfgFunctions.hpp"
 #include "Dialogs.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgEventHandlers.hpp"
