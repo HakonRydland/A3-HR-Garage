@@ -3,12 +3,10 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {QDOUBLES(ADDON,Module_addGarage), QDOUBLES(ADDON,Module_removeGarage)};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {
-            "cba_xeh"
-        };
+        requiredAddons[] = { "A3_Modules_F" };
         author = AUTHOR
         authors[] = { AUTHORS };
         authorUrl = "";
@@ -16,5 +14,7 @@ class CfgPatches {
     };
 };
 
+#include "CfgFactionClasses.hpp"
 #include "CfgFunctions.hpp"
 #include "Dialogs.hpp"
+#include "CfgVehicles.hpp"

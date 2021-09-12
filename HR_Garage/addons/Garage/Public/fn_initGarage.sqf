@@ -18,9 +18,10 @@
 
     License: APL-ND
 */
+#include "..\script_component.hpp"
 params [ ["_object", objNull, [objNull]] ];
 if (isNull _object) exitWith {false};
-if (!isMultiplayer) exitWith {false};
+if (!isMultiplayer) exitWith { Error("HR Garage is only available in multiplayer"); false};
 private _oldID = _object getVariable ["HR_GRG_GarageID", -1];
 _object removeAction _oldID;
 
@@ -35,5 +36,11 @@ private _id = _object addAction [
     && player isEqualTo vehicle player
     ", 6
 ];
-_object setVariable ["HR_GRG_GarageID", _id, true];
+_object setVariable ["HR_GRG_GarageID", _id];
+
+//add it to the registra of access points
+if (isNil "HR_GRG_accessPoints") then {HR_GRG_accessPoints = []};
+HR_GRG_accessPoints pushBackUnique _object;
+HR_GRG_accessPoints = HR_GRG_accessPoints select {!isNull _x};
+
 true;

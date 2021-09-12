@@ -31,6 +31,8 @@ if (!alive _object) exitWith {
     nil
 };
 
+if (([_object] call HR_fnc_logistics_getCargoNodeType) isEqualTo -1) exitWith {nil};
+
 if (isNil "HR_logistics_vehicleHardpoints") exitWith {
     Error("Logistics nodes not initialized, aborting");
     nil

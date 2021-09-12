@@ -78,10 +78,13 @@ class CfgFunctions {
             class callbackHandler {};
             class getSaveData {};
             class initGarage {};
+            class initModule_addGarage {};
+            class initModule_removeGarage {};
             class initServer {
                 preInit = 1;
             };
             class loadSaveData {};
+            class removeGarage {};
         };
     };
 };

@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {};
+        requiredAddons[] = { "cba_xeh" };
         author = AUTHOR
         authors[] = { AUTHORS };
         authorUrl = "";
@@ -15,3 +15,4 @@ class CfgPatches {
 };
 
 #include "CfgFunctions.hpp"
+#include "CfgEventHandlers.hpp"
