@@ -10,7 +10,7 @@ class CfgFunctions {
 		};
 		class LogisticsPrivate
 		{
-			file = QPATHTOFOLDER(Functions);
+			file = QPATHTOFOLDER(Private);
 			class logistics_addAction {};
 			class logistics_addOrRemoveObjectMass {};
 			class logistics_addWeaponAction {};
