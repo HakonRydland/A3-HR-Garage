@@ -33,7 +33,7 @@ switch (_action) do {
                 [_target] remoteExecCall ["HR_fnc_logistics_tryLoad",2];
             },
             nil,
-            1.5,
+            -5,
             true,
             true,
             "",
@@ -61,7 +61,7 @@ switch (_action) do {
                 [_target] remoteExec ["HR_fnc_logistics_unload",2];
             },
             nil,
-            1.5,
+            -5,
             true,
             true,
             "",

@@ -314,10 +314,6 @@
             <Original>Add vehicle to garage</Original>
             <English>Add vehicle to garage</English>
         </Key>
-        <Key ID="STR_HR_GRG_addVehicle_action">
-            <Original>&lt;img image='\A3\ui_f\data\GUI\Rsc\RscDisplayArsenal\spaceGarage_ca.paa'&gt;&lt;/img&gt; Garage vehicle</Original>
-            <English>&lt;img image='\A3\ui_f\data\GUI\Rsc\RscDisplayArsenal\spaceGarage_ca.paa'&gt;&lt;/img&gt; Garage vehicle</English>
-        </Key>
     </Container>
     </Package>
 </Project>

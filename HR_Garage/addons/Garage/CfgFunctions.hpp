@@ -89,7 +89,6 @@ class CfgFunctions {
             class initServer {
                 preInit = 1;
             };
-            class initVehicleGarageAction {};
             class loadSaveData {};
             class removeGarage {};
         };
