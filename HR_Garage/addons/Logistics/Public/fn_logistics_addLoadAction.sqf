@@ -19,10 +19,20 @@
 */
 #include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
-params ["_object", ["_action", "load"]];
+params [["_object", objNull, [objNull]], ["_action", "load"]];
+
+if (isNull _object) exitWith {
+    Error("No object passed, aborting");
+    nil
+};
+
+if (!alive _object) exitWith {
+    Error("Destroyed object passed, aborting");
+    nil
+};
 
 if (isNil "HR_logistics_vehicleHardpoints") exitWith {
-    Error("Logistics nodes not initialized");
+    Error("Logistics nodes not initialized, aborting");
     nil
 };
 

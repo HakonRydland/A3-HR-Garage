@@ -6,7 +6,7 @@ class CfgFunctions {
 			file = QPATHTOFOLDER(Public);
 			class logistics_addLoadAction {};
 			class logistics_getVehCapacity {};
-			class logistics_initNodes {};
+			class logistics_initNodes { preInit = 1; };
 		};
 		class LogisticsPrivate
 		{
