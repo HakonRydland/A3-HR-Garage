@@ -302,6 +302,18 @@
             <Original>HR Garage is only available in multiplayer</Original>
             <English>HR Garage is only available in multiplayer</English>
         </Key>
+        <Key ID="STR_HR_GRG_Modules_addAccess">
+            <Original>Add garage access</Original>
+            <English>Add garage access</English>
+        </Key>
+        <Key ID="STR_HR_GRG_Modules_removeAccess">
+            <Original>Remove garage access</Original>
+            <English>Remove garage access</English>
+        </Key>
+        <Key ID="STR_HR_GRG_Modules_addVehicle">
+            <Original>Add vehicle to garage</Original>
+            <English>Add vehicle to garage</English>
+        </Key>
     </Container>
     </Package>
 </Project>

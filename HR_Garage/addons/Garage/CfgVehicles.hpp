@@ -13,7 +13,7 @@ class CfgVehicles {
 
     class DOUBLES(ADDON,Module_addGarage): DOUBLES(ADDON,ModuleBase) {
         scope = 2;
-        displayName = "Add garage access";
+        displayName = $STR_HR_GRG_Modules_addAccess;
         function = "HR_GRG_fnc_initModule_addGarage";
 
         class Attributes: AttributesBase {
@@ -25,7 +25,7 @@ class CfgVehicles {
 
     class DOUBLES(ADDON,Module_removeGarage): DOUBLES(ADDON,ModuleBase) {
         scope = 1;
-        displayName = "Remove garage access";
+        displayName = $STR_HR_GRG_Modules_removeAccess;
         function = "HR_GRG_fnc_initModule_removeGarage";
 
         class Attributes: AttributesBase {
@@ -37,7 +37,7 @@ class CfgVehicles {
 
     class DOUBLES(ADDON,Module_addVehicle): DOUBLES(ADDON,ModuleBase) {
         scope = 2;
-        displayName = "Add vehicle to garage";
+        displayName = $STR_HR_GRG_Modules_addVehicle;
         function = "HR_GRG_fnc_initModule_addVehicle";
 
         class Attributes: AttributesBase {
