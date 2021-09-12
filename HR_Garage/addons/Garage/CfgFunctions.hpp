@@ -69,6 +69,13 @@ class CfgFunctions {
             class setState {};
         };
 
+        class Modules {
+            file = QPATHTOFOLDER(Modules);
+            class initModule_addGarage {};
+            class initModule_removeGarage {};
+            class initModule_addVehicle {};
+        };
+
     //public functions
         class Public
         {
@@ -78,8 +85,6 @@ class CfgFunctions {
             class callbackHandler {};
             class getSaveData {};
             class initGarage {};
-            class initModule_addGarage {};
-            class initModule_removeGarage {};
             class initServer {
                 preInit = 1;
             };

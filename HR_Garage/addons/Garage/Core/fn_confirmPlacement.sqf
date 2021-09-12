@@ -384,7 +384,12 @@ HR_GRG_EH_EF = addMissionEventHandler ["EachFrame", {
         ,17001
     ] spawn BIS_fnc_dynamicText;
 
-    if (call HR_GRG_CP_closeCnd) exitWith {call HR_GRG_cleanUp};
+    if (call HR_GRG_CP_closeCnd) exitWith {
+        call HR_GRG_cleanUp;
+        if (HR_GRG_usePool) then {
+            [clientOwner, player, "HR_GRG_fnc_releaseAllVehicles"] remoteExecCall ["HR_GRG_fnc_execForGarageUsers", 2];
+        };
+    };
 
     #ifdef Debug //Debug render
     HR_GRG_dispSquare params ["_adjustment", "_square"];

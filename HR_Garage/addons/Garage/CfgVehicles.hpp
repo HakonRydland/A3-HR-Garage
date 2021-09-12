@@ -34,4 +34,16 @@ class CfgVehicles {
             };
         };
     };
+
+    class DOUBLES(ADDON,Module_addVehicle): DOUBLES(ADDON,ModuleBase) {
+        scope = 2;
+        displayName = "Add vehicle to garage";
+        function = "HR_GRG_fnc_initModule_addVehicle";
+
+        class Attributes: AttributesBase {
+            class Units: Units {
+                property = QDOUBLES(ADDON,Module_addVehicle);
+            };
+        };
+    };
 };

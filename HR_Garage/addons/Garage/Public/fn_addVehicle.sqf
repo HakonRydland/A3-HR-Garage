@@ -34,7 +34,7 @@ if (isNull _vehicle) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Null"] remoteEx
 if (!alive _vehicle) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Destroyed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 if (locked _vehicle > 1) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Locked"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 if (player isNotEqualTo vehicle player) exitWith { ["STR_HR_GRG_Feedback_addVehicle_inVehicle"] remoteExec ["HR_GRG_fnc_Hint"] ; false };
-if (_player distance _vehicle > 25) exitWith {["STR_HR_GRG_Feedback_addVehicle_Distance"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (!isnull _player && (_player distance _vehicle > 25)) exitWith {["STR_HR_GRG_Feedback_addVehicle_Distance"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //Towing
 if !((_vehicle getVariable ["SA_Tow_Ropes",objNull]) isEqualTo objNull) exitWith {["STR_HR_GRG_Feedback_addVehicle_SATow"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
@@ -98,7 +98,7 @@ private _addVehicle = {
 };
 
 private _locking = if (_lockUID isEqualTo "") then {false} else {true};
-private _lockName = if (_locking) then { name _player } else { "" };
+private _lockName = if (_locking && !isNull _player) then { name _player } else { "" };
 private _catsRequiringUpdate = [];
 {
     detach _x;
