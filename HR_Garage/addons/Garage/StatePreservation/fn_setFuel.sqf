@@ -22,9 +22,11 @@
 
     License: APL-ND
 */
-params ["_vehicle", "_fuelStats"];
+params [["_vehicle",objnull,[objNull]], "_fuelStats"];
+if (isNull _vehicle) exitWith {};
 if !(local _vehicle) exitWith {};
-_fuelStats params [["_fuel",0, [0]], ["_fuelCargo",-1,[0]], ["_aceFuel",-2,[0]]];
+if (isnil "_fuelStats") exitWith {};
+_fuelStats params [["_fuel",1, [0]], ["_fuelCargo",-1,[0]], ["_aceFuel",-2,[0]]];
 _vehicle setFuel ([_fuel, 1] select (HR_Garage_hasFuelSource && !HR_Garage_ServiceDisabled_Refuel));
 _vehicle setFuelCargo _fuelCargo;
 if (_aceFuel > -2) then { // my nill indicator

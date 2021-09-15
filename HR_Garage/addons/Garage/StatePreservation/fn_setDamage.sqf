@@ -22,8 +22,10 @@
 
     License: APL-ND
 */
-params ["_vehicle", "_dmgStats"];
+params [["_vehicle",objnull,[objNull]], "_dmgStats"];
+if (isNull _vehicle) exitWith {};
 if !(local _vehicle) exitWith {};
+if (isNil "_dmgStats") exitWith {};
 _dmgStats params [["_dmg",0,[0]], ["_hitDmg", [], [[]]], ["_repairCargo", -1, [0]]];
 private _restoreState = [0,1] select (HR_Garage_hasRepairSource && !HR_Garage_ServiceDisabled_Repair);
 _vehicle setDamage ([_dmg, 0] # _restoreState);

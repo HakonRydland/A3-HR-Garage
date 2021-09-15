@@ -39,8 +39,10 @@
 
     License: APL-ND
 */
-params ["_vehicle", "_ammoData"];
+params [["_vehicle",objNull,[objNull]], "_ammoData"];
+if (isNull _vehicle) exitWith {};
 if !(local _vehicle) exitWith {};
+if (isNil "_ammoData") exitWith {};
 if (HR_Garage_hasAmmoSource && !HR_Garage_ServiceDisabled_Rearm) exitWith {};
 private _weaponData = _ammoData select {!(_x#0)};
 private _pylonData = _ammoData - _weaponData;
