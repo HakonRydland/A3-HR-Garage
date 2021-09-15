@@ -13,11 +13,11 @@
     Scope: Server
     Environment: unscheduled
     Public: [No]
-    Dependencies: HR_GRG_UID
+    Dependencies: HR_Garage_UID
 
-    Example: [] call HR_GRG_fnc_genVehUID;
+    Example: [] call HR_Garage_fnc_genVehUID;
 
     License: APL-ND
 */
-HR_GRG_UID = (HR_GRG_UID + 1) % 1e7;
-HR_GRG_UID
+HR_Garage_UID = (HR_Garage_UID + 1) % 1e7;
+HR_Garage_UID

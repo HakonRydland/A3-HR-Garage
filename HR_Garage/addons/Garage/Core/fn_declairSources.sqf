@@ -12,9 +12,9 @@
     Scope: Server
     Environment: Any
     Public: No
-    Dependencies: HR_GRG_Sources
+    Dependencies: HR_Garage_Sources
 
-    Example: [0] call HR_GRG_fnc_declairSources;
+    Example: [0] call HR_Garage_fnc_declairSources;
 
     License: APL-ND
 */
@@ -28,8 +28,8 @@ if (!isServer) exitWith {};
 #define RepairSource 2
 
 switch _source do {
-    case AmmoSource: { HR_GRG_hasAmmoSource = !((HR_GRG_Sources#0) isEqualTo []); publicVariable "HR_GRG_hasAmmoSource" };
-    case FuelSource: { HR_GRG_hasFuelSource = !((HR_GRG_Sources#1) isEqualTo []); publicVariable "HR_GRG_hasFuelSource" };
-    case RepairSource: { HR_GRG_hasRepairSource = !((HR_GRG_Sources#2) isEqualTo []); publicVariable "HR_GRG_hasRepairSource" };
+    case AmmoSource: { HR_Garage_hasAmmoSource = !((HR_Garage_Sources#0) isEqualTo []); publicVariable "HR_Garage_hasAmmoSource" };
+    case FuelSource: { HR_Garage_hasFuelSource = !((HR_Garage_Sources#1) isEqualTo []); publicVariable "HR_Garage_hasFuelSource" };
+    case RepairSource: { HR_Garage_hasRepairSource = !((HR_Garage_Sources#2) isEqualTo []); publicVariable "HR_Garage_hasRepairSource" };
     default { Info_1("Invalid source type: %1", _source) };
 };

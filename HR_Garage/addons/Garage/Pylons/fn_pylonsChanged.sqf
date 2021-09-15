@@ -17,7 +17,7 @@
     Public: [No]
     Dependencies:
 
-    Example: _this call HR_GRG_fnc_PylonsChanged;
+    Example: _this call HR_Garage_fnc_PylonsChanged;
 
     License: GNU General Public License
 */
@@ -34,12 +34,12 @@ Trace_2("Pylon changed Ctrl: %1 | Index: %2",_ctrl , _index);
                 _x params ["_combo", "_mirroredIndex"];
                 if (_mirroredIndex == _indexOf && {!ctrlEnabled _combo}) exitWith {
                     _combo lbSetCurSel _index;
-                    (HR_GRG_PylonData#_forEachIndex) set [3, _index];
+                    (HR_Garage_PylonData#_forEachIndex) set [3, _index];
                 };
-            } forEach HR_GRG_PylonData;
+            } forEach HR_Garage_PylonData;
         };
-        (HR_GRG_PylonData#_forEachIndex) set [3, _index];
+        (HR_Garage_PylonData#_forEachIndex) set [3, _index];
     };
-} forEach HR_GRG_PylonData;
+} forEach HR_Garage_PylonData;
 
-HR_GRG_UpdatePylons = true;
+HR_Garage_UpdatePylons = true;

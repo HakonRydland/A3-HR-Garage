@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_UID] remoteExecCall ["HR_GRG_fnc_releaseAllVehicles",_recipients];
+    Example: [_UID] remoteExecCall ["HR_Garage_fnc_releaseAllVehicles",_recipients];
 
     License: APL-ND
 */
@@ -24,20 +24,20 @@ params [ ["_UID" ,"", [""]]];
 if (_UID isEqualTo "") exitWith {false};
 Trace_1("Releasing all vehicles with UID: %1", _UID);
 
-//release all vehicles in all HR_GRG_categories
+//release all vehicles in all HR_Garage_categories
 {
     {
         if ( (_y#3) isEqualTo _UID) then {_y set [3, ""] };
     } forEach _x;
-} forEach HR_GRG_Vehicles;
+} forEach HR_Garage_Vehicles;
 
 //refresh category if client
 if (!isNull player) then {
     {
         if (ctrlEnabled _x) then {
-            [_x, _forEachIndex] call HR_GRG_fnc_reloadCategory;
+            [_x, _forEachIndex] call HR_Garage_fnc_reloadCategory;
         };
-    } forEach HR_GRG_Cats;
+    } forEach HR_Garage_Cats;
 };
 
 true

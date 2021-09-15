@@ -16,7 +16,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [(_this select 1) == 1] call HR_GRG_fnc_pylonToggleMirror;
+    Example: [(_this select 1) == 1] call HR_Garage_fnc_pylonToggleMirror;
 
     License: GNU General Public License
 */
@@ -29,19 +29,19 @@ if (_checked) then {
         _x params ["_combo", "_mirroredIndex", "_button"];
 
         if (_mirroredIndex != -1) then {
-            private _selection = lbCurSel ((HR_GRG_PylonData select _mirroredIndex) select 0);
+            private _selection = lbCurSel ((HR_Garage_PylonData select _mirroredIndex) select 0);
             _combo lbSetCurSel _selection;
             _combo ctrlEnable false;
 
-            private _mirroredButton = (HR_GRG_PylonData select _mirroredIndex) select 2;
-            private _turret = _mirroredButton getVariable ["HR_GRG_turret", []];
-            [_button, false, _turret] call HR_GRG_fnc_PylonsTurretToggle;
+            private _mirroredButton = (HR_Garage_PylonData select _mirroredIndex) select 2;
+            private _turret = _mirroredButton getVariable ["HR_Garage_turret", []];
+            [_button, false, _turret] call HR_Garage_fnc_PylonsTurretToggle;
             _button ctrlEnable false;
         };
-    } forEach HR_GRG_PylonData;
+    } forEach HR_Garage_PylonData;
 } else {
     {
         (_x select 0) ctrlEnable true;
         (_x select 2) ctrlEnable true;
-    } forEach HR_GRG_PylonData;
+    } forEach HR_Garage_PylonData;
 };

@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: _this call HR_GRG_fnc_selectionChange;
+    Example: _this call HR_Garage_fnc_selectionChange;
 
     License: APL-ND
 */
@@ -25,14 +25,14 @@ private _curSel = lbCurSel _ctrl;
 if (_curSel isEqualTo -1) exitWith {};
 
 private _newVehUID = _ctrl lbValue _curSel;
-private _newCat = HR_GRG_Cats find _ctrl;
+private _newCat = HR_Garage_Cats find _ctrl;
 _ctrl lbSetCurSel -1;
 
-private _cat = HR_GRG_SelectedVehicles#0;
+private _cat = HR_Garage_SelectedVehicles#0;
 if (_cat != -1) then {
-    (HR_GRG_Cats#_cat) lbSetCurSel -1;
+    (HR_Garage_Cats#_cat) lbSetCurSel -1;
 };
-HR_GRG_SelectedChanged = true;
-[false] call HR_GRG_fnc_toggleConfirmBttn;
+HR_Garage_SelectedChanged = true;
+[false] call HR_Garage_fnc_toggleConfirmBttn;
 
-[HR_GRG_PlayerUID, _newCat, _newVehUID, player, clientOwner] remoteExecCall ["HR_GRG_fnc_requestSelectionChange",2];
+[HR_Garage_PlayerUID, _newCat, _newVehUID, player, clientOwner] remoteExecCall ["HR_Garage_fnc_requestSelectionChange",2];

@@ -33,18 +33,18 @@
     Public: Yes
     Dependencies:
 
-    Example: [] call HR_GRG_fnc_getSaveData;
+    Example: [] call HR_Garage_fnc_getSaveData;
 
     License: APL-ND
 */
 if (!isServer) exitWith {};
 #include "defines.inc"
 FIX_LINE_NUMBERS()
-if (isNil "HR_GRG_Vehicles") then { [] call HR_GRG_fnc_initServer };
+if (isNil "HR_Garage_Vehicles") then { [] call HR_Garage_fnc_initServer };
 //get data to be saved
-private _garage = + HR_GRG_Vehicles; //have had issus with refrences persisting trough save procces causing mangling of save data
-private _UID = HR_GRG_UID;
-private _sources = [+(HR_GRG_Sources#0),+(HR_GRG_Sources#1),+(HR_GRG_Sources#2)];
+private _garage = + HR_Garage_Vehicles; //have had issus with refrences persisting trough save procces causing mangling of save data
+private _UID = HR_Garage_UID;
+private _sources = [+(HR_Garage_Sources#0),+(HR_Garage_Sources#1),+(HR_Garage_Sources#2)];
 
 //correct some data to savable state
 {

@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [HR_GRG_PlayerUID] remoteExecCall ["HR_GRG_fnc_removeFromPool",_recipients];
+    Example: [HR_Garage_PlayerUID] remoteExecCall ["HR_Garage_fnc_removeFromPool",_recipients];
 
     License: APL-ND
 */
@@ -33,23 +33,23 @@ private _toRemove = [];
         _veh = _hashMap get _x;
         if ((_veh#3) isEqualTo _UID) then {_toRemove pushBack [_catIndex, _x, _veh]};
     } forEach keys _x;
-} forEach HR_GRG_Vehicles;
+} forEach HR_Garage_Vehicles;
 
 //remove vehicles
 {
     //remove vehicle
     _x params ["_catIndex", "_entry"];
-    private _cat = HR_GRG_Vehicles#_catIndex;
+    private _cat = HR_Garage_Vehicles#_catIndex;
     private _removedVeh = _cat deleteAt _entry;
 
     //remove from source registre
     {
         private _index = _x find _entry;
         if (_index != -1) exitWith {
-            (HR_GRG_Sources#_forEachIndex) deleteAt _index;
-            [_forEachIndex] call HR_GRG_fnc_declairSources;
+            (HR_Garage_Sources#_forEachIndex) deleteAt _index;
+            [_forEachIndex] call HR_Garage_fnc_declairSources;
         };
-    }forEach HR_GRG_Sources;
+    }forEach HR_Garage_Sources;
 
 } forEach _toRemove;
 
@@ -57,9 +57,9 @@ private _toRemove = [];
 if (!isNull player) then {
     {
         if (ctrlEnabled _x) then {
-            [_x, _forEachIndex] call HR_GRG_fnc_reloadCategory;
+            [_x, _forEachIndex] call HR_Garage_fnc_reloadCategory;
         };
-    } forEach HR_GRG_Cats;
+    } forEach HR_Garage_Cats;
 };
 
 //logging is low priority do it after done modifying the pool

@@ -12,7 +12,7 @@
  * Scope: Any
  * Environment: Any
  * Example:
- * [cursorObject, 0] call HR_GRG_fnc_getPylonTurret;
+ * [cursorObject, 0] call HR_Garage_fnc_getPylonTurret;
  *
  * Public: No
  */

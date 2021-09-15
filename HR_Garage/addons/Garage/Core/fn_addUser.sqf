@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [clientOwner] remoteExecCall ["HR_GRG_fnc_addUser",2];
+    Example: [clientOwner] remoteExecCall ["HR_Garage_fnc_addUser",2];
 
     License: APL-ND
 */
@@ -28,8 +28,8 @@ if (
     || {!(_client isEqualType 0)}
 ) exitWith {false};
 
-if (isNil "HR_GRG_Users") then {HR_GRG_Users = []};
+if (isNil "HR_Garage_Users") then {HR_Garage_Users = []};
 Trace_1("Adding user: %1", _client);
-HR_GRG_Users pushBack _client;
-_client publicVariableClient "HR_GRG_Vehicles";
+HR_Garage_Users pushBack _client;
+_client publicVariableClient "HR_Garage_Vehicles";
 true

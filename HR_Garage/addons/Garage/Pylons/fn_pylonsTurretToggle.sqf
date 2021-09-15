@@ -18,7 +18,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_button, false, _turret] call HR_GRG_fnc_PylonsTurretToggle;
+    Example: [_button, false, _turret] call HR_Garage_fnc_PylonsTurretToggle;
 
     License: GNU General Public License
 */
@@ -26,8 +26,8 @@
 FIX_LINE_NUMBERS()
 params ["_ctrl", "_switch", "_turret"];
 
-if (_switch && !(HR_GRG_Turrets isEqualTo [])) then {
-    _turret = [[0], []] select ((_ctrl getVariable "HR_GRG_turret") isEqualTo [0]);
+if (_switch && !(HR_Garage_Turrets isEqualTo [])) then {
+    _turret = [[0], []] select ((_ctrl getVariable "HR_Garage_turret") isEqualTo [0]);
 
     {
         _x params ["", "_mirroredIndex", "_button"];
@@ -37,22 +37,22 @@ if (_switch && !(HR_GRG_Turrets isEqualTo [])) then {
                 {
                     _x params ["", "_mirroredIndex", "_button"];
                     if (_mirroredIndex == _indexOf && {!ctrlEnabled _button}) exitWith {
-                        [_button, false, _turret] call HR_GRG_fnc_PylonsTurretToggle;
+                        [_button, false, _turret] call HR_Garage_fnc_PylonsTurretToggle;
                     };
-                } forEach HR_GRG_PylonData;
+                } forEach HR_Garage_PylonData;
             };
         };
-    } forEach HR_GRG_PylonData;
-    HR_GRG_UpdatePylons = true;
+    } forEach HR_Garage_PylonData;
+    HR_Garage_UpdatePylons = true;
 };
-_ctrl setVariable ["HR_GRG_turret", _turret];
+_ctrl setVariable ["HR_Garage_turret", _turret];
 
 if (_turret isEqualTo [0]) then {
     Trace_1("Turret switched to Gunner, Ctrl: %1",_ctrl);
     _ctrl ctrlSetText GunnerIcon;
-    _ctrl ctrlSetTooltip localize "STR_HR_GRG_Pylons_Gunner";
+    _ctrl ctrlSetTooltip localize "STR_HR_Garage_Pylons_Gunner";
 } else {
     Trace("Turret switched to Driver, Ctrl: %1",_ctrl);
     _ctrl ctrlSetText DriverIcon;
-    _ctrl ctrlSetTooltip localize "STR_HR_GRG_Pylons_Driver";
+    _ctrl ctrlSetTooltip localize "STR_HR_Garage_Pylons_Driver";
 };

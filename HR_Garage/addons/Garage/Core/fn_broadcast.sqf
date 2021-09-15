@@ -19,13 +19,13 @@
     Public: [No]
     Dependencies:
 
-    Example: [nil, _UID, _catIndex, _vehUID, _player, true] call HR_GRG_fnc_broadcast;
+    Example: [nil, _UID, _catIndex, _vehUID, _player, true] call HR_Garage_fnc_broadcast;
 
     License: APL-ND
 */
 if !(isServer) exitWith {false};
-HR_GRG_Event = _this;
+HR_Garage_Event = _this;
 {
-    _x publicVariableClient "HR_GRG_Event";
-} forEach HR_GRG_Users;
+    _x publicVariableClient "HR_Garage_Event";
+} forEach HR_Garage_Users;
 true

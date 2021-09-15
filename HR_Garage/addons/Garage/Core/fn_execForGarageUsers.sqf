@@ -22,7 +22,7 @@ License: MIT License
 */
 params ["_client", "_player", "_fnc"];
 private _UID = getPlayerUID _player;
-private _recipients = +HR_GRG_Users;
+private _recipients = +HR_Garage_Users;
 _recipients pushBackUnique 2;
 _recipients pushBackUnique _client;
 [_UID, _player] remoteExecCall [_fnc,_recipients];

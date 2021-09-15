@@ -16,7 +16,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [controlNull, -1, true] call HR_GRG_fnc_PylonsPresetChanged;
+    Example: [controlNull, -1, true] call HR_Garage_fnc_PylonsPresetChanged;
 
     License: APL-ND
 */
@@ -27,14 +27,14 @@ Trace("Updating preset selection");
 if (_index isEqualTo 0) exitWith {Trace("Custom preset");};//custom preset, dont change anything with the pylons
 
 //get all preset loudouts
-private _presetCtrl = (HR_GRG_Pylon_GeneralCtrls#1);
+private _presetCtrl = (HR_Garage_Pylon_GeneralCtrls#1);
 private _loudouts = [[0]];
 for "_i" from 1 to lbSize _presetCtrl -1 do {
     _loudouts pushBack call compile (_presetCtrl lbData _i);
 };
 
 private _equiped = [];
-{ _equiped pushBack (_x#1) } forEach HR_GRG_Pylons;
+{ _equiped pushBack (_x#1) } forEach HR_Garage_Pylons;
 if ( ( { !(_x isEqualTo "") } count _equiped ) isEqualTo 0 ) then { _equiped = [] };
 
 //if we are updating from new pylons
@@ -56,25 +56,25 @@ if (_selectedLoudout isEqualTo []) exitWith {
         _x params ["_combo", "_mirrorIndex", "_button", "_comboIndex"];
 
         //update selected turret
-        private _turret = [HR_GRG_previewVeh, _forEachIndex] call HR_GRG_fnc_getPylonTurret;
+        private _turret = [HR_Garage_previewVeh, _forEachIndex] call HR_Garage_fnc_getPylonTurret;
         private _icon = [GunnerIcon, DriverIcon] select (_turret isEqualTo []);
         _button ctrlSetText _icon;
-        _button setVariable ["HR_GRG_turret", [[0],[]] select (_turret isEqualTo [])];
+        _button setVariable ["HR_Garage_turret", [[0],[]] select (_turret isEqualTo [])];
 
         //update pylon magazine
         _combo lbSetCurSel 0;
-    } forEach HR_GRG_PylonData;
+    } forEach HR_Garage_PylonData;
 };
 
     //All other presets
-private _dataCount = (count HR_GRG_PylonData) -1;
+private _dataCount = (count HR_Garage_PylonData) -1;
 {
     if (_dataCount < _forEachIndex) exitWith {//some presets have more entries that there is pylons for some reason
         _selectedLoudout = _selectedLoudout select [0, _dataCount + 1];
         _presetCtrl lbSetData [_index, str _selectedLoudout]; //sets the preset to the bounds of pylons
     };
 
-    (HR_GRG_PylonData#_forEachIndex) params ["_combo", "_mirrorIndex", "_button", "_comboIndex"];
+    (HR_Garage_PylonData#_forEachIndex) params ["_combo", "_mirrorIndex", "_button", "_comboIndex"];
 
     //find the magazine index in the combo box
     private _selIndex = -1;
@@ -83,10 +83,10 @@ private _dataCount = (count HR_GRG_PylonData) -1;
     };
 
     //update selected turret
-    private _turret = [HR_GRG_previewVeh, _forEachIndex] call HR_GRG_fnc_getPylonTurret;
+    private _turret = [HR_Garage_previewVeh, _forEachIndex] call HR_Garage_fnc_getPylonTurret;
     private _icon = [GunnerIcon, DriverIcon] select (_turret isEqualTo []);
     _button ctrlSetText _icon;
-    _button setVariable ["HR_GRG_turret", [[0],[]] select (_turret isEqualTo [])];
+    _button setVariable ["HR_Garage_turret", [[0],[]] select (_turret isEqualTo [])];
 
     //update pylon magazine
     _combo lbSetCurSel _selIndex;

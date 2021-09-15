@@ -114,7 +114,7 @@
 //Base Classes//
 ////////////////
 
-class HR_GRG_RscText
+class HR_Garage_RscText
 {
     access = 0;
     idc = -1;
@@ -134,12 +134,12 @@ class HR_GRG_RscText
     w = 0;
 
 };
-class HR_GRG_RscTextNoBG : HR_GRG_RscText
+class HR_Garage_RscTextNoBG : HR_Garage_RscText
 {
     colorBackground[] = {0,0,0,0};
 };
 
-class HR_GRG_RscStructuredText
+class HR_Garage_RscStructuredText
 {
     idc = -1;
     type = CT_STRUCTURED_TEXT;
@@ -162,12 +162,12 @@ class HR_GRG_RscStructuredText
         size = "1";
     };
 };
-class HR_GRG_RscStructuredTextNoBG : HR_GRG_RscStructuredText
+class HR_Garage_RscStructuredTextNoBG : HR_Garage_RscStructuredText
 {
     colorBackground[] = {0,0,0,0};
 };
 
-class HR_GRG_RscPicture
+class HR_Garage_RscPicture
 {
     access = 0;
     idc = -1;
@@ -187,7 +187,7 @@ class HR_GRG_RscPicture
     h = 0.05;
 };
 
-class HR_GRG_RscButton
+class HR_Garage_RscButton
 {
     access = 0;
     type = CT_BUTTON;
@@ -222,7 +222,7 @@ class HR_GRG_RscButton
 };
 class ctrlButtonPictureKeepAspect;
 
-class HR_GRG_RscFrame
+class HR_Garage_RscFrame
 {
     type = CT_STATIC;
     idc = -1;
@@ -239,7 +239,7 @@ class HR_GRG_RscFrame
     text = "";
 };
 
-class HR_GRG_RscBox
+class HR_Garage_RscBox
 {
    type = CT_STATIC;
     idc = -1;
@@ -256,7 +256,7 @@ class HR_GRG_RscBox
     text = "";
 };
 
-class HR_GRG_RscListbox
+class HR_Garage_RscListbox
 {
      access = 0;
      type = CT_LISTBOX;
@@ -296,7 +296,7 @@ class HR_GRG_RscListbox
      };
 };
 
-class HR_GRG_ScrollBar
+class HR_Garage_ScrollBar
 {
     color[] = colorBG;
     colorActive[] = colorBG;
@@ -315,7 +315,7 @@ class HR_GRG_ScrollBar
     autoScrollRewind = 0;
 };
 
-class HR_GRG_RscControlsGroup
+class HR_Garage_RscControlsGroup
 {
     idc = -1;
     deletable = 1;
@@ -327,13 +327,13 @@ class HR_GRG_RscControlsGroup
     style = ST_MULTI;
     shadow = 0;
     fade = 0;
-    class VScrollbar: HR_GRG_ScrollBar
+    class VScrollbar: HR_Garage_ScrollBar
     {
         color[] = {1,1,1,1};
         width = 0.02;
         autoScrollEnabled = 1;
     };
-    class HScrollbar: HR_GRG_ScrollBar
+    class HScrollbar: HR_Garage_ScrollBar
     {
         color[] = {1,1,1,1};
         height = 0.02;
@@ -343,7 +343,7 @@ class HR_GRG_RscControlsGroup
     };
 };
 
-class RscControlsGroupNoScrollbars: HR_GRG_RscControlsGroup
+class RscControlsGroupNoScrollbars: HR_Garage_RscControlsGroup
 {
     class VScrollbar: VScrollbar
     {
@@ -357,7 +357,7 @@ class RscControlsGroupNoScrollbars: HR_GRG_RscControlsGroup
     };
 };
 
-class HR_GRG_RscCombo
+class HR_Garage_RscCombo
 {
     deletable = 1;
     fade = 0;
@@ -384,7 +384,7 @@ class HR_GRG_RscCombo
     soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
     soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
     maxHistoryDelay = 1;
-    class ComboScrollBar: HR_GRG_ScrollBar
+    class ComboScrollBar: HR_Garage_ScrollBar
     {
         color[] = {1,1,1,1};
     };
@@ -402,12 +402,12 @@ class HR_GRG_RscCombo
     wholeHeight = 0.45 * safeZoneH;
     colorActive[] = {1,0,0,1};
 };
-class HR_GRG_RscComboBlckBG : HR_GRG_RscCombo
+class HR_Garage_RscComboBlckBG : HR_Garage_RscCombo
 {
     colorBackground[] = {0,0,0,1};
 };
 
-class HR_GRG_RscCheckBox
+class HR_Garage_RscCheckBox
 {
     idc = -1;
     type = CT_CHECKBOX;
@@ -447,7 +447,7 @@ class HR_GRG_RscCheckBox
     soundEscape[] = {"",0.1,1};
 };
 
-class HR_GRG_RscActiveText
+class HR_Garage_RscActiveText
 {
     deletable = 1;
     fade = 0;
@@ -476,5 +476,5 @@ class HR_GRG_RscActiveText
     tooltipColorBox[] = {1,1,1,1};
     tooltipColorShade[] = {0,0,0,0.65};
 };
-class HR_GRG_RscActivePicture: HR_GRG_RscActiveText { style = ST_MULTI + ST_TITLE_BAR; };
-class HR_GRG_RscActivePictureKeepAspect: HR_GRG_RscActivePicture { style = ST_MULTI + ST_TITLE_BAR + ST_KEEP_ASPECT_RATIO; };
+class HR_Garage_RscActivePicture: HR_Garage_RscActiveText { style = ST_MULTI + ST_TITLE_BAR; };
+class HR_Garage_RscActivePictureKeepAspect: HR_Garage_RscActivePicture { style = ST_MULTI + ST_TITLE_BAR + ST_KEEP_ASPECT_RATIO; };

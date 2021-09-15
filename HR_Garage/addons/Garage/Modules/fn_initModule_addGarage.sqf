@@ -6,10 +6,10 @@ if (!isNull _attached) then { _accessObjects pushBackUnique _attached };
 deleteVehicle _module;
 
 if (!isMultiplayer) exitWith {
-    ["STR_HR_GRG_Modules_notMultiplayer"] call HR_GRG_fnc_Hint;
+    ["STR_HR_Garage_Modules_notMultiplayer"] call HR_Garage_fnc_Hint;
     Error("HR Garage is only available in multiplayer");
 };
 
 {
-    [_x] remoteExecCall ["HR_GRG_fnc_initGarage", 0, _x];
+    [_x] remoteExecCall ["HR_Garage_fnc_initGarage", 0, _x];
 } forEach _accessObjects;

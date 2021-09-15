@@ -16,7 +16,7 @@
     Public: Yes
     Dependencies:
 
-    Example: [_veh] call HR_GRG_fnc_prepPylons;
+    Example: [_veh] call HR_Garage_fnc_prepPylons;
 
     License: APL-ND
 */

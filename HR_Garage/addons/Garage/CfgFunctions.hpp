@@ -1,5 +1,5 @@
 class CfgFunctions {
-    class HR_GRG
+    class HR_Garage
     {
     //private functions
         class Core

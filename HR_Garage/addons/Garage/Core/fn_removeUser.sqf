@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [clientOwner] remoteExecCall ["HR_GRG_fnc_removeUser",2];
+    Example: [clientOwner] remoteExecCall ["HR_Garage_fnc_removeUser",2];
 
     License: APL-ND
 */
@@ -24,11 +24,11 @@ params ["_client"];
 
 if (
     !isServer
-    || isNil "HR_GRG_Users"
+    || isNil "HR_Garage_Users"
     || isNil "_client"
     || {!(_client isEqualType 0)}
 ) exitWith {false};
 
 Trace_1("Removing user: %1", _client);
-HR_GRG_Users deleteAt (HR_GRG_Users find _client);
+HR_Garage_Users deleteAt (HR_Garage_Users find _client);
 true

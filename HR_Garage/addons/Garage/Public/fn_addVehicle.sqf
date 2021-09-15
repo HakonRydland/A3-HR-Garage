@@ -15,9 +15,9 @@
     Scope: Server
     Environment: Any
     Public: [Yes]
-    Dependencies: TeamPlayer, nameTeamPlayer, Invaders, Occupants, HR_GRG_Sources, HR_GRG_Vehicles
+    Dependencies: TeamPlayer, nameTeamPlayer, Invaders, Occupants, HR_Garage_Sources, HR_Garage_Vehicles
 
-    Example: [cursorObject, clientOwner, call HR_GRG_dLock, _player] remoteExecCall ["HR_GRG_fnc_addVehicle",2];
+    Example: [cursorObject, clientOwner, call HR_Garage_dLock, _player] remoteExecCall ["HR_Garage_fnc_addVehicle",2];
 
     License: MIT / (APL-ND) the license switch is noted in the code
 */
@@ -26,35 +26,35 @@ params [ ["_vehicle", objNull, [objNull]], ["_client", 2, [0]], ["_lockUID", ""]
 FIX_LINE_NUMBERS()
 
 if (!isServer) exitWith { Error("called on client, this is a server only function") };
-if (isNil "HR_GRG_Vehicles") then { [] call HR_GRG_fnc_initServer };
+if (isNil "HR_Garage_Vehicles") then { [] call HR_Garage_fnc_initServer };
 private _class = typeOf _vehicle;
 
 //validate input
-if (isNull _vehicle) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Null"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-if (!alive _vehicle) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Destroyed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-if (locked _vehicle > 1) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Locked"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-if (player isNotEqualTo vehicle player) exitWith { ["STR_HR_GRG_Feedback_addVehicle_inVehicle"] remoteExec ["HR_GRG_fnc_Hint"] ; false };
-if (!isnull _player && (_player distance _vehicle > 25)) exitWith {["STR_HR_GRG_Feedback_addVehicle_Distance"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (isNull _vehicle) exitWith { ["STR_HR_Garage_Feedback_addVehicle_Null"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
+if (!alive _vehicle) exitWith { ["STR_HR_Garage_Feedback_addVehicle_Destroyed"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
+if (locked _vehicle > 1) exitWith { ["STR_HR_Garage_Feedback_addVehicle_Locked"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
+if (player isNotEqualTo vehicle player) exitWith { ["STR_HR_Garage_Feedback_addVehicle_inVehicle"] remoteExec ["HR_Garage_fnc_Hint"] ; false };
+if (!isnull _player && (_player distance _vehicle > 25)) exitWith {["STR_HR_Garage_Feedback_addVehicle_Distance"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
 
     //Towing
-if !((_vehicle getVariable ["SA_Tow_Ropes",objNull]) isEqualTo objNull) exitWith {["STR_HR_GRG_Feedback_addVehicle_SATow"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if !((_vehicle getVariable ["SA_Tow_Ropes",objNull]) isEqualTo objNull) exitWith {["STR_HR_Garage_Feedback_addVehicle_SATow"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
 
     //crewed
 private _exit = false;
 if ( ( {alive _x} count (crew _vehicle) ) > 0) then { _exit = true };
 { if ( ( {alive _x} count (crew _x) ) > 0) exitWith {_exit = true} } forEach attachedObjects _vehicle;
-if (_exit) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Crewed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (_exit) exitWith { ["STR_HR_Garage_Feedback_addVehicle_Crewed"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
 
     // valid vehicle for garage
-private _cat = [_class] call HR_GRG_fnc_getCatIndex;
-if (_cat isEqualTo -1) exitWith { ["STR_HR_GRG_Feedback_addVehicle_GenericFail"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+private _cat = [_class] call HR_Garage_fnc_getCatIndex;
+if (_cat isEqualTo -1) exitWith { ["STR_HR_Garage_Feedback_addVehicle_GenericFail"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
 
     //cap block
 private _capacity = 0;
-{ _capacity = _capacity + count _x } forEach HR_GRG_Vehicles;
+{ _capacity = _capacity + count _x } forEach HR_Garage_Vehicles;
 
 private _countStatics = {_x isKindOf "StaticWeapon"} count (attachedObjects _vehicle);
-if ((call HR_GRG_VehCap - _capacity) < (_countStatics + 1)) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Capacity"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };//HR_GRG_VehCap is defined in config.inc
+if ((call HR_Garage_VehCap - _capacity) < (_countStatics + 1)) exitWith { ["STR_HR_Garage_Feedback_addVehicle_Capacity"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };//HR_Garage_VehCap is defined in config.inc
 
 //---------------------------------------------------------|
 // Everything above this line is under the license: MIT    |
@@ -62,36 +62,36 @@ if ((call HR_GRG_VehCap - _capacity) < (_countStatics + 1)) exitWith { ["STR_HR_
 //---------------------------------------------------------|
 
 //add vehicle
-if (_vehicle getVariable ["HR_GRG_Garaging", false]) exitWith {};
-_vehicle setVariable ["HR_GRG_Garaging", true];
+if (_vehicle getVariable ["HR_Garage_Garaging", false]) exitWith {};
+_vehicle setVariable ["HR_Garage_Garaging", true];
 
 private _addVehicle = {
     //check if compatible with garage
     private _class = typeOf _this;
-    private _cat = [_class] call HR_GRG_fnc_getCatIndex;
+    private _cat = [_class] call HR_Garage_fnc_getCatIndex;
     if (_cat isEqualTo -1) exitWith {};
     _catsRequiringUpdate pushBackUnique _cat;
 
     private _source = [
-        [_this] call HR_GRG_fnc_isAmmoSource
-        ,[_this] call HR_GRG_fnc_isFuelSource
-        ,[_this] call HR_GRG_fnc_isRepairSource
+        [_this] call HR_Garage_fnc_isAmmoSource
+        ,[_this] call HR_Garage_fnc_isFuelSource
+        ,[_this] call HR_Garage_fnc_isRepairSource
     ];
     private _sourceIndex = _source find true;
 
-    private _stateData = [_this] call HR_GRG_fnc_getState;
+    private _stateData = [_this] call HR_Garage_fnc_getState;
     private _customisation = [_this] call BIS_fnc_getVehicleCustomization;
 
     deleteVehicle _this;
 
     //Add vehicle to garage
-    private _vehUID = [] call HR_GRG_fnc_genVehUID;
-    (HR_GRG_Vehicles#_cat) set [_vehUID, [cfgDispName(_class), _class, _lockUID, "", _stateData, _lockName, _customisation]];
+    private _vehUID = [] call HR_Garage_fnc_genVehUID;
+    (HR_Garage_Vehicles#_cat) set [_vehUID, [cfgDispName(_class), _class, _lockUID, "", _stateData, _lockName, _customisation]];
 
     //register vehicle as a source
     if (_sourceIndex != -1) then {
-        (HR_GRG_Sources#_sourceIndex) pushBack _vehUID;
-        [_sourceIndex] call HR_GRG_fnc_declairSources;
+        (HR_Garage_Sources#_sourceIndex) pushBack _vehUID;
+        [_sourceIndex] call HR_Garage_fnc_declairSources;
     };
 
     Info_6("By: %1 [%2] | Type: %3 | Vehicle ID: %4 | Lock: %5 | Source: %6", name _player, getPlayerUID _player, cfgDispName(_class), _vehUID, _locking, _sourceIndex);
@@ -110,15 +110,15 @@ _vehicle call _addVehicle;
 private _refreshCode = {
     #include "defines.inc"
     FIX_LINE_NUMBERS()
-    private _disp = findDisplay HR_GRG_IDD_Garage;
-    private _cats = _this apply { HR_GRG_Cats#_x };
+    private _disp = findDisplay HR_Garage_IDD_Garage;
+    private _cats = _this apply { HR_Garage_Cats#_x };
     {
         if (ctrlEnabled _x) then {
-            [_x, _this#_forEachIndex] call HR_GRG_fnc_reloadCategory;
+            [_x, _this#_forEachIndex] call HR_Garage_fnc_reloadCategory;
         };
     } forEach _cats;
 };
-[ _catsRequiringUpdate, _refreshCode ] remoteExecCall ["call", HR_GRG_Users];
+[ _catsRequiringUpdate, _refreshCode ] remoteExecCall ["call", HR_Garage_Users];
 
-["STR_HR_GRG_Feedback_addVehicle_Success", [cfgDispName(_class)] ] remoteExec ["HR_GRG_fnc_Hint", _client];
+["STR_HR_Garage_Feedback_addVehicle_Success", [cfgDispName(_class)] ] remoteExec ["HR_Garage_fnc_Hint", _client];
 true;

@@ -34,7 +34,7 @@
     Public: Yes
     Dependencies:
 
-    Example: [_veh] call HR_GRG_fnc_getAmmoData;
+    Example: [_veh] call HR_Garage_fnc_getAmmoData;
 
     License: APL-ND
 */
@@ -52,7 +52,7 @@ private _magName = getPylonMagazines _veh;
         , [
             _pylonIndex
             , configName _x
-            , [_veh, _pylonIndex] call HR_GRG_fnc_getPylonTurret
+            , [_veh, _pylonIndex] call HR_Garage_fnc_getPylonTurret
             , _magName#_forEachIndex
             , _veh ammoOnPylon _pylonIndex
         ]

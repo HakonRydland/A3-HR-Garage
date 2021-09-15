@@ -14,7 +14,7 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [_class] call HR_GRG_fnc_getCatIndex;
+    Example: [_class] call HR_Garage_fnc_getCatIndex;
 
     License: APL-ND
 */

@@ -14,7 +14,7 @@
     Public: Yes
     Dependencies: <Bool> HR_hasAce
 
-    Example: [_veh] call HR_GRG_fnc_isRepairSource;
+    Example: [_veh] call HR_Garage_fnc_isRepairSource;
 
     License: APL-ND
 */

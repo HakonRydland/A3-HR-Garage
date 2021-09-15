@@ -34,7 +34,7 @@
     Public: Yes
     Dependencies:
 
-    Example: [_save] call HR_GRG_fnc_loadSaveData;
+    Example: [_save] call HR_Garage_fnc_loadSaveData;
 
     License: APL-ND
 */
@@ -48,14 +48,14 @@ private _validSave = _save params [
     , ["_sources", [[],[],[]], [[]], 3]
 ];
 
-HR_GRG_Vehicles = +_garage;
-HR_GRG_UID = +_uid;
-HR_GRG_Sources = +_sources;
+HR_Garage_Vehicles = +_garage;
+HR_Garage_UID = +_uid;
+HR_Garage_Sources = +_sources;
 
-[] call HR_GRG_fnc_validateGarage;
+[] call HR_Garage_fnc_validateGarage;
 {
-    [_forEachIndex] call HR_GRG_fnc_declairSources;
-} forEach HR_GRG_Sources;
+    [_forEachIndex] call HR_Garage_fnc_declairSources;
+} forEach HR_Garage_Sources;
 
 if _validSave then {
     Trace("Garage restored");

@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: _this call HR_GRG_fnc_toggleAnim;
+    Example: _this call HR_Garage_fnc_toggleAnim;
 
     License: APL-ND
 */
@@ -33,6 +33,6 @@ for "_i" from 0 to (lbsize _ctrl - 1) do {
     _anims pushback (_ctrl lbdata _i);
     _anims pushback (checkboxTextures find (_ctrl lbpicture _i));
 };
-HR_GRG_curAnims = _anims;
+HR_Garage_curAnims = _anims;
 
-[HR_GRG_previewVeh, HR_GRG_curTexture, HR_GRG_curAnims] call BIS_fnc_initVehicle;
+[HR_Garage_previewVeh, HR_Garage_curTexture, HR_Garage_curAnims] call BIS_fnc_initVehicle;
