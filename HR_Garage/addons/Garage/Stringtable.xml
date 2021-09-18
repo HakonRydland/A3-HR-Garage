@@ -55,6 +55,10 @@
             <English>Pylons</English>
         </Key>
         <Key ID="STR_HR_Garage_Generic_PylonDisabled">
+            <Original>Pylons editing disabled by server settings</Original>
+            <English>Pylons editing disabled by server settings</English>
+        </Key>
+        <Key ID="STR_HR_Garage_Generic_PylonLackingSource">
             <Original>Pylons require an ammo source to edit</Original>
             <English>Pylons require an ammo source to edit</English>
         </Key>

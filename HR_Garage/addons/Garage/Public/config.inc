@@ -40,13 +40,13 @@ HR_Garage_dLock = {""};
 //garage pool cap
 if (isNil "HR_Garage_PoolBase") then { HR_Garage_PoolBase = 10 }; //can be overwritten by CBA settings
 if (isNil "HR_Garage_PoolIncr") then { HR_Garage_PoolIncr = 2 }; //can be overwritten by CBA settings
-HR_Garage_VehCap = { HR_Garage_PoolBase * HR_Garage_PoolIncr };
+HR_Garage_VehCap = { HR_Garage_PoolBase * HR_Garage_PoolIncr max HR_Garage_PoolBase };
 
 //Pylon config
 if (isNil "HR_Garage_Pylons_Enabled") then { HR_Garage_Pylons_Enabled = true }; //can be overwritten by CBA settings
-if (isNil "HR_Garage_ServiceDisabled_Rearm") then {HR_Garage_ServiceDisabled_Rearm = false};
-if (isNil "HR_Garage_ServiceDisabled_Refuel") then {HR_Garage_ServiceDisabled_Refuel = false};
-if (isNil "HR_Garage_ServiceDisabled_Repair") then {HR_Garage_ServiceDisabled_Repair = false};
+if (isNil "HR_Garage_ServiceBehaviour_Rearm") then {HR_Garage_ServiceBehaviour_Rearm = 0};
+if (isNil "HR_Garage_ServiceBehaviour_Refuel") then {HR_Garage_ServiceBehaviour_Refuel = 0};
+if (isNil "HR_Garage_ServiceBehaviour_Repair") then {HR_Garage_ServiceBehaviour_Repair = 0};
 
 //camo blacklist (display name, case sensitive)
 HR_Garage_blackListCamo = ["IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02", "African Desert Extremists Alt"];
@@ -58,39 +58,3 @@ HR_Garage_fnc_Hint = {
 HR_Garage_fnc_vehInit = {}; //is passed vehicle as _this
 HR_Garage_onOpenEvent = {};
 HR_Garage_onCloseEvent = {};
-
-//CBA settings
-if (isClass (configfile >> "CBA_Extended_EventHandlers")) then {
-
-    ["HR_Garage_dLock", "CHECKBOX", ["Lock on garage", "Lock vehicles when garaged"], [HR_Garage_Prefix,"Garage"], (HR_Garage_dLock isEqualTo {getPlayerUID player}), false, {
-        HR_Garage_dLock = [{""}, { getPlayerUID player }] select _this;
-    }] call CBA_fnc_addSetting;
-
-    ["HR_Garage_LogLevel", "LIST", ["Log level", "How much detail should be logged"], [HR_Garage_Prefix,"Garage"], [[1,2,3,4],["Error", "Info", "Debug", "Verbose"],2], false, {
-        HR_Garage_LogLevel = _this;
-    }] call CBA_fnc_addSetting;
-
-    ["HR_Garage_Pylons_Enabled", "CHECKBOX", ["Allow pylon editing", "Allows player to configure pylons in the garage"], [HR_Garage_Prefix,"Garage"], true, true, {
-        HR_Garage_Pylons_Enabled = _this;
-    }] call CBA_fnc_addSetting;
-
-    //Service disablers
-    ["HR_Garage_ServiceDisabled_Rearm", "CHECKBOX", ["Disable garage rearm feature", "Prevent vehicles from being rearmed on ungarage"], [HR_Garage_Prefix,"Garage"], false, true, {
-        HR_Garage_ServiceDisabled_Rearm = _this;
-    }] call CBA_fnc_addSetting;
-    ["HR_Garage_ServiceDisabled_Refuel", "CHECKBOX", ["Disable garage refuel feature", "Prevent vehicles from being refueled on ungarage"], [HR_Garage_Prefix,"Garage"], false, true, {
-        HR_Garage_ServiceDisabled_Refuel = _this;
-    }] call CBA_fnc_addSetting;
-    ["HR_Garage_ServiceDisabled_Repair", "CHECKBOX", ["Disable garage repair feature", "Prevent vehicles from being repaired on ungarage"], [HR_Garage_Prefix,"Garage"], false, true, {
-        HR_Garage_ServiceDisabled_Repair = _this;
-    }] call CBA_fnc_addSetting;
-
-    ["HR_Garage_PoolBase", "SLIDER", ["Base Capacity", "Garage base capacity"], [HR_Garage_Prefix,"Garage"], [0, 50, HR_Garage_PoolBase, 0], true, {
-        HR_Garage_PoolBase = round _this;
-    }] call CBA_fnc_addSetting;
-
-    ["HR_Garage_PoolIncr", "SLIDER", ["Capacity increase", "Capacity increase per war level"], [HR_Garage_Prefix,"Garage"], [0, 10, HR_Garage_PoolIncr, 0], true, {
-        HR_Garage_PoolIncr = round _this;
-    }] call CBA_fnc_addSetting;
-
-};

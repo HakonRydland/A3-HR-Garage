@@ -84,6 +84,7 @@ class CfgFunctions {
             class addVehicle {};
             class addVehicleAction {};
             class callbackHandler {};
+            class cba_settings { preInit = 1; };
             class getSaveData {};
             class initGarage {};
             class initServer {

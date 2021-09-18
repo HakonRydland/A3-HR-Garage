@@ -110,28 +110,28 @@ HR_Garage_curAnims = _customisation#1;
 
 //update source panel
 private _ctrl = _disp displayCtrl HR_Garage_IDC_SourcePanelAmmo;
-_ctrl ctrlSetStructuredText composeText ["   ", image RearmIcon, " ", image (checkboxTextures select (HR_Garage_hasAmmoSource && !HR_Garage_ServiceDisabled_Rearm))];
+_ctrl ctrlSetStructuredText composeText ["   ", image RearmIcon, " ", image (checkboxTextures select (HR_Garage_ServiceBehaviour_Rearm isEqualTo 0 && HR_Garage_hasAmmoSource || HR_Garage_ServiceBehaviour_Rearm isEqualTo 1))];
 _ctrl ctrlSetTooltip ([
     localize "STR_HR_Garage_SourcePanel_toolTip_Ammo_Unavailable"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Ammo_Available"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Ammo_Disabled"
-] select (if (HR_Garage_ServiceDisabled_Rearm) then {2} else {HR_Garage_hasAmmoSource}));
+] select (if (HR_Garage_ServiceBehaviour_Rearm isEqualTo 0) then {HR_Garage_hasAmmoSource} else {HR_Garage_ServiceBehaviour_Rearm}));
 
 private _ctrl = _disp displayCtrl HR_Garage_IDC_SourcePanelFuel;
-_ctrl ctrlSetStructuredText composeText ["   ", image RefuelIcon, " ", image (checkboxTextures select (HR_Garage_hasFuelSource && !HR_Garage_ServiceDisabled_Refuel))];
+_ctrl ctrlSetStructuredText composeText ["   ", image RefuelIcon, " ", image (checkboxTextures select (HR_Garage_ServiceBehaviour_Refuel isEqualTo 0 && HR_Garage_hasAmmoSource || HR_Garage_ServiceBehaviour_Refuel isEqualTo 1))];
 _ctrl ctrlSetTooltip ([
     localize "STR_HR_Garage_SourcePanel_toolTip_Fuel_Unavailable"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Fuel_Available"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Fuel_Disabled"
-] select (if (HR_Garage_ServiceDisabled_Refuel) then {2} else {HR_Garage_hasFuelSource}));
+] select (if (HR_Garage_ServiceBehaviour_Refuel isEqualTo 0) then {HR_Garage_hasFuelSource} else {HR_Garage_ServiceBehaviour_Refuel}));
 
 private _ctrl = _disp displayCtrl HR_Garage_IDC_SourcePanelRepair;
-_ctrl ctrlSetStructuredText composeText ["   ", image RepairIcon, " ", image (checkboxTextures select (HR_Garage_hasRepairSource && !HR_Garage_ServiceDisabled_Repair))];
+_ctrl ctrlSetStructuredText composeText ["   ", image RepairIcon, " ", image (checkboxTextures select (HR_Garage_ServiceBehaviour_Repair isEqualTo 0 && HR_Garage_hasAmmoSource || HR_Garage_ServiceBehaviour_Repair isEqualTo 1))];
 _ctrl ctrlSetTooltip ([
     localize "STR_HR_Garage_SourcePanel_toolTip_Repair_Unavailable"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Repair_Available"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Repair_Disabled"
-] select (if (HR_Garage_ServiceDisabled_Repair) then {2} else {HR_Garage_hasRepairSource}));
+] select (if (HR_Garage_ServiceBehaviour_Repair isEqualTo 0) then {HR_Garage_hasRepairSource} else {HR_Garage_ServiceBehaviour_Repair}));
 
 if (isNull HR_Garage_previewVeh) exitWith {};
 //update info panel
