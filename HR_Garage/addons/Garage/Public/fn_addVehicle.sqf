@@ -48,6 +48,7 @@ if (_exit) exitWith { ["STR_HR_Garage_Feedback_addVehicle_Crewed"] remoteExec ["
     // valid vehicle for garage
 private _cat = [_class] call HR_Garage_fnc_getCatIndex;
 if (_cat isEqualTo -1) exitWith { ["STR_HR_Garage_Feedback_addVehicle_GenericFail"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
+if (_cat isEqualTo 2 && {!(call HR_Garage_Cnd_canAccessAir)}) exitWith {["STR_HR_Garage_Feedback_addVehicle_airBlocked"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };
 
     //cap block
 private _capacity = 0;

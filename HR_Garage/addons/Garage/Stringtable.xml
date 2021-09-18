@@ -202,8 +202,8 @@
         </Key>
         <!--%1 is faction name-->
         <Key ID="STR_HR_Garage_Feedback_addVehicle_airBlocked">
-            <Original>You can't garage a aircraft while you are not near an Aiport which belongs to %1. Please move your aircraft to an Airport to garage it</Original>
-            <English>You can't garage a aircraft while you are not near an Aiport which belongs to %1. Please move your aircraft to an Airport to garage it</English>
+            <Original>You can't garage an aircraft here</Original>
+            <English>You can't garage an aircraft here</English>
         </Key>
         <Key ID="STR_HR_Garage_Feedback_addVehicle_GenericFail">
             <Original>You can't garage this</Original>
