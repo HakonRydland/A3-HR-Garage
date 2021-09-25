@@ -1,6 +1,6 @@
 class exampleClass : TRIPLES(ADDON,Nodes,Base)
 {
-    class _ffaa_et_pegaso_ffaa_et_pegaso_p3d
+    class ffaa_et_pegaso_ffaa_et_pegaso_p3d
     {
         class Node1
         {
@@ -30,7 +30,7 @@ class exampleClass : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _ffaa_et_pegaso_ffaa_et_m250_blindado_p3d : TRIPLES(ADDON,Nodes,Base)
+class ffaa_et_pegaso_ffaa_et_m250_blindado_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {

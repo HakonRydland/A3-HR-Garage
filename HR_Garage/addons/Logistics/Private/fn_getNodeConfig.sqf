@@ -27,7 +27,7 @@ Example: private _cfgNodes = [_vehicle] call HR_Logistics_getNodeConfig;
 
 License: MIT License
 */
-#include "..\scipt_component.hpp"
+#include "..\script_component.hpp"
 params [["_class","",["",objNull]]];
 if (_class isEqualType objNull) then {_class = typeOf _class};
 

@@ -1,4 +1,4 @@
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_datsun_uk3cb_datsun_civ_open_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_datsun_uk3cb_datsun_civ_open_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -15,7 +15,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_datsun_uk3cb_datsun_open_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_datsun_uk3cb_datsun_open_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -32,7 +32,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_hilux_uk3cb_hilux_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_hilux_uk3cb_hilux_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -49,7 +49,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_open_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_open_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -86,11 +86,11 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_closed_p3d : _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_open_p3d {
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_closed_p3d : UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_open_p3d {
     canLoadWeapon = 0;
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_guntruck_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_guntruck_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -127,7 +127,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_recovery_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_recovery_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -164,7 +164,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_BAF_Vehicles_addons_UK3CB_BAF_Vehicles_Coyote_Jackal_uk3cb_coyote_L134A1_passenger_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_BAF_Vehicles_addons_UK3CB_BAF_Vehicles_Coyote_Jackal_uk3cb_coyote_L134A1_passenger_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -181,9 +181,9 @@ class _UK3CB_BAF_Vehicles_addons_UK3CB_BAF_Vehicles_Coyote_Jackal_uk3cb_coyote_L
     };
 };
 
-class _UK3CB_BAF_Vehicles_addons_UK3CB_BAF_Vehicles_Coyote_Jackal_uk3cb_coyote_L111A1_passenger_p3d : _UK3CB_BAF_Vehicles_addons_UK3CB_BAF_Vehicles_Coyote_Jackal_uk3cb_coyote_L134A1_passenger_p3d {};
+class UK3CB_BAF_Vehicles_addons_UK3CB_BAF_Vehicles_Coyote_Jackal_uk3cb_coyote_L111A1_passenger_p3d : UK3CB_BAF_Vehicles_addons_UK3CB_BAF_Vehicles_Coyote_Jackal_uk3cb_coyote_L134A1_passenger_p3d {};
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_open_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_open_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -215,11 +215,11 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_closed_p3d : _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_open_p3d {
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_closed_p3d : UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_open_p3d {
     canLoadWeapon = 0;
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_recovery_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_recovery_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -256,7 +256,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _uk3cb_baf_vehicles_addons_uk3cb_baf_vehicles_man_uk3cb_man_4x4_cargo_p3d : TRIPLES(ADDON,Nodes,Base)
+class uk3cb_baf_vehicles_addons_uk3cb_baf_vehicles_man_uk3cb_man_4x4_cargo_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -293,7 +293,7 @@ class _uk3cb_baf_vehicles_addons_uk3cb_baf_vehicles_man_uk3cb_man_4x4_cargo_p3d 
     };
 };
 
-class _uk3cb_baf_vehicles_addons_uk3cb_baf_vehicles_man_uk3cb_man_6x6_cargo_p3d : TRIPLES(ADDON,Nodes,Base)
+class uk3cb_baf_vehicles_addons_uk3cb_baf_vehicles_man_uk3cb_man_6x6_cargo_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -340,7 +340,7 @@ class _uk3cb_baf_vehicles_addons_uk3cb_baf_vehicles_man_uk3cb_man_6x6_cargo_p3d 
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_recovery_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_recovery_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -377,7 +377,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_open_p3d : TRIPLES(ADDON,Nodes,Base)
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_open_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -409,7 +409,7 @@ class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehi
     };
 };
 
-class _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_transport_p3d: _UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_open_p3d {
+class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_transport_p3d: UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_open_p3d {
     canLoadWeapon = 0;
 };
 

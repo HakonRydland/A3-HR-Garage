@@ -1,4 +1,4 @@
-class _rhsafrf_addons_rhs_a2port_car_Ural_Ural_open_p3d : TRIPLES(ADDON,Nodes,Base)
+class rhsafrf_addons_rhs_a2port_car_Ural_Ural_open_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -30,12 +30,12 @@ class _rhsafrf_addons_rhs_a2port_car_Ural_Ural_open_p3d : TRIPLES(ADDON,Nodes,Ba
     };
 };
 
-class _rhsafrf_addons_rhs_a2port_car_Ural_Ural_p3d : _rhsafrf_addons_rhs_a2port_car_Ural_Ural_open_p3d
+class rhsafrf_addons_rhs_a2port_car_Ural_Ural_p3d : rhsafrf_addons_rhs_a2port_car_Ural_Ural_open_p3d
 {
     canLoadWeapon = 0;
 };
 
-class _rhsafrf_addons_rhs_a2port_car_Ural_Ural_open2_p3d : TRIPLES(ADDON,Nodes,Base)
+class rhsafrf_addons_rhs_a2port_car_Ural_Ural_open2_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -133,7 +133,7 @@ class rhsafrf_addons_rhs_zil131_rhs_zil131 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsafrf_addons_rhs_gaz66_rhs_gaz66_p3d : TRIPLES(ADDON,Nodes,Base)
+class rhsafrf_addons_rhs_gaz66_rhs_gaz66_p3d : TRIPLES(ADDON,Nodes,Base)
 {
     canLoadWeapon = 0;
     class Nodes
@@ -161,7 +161,7 @@ class _rhsafrf_addons_rhs_gaz66_rhs_gaz66_p3d : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1078A1P2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_fmtv_M1078A1P2 : TRIPLES(ADDON,Nodes,Base)
 {
     canLoadWeapon = 0;
     class Nodes
@@ -194,9 +194,9 @@ class _rhsusf_addons_rhsusf_fmtv_M1078A1P2 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1078A1P2_B : _rhsusf_addons_rhsusf_fmtv_M1078A1P2 {};
+class rhsusf_addons_rhsusf_fmtv_M1078A1P2_B : rhsusf_addons_rhsusf_fmtv_M1078A1P2 {};
 
-class _rhsusf_addons_rhsusf_fmtv_M1078A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_fmtv_M1078A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
 {
     canLoadWeapon = 0;
     class Nodes
@@ -229,7 +229,7 @@ class _rhsusf_addons_rhsusf_fmtv_M1078A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1083A1P2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_fmtv_M1083A1P2 : TRIPLES(ADDON,Nodes,Base)
 {
     canLoadWeapon = 0;
     class Nodes
@@ -262,11 +262,11 @@ class _rhsusf_addons_rhsusf_fmtv_M1083A1P2 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1083A1P2_B : _rhsusf_addons_rhsusf_fmtv_M1083A1P2 {
+class rhsusf_addons_rhsusf_fmtv_M1083A1P2_B : rhsusf_addons_rhsusf_fmtv_M1083A1P2 {
     canLoadWeapon = 1;
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1083A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_fmtv_M1083A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -298,7 +298,7 @@ class _rhsusf_addons_rhsusf_fmtv_M1083A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1084A1P2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_fmtv_M1084A1P2 : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -335,9 +335,9 @@ class _rhsusf_addons_rhsusf_fmtv_M1084A1P2 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1084A1P2_B : _rhsusf_addons_rhsusf_fmtv_M1084A1P2 {};
+class rhsusf_addons_rhsusf_fmtv_M1084A1P2_B : rhsusf_addons_rhsusf_fmtv_M1084A1P2 {};
 
-class _rhsusf_addons_rhsusf_fmtv_M1084A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_fmtv_M1084A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -374,7 +374,7 @@ class _rhsusf_addons_rhsusf_fmtv_M1084A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_fmtv_M1084A1R_SOV_M2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_fmtv_M1084A1R_SOV_M2 : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -411,7 +411,7 @@ class _rhsusf_addons_rhsusf_fmtv_M1084A1R_SOV_M2 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_SOCOMAUV_M1239 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_SOCOMAUV_M1239 : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -438,10 +438,10 @@ class _rhsusf_addons_rhsusf_SOCOMAUV_M1239 : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_SOCOMAUV_M1239_M2 : _rhsusf_addons_rhsusf_SOCOMAUV_M1239 {};
-class _rhsusf_addons_rhsusf_SOCOMAUV_M1239_MK19 : _rhsusf_addons_rhsusf_SOCOMAUV_M1239 {};
+class rhsusf_addons_rhsusf_SOCOMAUV_M1239_M2 : rhsusf_addons_rhsusf_SOCOMAUV_M1239 {};
+class rhsusf_addons_rhsusf_SOCOMAUV_M1239_MK19 : rhsusf_addons_rhsusf_SOCOMAUV_M1239 {};
 
-class _rhsusf_addons_rhsusf_HEMTT_A4_M977A4_wd : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_HEMTT_A4_M977A4_wd : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -483,7 +483,7 @@ class _rhsusf_addons_rhsusf_HEMTT_A4_M977A4_wd : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_hemtt_a4_M977A4_WD_APK : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_hemtt_a4_M977A4_WD_APK : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -525,7 +525,7 @@ class _rhsusf_addons_rhsusf_hemtt_a4_M977A4_WD_APK : TRIPLES(ADDON,Nodes,Base)
     };
 };
 
-class _rhsusf_addons_rhsusf_hemtt_a4_M977A4_WD_APK_M2 : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_hemtt_a4_M977A4_WD_APK_M2 : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {
@@ -567,7 +567,7 @@ class _rhsusf_addons_rhsusf_hemtt_a4_M977A4_WD_APK_M2 : TRIPLES(ADDON,Nodes,Base
     };
 };
 
-class _rhsusf_addons_rhsusf_hmmwv_rhsusf_m998_2dr : TRIPLES(ADDON,Nodes,Base)
+class rhsusf_addons_rhsusf_hmmwv_rhsusf_m998_2dr : TRIPLES(ADDON,Nodes,Base)
 {
     class Nodes
     {

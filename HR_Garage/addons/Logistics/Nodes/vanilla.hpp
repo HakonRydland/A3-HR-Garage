@@ -1,4 +1,4 @@
-class _A3_Soft_F_Quadbike_01_Quadbike_01_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class A3_Soft_F_Quadbike_01_Quadbike_01_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -10,7 +10,7 @@ class _A3_Soft_F_Quadbike_01_Quadbike_01_F_p3d : TRIPLES(ADDON,Nodes,Base)
 	};
 };
 
-class _A3_soft_f_Offroad_01_Offroad_01_unarmed_F : TRIPLES(ADDON,Nodes,Base)
+class A3_soft_f_Offroad_01_Offroad_01_unarmed_F : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -27,7 +27,7 @@ class _A3_soft_f_Offroad_01_Offroad_01_unarmed_F : TRIPLES(ADDON,Nodes,Base)
 	};
 };
 
-class _A3_soft_f_gamma_van_01_Van_01_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class A3_soft_f_gamma_van_01_Van_01_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -54,7 +54,7 @@ class _A3_soft_f_gamma_van_01_Van_01_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
 	};
 };
 
-class _a3_Soft_F_Orange_Van_02_Van_02_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class a3_Soft_F_Orange_Van_02_Van_02_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	canLoadWeapon = 0;
 	class Nodes
@@ -72,7 +72,7 @@ class _a3_Soft_F_Orange_Van_02_Van_02_transport_F_p3d : TRIPLES(ADDON,Nodes,Base
 	};
 };
 
-class _a3_Soft_F_Orange_Van_02_Van_02_vehicle_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class a3_Soft_F_Orange_Van_02_Van_02_vehicle_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	canLoadWeapon = 0;
 	class Nodes
@@ -105,7 +105,7 @@ class _a3_Soft_F_Orange_Van_02_Van_02_vehicle_F_p3d : TRIPLES(ADDON,Nodes,Base)
 	};
 };
 
-class _A3_soft_f_beta_Truck_02_Truck_02_transport_F : TRIPLES(ADDON,Nodes,Base)
+class A3_soft_f_beta_Truck_02_Truck_02_transport_F : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -142,12 +142,12 @@ class _A3_soft_f_beta_Truck_02_Truck_02_transport_F : TRIPLES(ADDON,Nodes,Base)
 	};
 };
 
-class _A3_soft_f_beta_Truck_02_Truck_02_covered_F_p3d : _A3_soft_f_beta_Truck_02_Truck_02_transport_F
+class A3_soft_f_beta_Truck_02_Truck_02_covered_F_p3d : A3_soft_f_beta_Truck_02_Truck_02_transport_F
 {
 	canLoadWeapon = 0;
 };
 
-class _A3_Soft_F_EPC_Truck_03_Truck_03_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class A3_Soft_F_EPC_Truck_03_Truck_03_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -184,12 +184,12 @@ class _A3_Soft_F_EPC_Truck_03_Truck_03_transport_F_p3d : TRIPLES(ADDON,Nodes,Bas
 	};
 };
 
-class _A3_Soft_F_EPC_Truck_03_Truck_03_covered_F_p3d : _A3_Soft_F_EPC_Truck_03_Truck_03_transport_F_p3d
+class A3_Soft_F_EPC_Truck_03_Truck_03_covered_F_p3d : A3_Soft_F_EPC_Truck_03_Truck_03_transport_F_p3d
 {
 	canLoadWeapon = 0;
 };
 
-class _A3_soft_f_beta_Truck_01_Truck_01_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class A3_soft_f_beta_Truck_01_Truck_01_transport_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -226,7 +226,7 @@ class _A3_soft_f_beta_Truck_01_Truck_01_transport_F_p3d : TRIPLES(ADDON,Nodes,Ba
 	};
 };
 
-class _A3_soft_f_beta_Truck_01_Truck_01_covered_F_p3d : _A3_soft_f_beta_Truck_01_Truck_01_transport_F_p3d
+class A3_soft_f_beta_Truck_01_Truck_01_covered_F_p3d : A3_soft_f_beta_Truck_01_Truck_01_transport_F_p3d
 {
 	canLoadWeapon = 0;
 };
@@ -315,7 +315,7 @@ class a3_Soft_F_Gamma_Truck_01_Truck_01_cargo_F_p3d : TRIPLES(ADDON,Nodes,Base)
 	};
 };
 
-class _A3_boat_f_gamma_Boat_Civil_01_Boat_Civil_01_F : TRIPLES(ADDON,Nodes,Base)
+class A3_boat_f_gamma_Boat_Civil_01_Boat_Civil_01_F : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -332,7 +332,7 @@ class _A3_boat_f_gamma_Boat_Civil_01_Boat_Civil_01_F : TRIPLES(ADDON,Nodes,Base)
 	};
 };
 
-class _A3_Boat_F_Boat_Armed_01_Boat_Armed_01_minigun_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class A3_Boat_F_Boat_Armed_01_Boat_Armed_01_minigun_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -349,7 +349,7 @@ class _A3_Boat_F_Boat_Armed_01_Boat_Armed_01_minigun_F_p3d : TRIPLES(ADDON,Nodes
 	};
 };
 
-class _A3_boat_f_Boat_Transport_01_Boat_Transport_01_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class A3_boat_f_Boat_Transport_01_Boat_Transport_01_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
@@ -366,7 +366,7 @@ class _A3_boat_f_Boat_Transport_01_Boat_Transport_01_F_p3d : TRIPLES(ADDON,Nodes
 	};
 };
 
-class _A3_Boat_F_Exp_Boat_Transport_02_Boat_Transport_02_F_p3d : TRIPLES(ADDON,Nodes,Base)
+class A3_Boat_F_Exp_Boat_Transport_02_Boat_Transport_02_F_p3d : TRIPLES(ADDON,Nodes,Base)
 {
 	class Nodes
 	{
