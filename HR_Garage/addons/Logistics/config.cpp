@@ -16,3 +16,4 @@ class CfgPatches {
 
 #include "CfgFunctions.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgLogistics.hpp"
