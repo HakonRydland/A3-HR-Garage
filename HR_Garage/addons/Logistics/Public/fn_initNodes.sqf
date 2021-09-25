@@ -14,7 +14,7 @@
     Public: [Yes]
     Dependencies:
 
-    Example: call HR_fnc_logistics_initNodes;
+    Example: call HR_logistics_fnc_initNodes;
 */
 //Vanilla nodes
 HR_logistics_vehicleHardpoints = [

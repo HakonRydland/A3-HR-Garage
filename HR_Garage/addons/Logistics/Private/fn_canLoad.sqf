@@ -16,7 +16,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_vehicle, _cargo] call HR_fnc_logistics_canLoad;
+    Example: [_vehicle, _cargo] call HR_logistics_fnc_canLoad;
 
     Error codes:
         -1: Vehicle not alive or null
@@ -34,7 +34,7 @@ if !(alive _vehicle) exitWith {-1}; //vehicle destroyed
 if !(alive _object) exitWith {-2}; //cargo destroyed
 
 //get cargo node size
-private _objNodeType = [_object] call HR_fnc_logistics_getCargoNodeType;
+private _objNodeType = [_object] call HR_logistics_fnc_getCargoNodeType;
 if (_objNodeType isEqualTo -1) exitWith {-3}; //invalid cargo
 
 if !(
@@ -62,7 +62,7 @@ private _nodes = _vehicle getVariable ["logisticsCargoNodes",nil];
 
 //if nodes not initilized
 if (isNil "_nodes") then {
-    _nodes = [_vehicle] call HR_fnc_logistics_getVehicleNodes;
+    _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
     _vehicle setVariable ["logisticsCargoNodes", _nodes];
 };
 

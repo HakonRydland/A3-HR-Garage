@@ -15,7 +15,7 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [_object] call HR_fnc_logistics_addLoadAction;
+    Example: [_object] call HR_logistics_fnc_addLoadAction;
 */
 #include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
@@ -31,7 +31,7 @@ if (!alive _object) exitWith {
     nil
 };
 
-if (([_object] call HR_fnc_logistics_getCargoNodeType) isEqualTo -1) exitWith {nil};
+if (([_object] call HR_logistics_fnc_getCargoNodeType) isEqualTo -1) exitWith {nil};
 
 if (isNil "HR_logistics_vehicleHardpoints") exitWith {
     Error("Logistics nodes not initialized, aborting");
@@ -45,5 +45,5 @@ if (_object isKindOf "StaticWeapon") then {
 };
 if (_nonSupportedStatic) exitWith {nil};
 
-[_object , _action] remoteExec ["HR_fnc_logistics_addAction", 0, _object];
+[_object , _action] remoteExec ["HR_logistics_fnc_addAction", 0, _object];
 nil

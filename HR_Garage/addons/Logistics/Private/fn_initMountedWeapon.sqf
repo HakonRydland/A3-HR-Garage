@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies: <Array< <String>model,<vec3>location,<vec3>rotation,<scalar>size,<scalar>recoil >> HR_logistics_attachmentOffset
 
-    Example: _cargo call HR_fnc_logistics_initMountedWeapon;
+    Example: _cargo call HR_logistics_fnc_initMountedWeapon;
 */
 params ["_weapon"];
 

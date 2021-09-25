@@ -14,7 +14,7 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [_cargo] remoteExecCall ["HR_fnc_logistics_tryLoad",2];
+    Example: [_cargo] remoteExecCall ["HR_logistics_fnc_tryLoad",2];
 
     License: MIT License
 */
@@ -27,7 +27,7 @@ private _vehicles = (nearestObjects [_cargo,["Car","Ship"], 10]) - [_cargo];
 private _vehicle = _vehicles#0;
 if (isNil "_vehicle") exitWith {["No vehicle is close enough"] remoteExec ["hint", remoteExecutedOwner]};
 
-private _return = [_vehicle, _cargo] call HR_fnc_logistics_canLoad;
+private _return = [_vehicle, _cargo] call HR_logistics_fnc_canLoad;
 if (_return isEqualType 0) exitWith {
 
     private _cargoName = getText (configFile >> "CfgVehicles" >> typeOf _cargo >> "displayName");
@@ -48,6 +48,6 @@ if (_return isEqualType 0) exitWith {
     };
 };
 
-_return spawn HR_fnc_logistics_load;
+_return spawn HR_logistics_fnc_load;
 
 nil

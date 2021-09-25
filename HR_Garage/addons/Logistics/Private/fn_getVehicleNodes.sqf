@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: private _nodes = [_vehicle] call HR_fnc_logistics_getVehicleNodes;
+    Example: private _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
 */
 params [["_vehicle", objNull, [objNull, ""]]];
 private _type = if (_vehicle isEqualType objNull) then { typeOf _vehicle } else { _vehicle };

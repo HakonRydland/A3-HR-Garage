@@ -27,7 +27,7 @@ Trace("Reloading Extras");
 private _disp = findDisplay HR_Garage_IDD_Garage;
 private _ctrl = _disp displayCtrl HR_Garage_IDC_ExtraMounts;
 lbClear _ctrl;
-private _vehNodes = [HR_Garage_previewVeh] call HR_fnc_logistics_getVehicleNodes;
+private _vehNodes = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehicleNodes;
 if (_vehNodes isEqualType []) then {
     private _capacity = count _vehNodes;
     {
@@ -187,7 +187,7 @@ private _seatsInfo = composeText [
 //Cargo
 private _nodes = HR_Garage_previewVeh getVariable ["logisticsCargoNodes",nil];
 if (isNil "_nodes") then {
-    _nodes = [HR_Garage_previewVeh] call HR_fnc_logistics_getVehicleNodes;
+    _nodes = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehicleNodes;
     HR_Garage_previewVeh setVariable ["logisticsCargoNodes", _nodes];
 };
 if (_nodes isEqualType 0) then {_nodes = []};

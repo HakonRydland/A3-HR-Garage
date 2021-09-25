@@ -24,7 +24,7 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [cursorTarget, [0,-0.7,-0.7], 2.1] call HR_fnc_logistics_generateHardPoints;
+    Example: [cursorTarget, [0,-0.7,-0.7], 2.1] call HR_logistics_fnc_generateHardPoints;
 */
 params [["_vehicle", objNull, [objNull]], ["_planeStart", [], [[]], 3], ["_planeSpan", 0, [0]]];
 

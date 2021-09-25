@@ -14,7 +14,7 @@
     Public: [Yes]
     Dependencies: HR_logistics_attachmentOffset
 
-    Example: private _objNodeType = [_object] call HR_fnc_logistics_getCargoNodeType;
+    Example: private _objNodeType = [_object] call HR_logistics_fnc_getCargoNodeType;
 */
 params [["_object", objNull, [objNull, ""]]];
 private _type = if (_object isEqualType objNull) then { typeOf _object } else { _object };

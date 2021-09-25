@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies: HR_logistics_attachmentOffset
 
-    Example: private _offsetAndDir = [_cargo] call HR_fnc_logistics_getCargoOffsetAndDir;
+    Example: private _offsetAndDir = [_cargo] call HR_logistics_fnc_getCargoOffsetAndDir;
 */
 params [["_object", objNull, [objNull, ""]]];
 private _type = if (_object isEqualType objNull) then { typeOf _object } else { _object };

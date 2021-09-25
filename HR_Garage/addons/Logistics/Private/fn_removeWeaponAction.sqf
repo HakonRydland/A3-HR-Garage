@@ -15,7 +15,7 @@
     Public: [No]
     Dependencies: <Array< <String>model,<Array>blacklisted vehicle models >> HR_logistics_weapons
 
-    Example: [_vehicle, _cargo] remoteExecCall ["HR_fnc_logistics_removeWeaponAction",0];
+    Example: [_vehicle, _cargo] remoteExecCall ["HR_logistics_fnc_removeWeaponAction",0];
 */
 params ["_vehicle", "_cargo"];
 

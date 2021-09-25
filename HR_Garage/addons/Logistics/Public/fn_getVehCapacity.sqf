@@ -15,7 +15,7 @@
     Public: [Yes]
     Dependencies: <Array< <String>model,<scalar>1,<vec3>location,Array<Scalar>locked seats >> HR_logistics_vehicleHardpoints
 
-    Example: [_vehicle] call HR_fnc_logistics_getVehCapacity
+    Example: [_vehicle] call HR_logistics_fnc_getVehCapacity
 
     License: MIT License
 */
