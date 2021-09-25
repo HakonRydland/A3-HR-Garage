@@ -9,6 +9,7 @@ class DOUBLES(ADDON,Nodes)
     #include "Nodes\vanilla.hpp"
     #include "Nodes\rhs.hpp"
     #include "Nodes\3cb.hpp"
+    #include "Nodes\vn.hpp"
     #include "Nodes\ffaa.hpp"
 };
 
@@ -26,4 +27,6 @@ class DOUBLES(ADDON,Cargo)
 
     #include "Cargo\Vanilla.hpp"
     #include "Cargo\rhs.hpp"
+    #include "Cargo\3cb.hpp"
+    #include "Cargo\vn.hpp"
 };
