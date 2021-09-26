@@ -48,7 +48,7 @@ if !(
 private _weapon = 1 == getNumber (_cargoConfig/"isWeapon");
 private _allowed = if (!_weapon) then {true} else {
     private _vehModel = ((getText (configFile/"CfgVehicles"/typeOf _vehicle/"model")) splitString "\.") joinString "_";
-    _vehModel in (getArray (_cargoConfig/"blackList"))
+    !( _vehModel in ( getArray (_cargoConfig/"blackList") ) )
 };
 if !(_allowed) exitWith {-5}; //weapon not allowed on vehicle
 
