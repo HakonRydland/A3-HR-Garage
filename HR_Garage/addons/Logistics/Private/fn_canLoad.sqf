@@ -33,6 +33,10 @@ params [ ["_vehicle", objNull, [objNull] ], ["_object", objNull, [objNull] ] ];
 if !(alive _vehicle) exitWith {-1}; //vehicle destroyed
 if !(alive _object) exitWith {-2}; //cargo destroyed
 
+//check if vehicle can load cargo
+private _vehConfig = [_vehicle] call HR_logistics_fnc_getNodeConfig;
+if (isNull _vehConfig) exitWith {-7};
+
 //get cargo node size
 private _cargoConfig = [_object] call HR_logistics_fnc_getCargoConfig;
 if (isNull _cargoConfig) exitWith {-3};
@@ -47,6 +51,8 @@ if !(
 //is weapon? and weapon allowed
 private _weapon = 1 == getNumber (_cargoConfig/"isWeapon");
 private _allowed = if (!_weapon) then {true} else {
+    if (0 == getNumber (_vehConfig/"canLoadWeapon")) exitWith {false};
+
     private _vehModel = ((getText (configFile/"CfgVehicles"/typeOf _vehicle/"model")) splitString "\.") joinString "_";
     !( _vehModel in ( getArray (_cargoConfig/"blackList") ) )
 };
