@@ -14,7 +14,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_cargo] call HR_fnc_logistics_toggleAceActions;
+    Example: [_cargo] call HR_logistics_fnc_toggleAceActions;
 */
 params ["_object"];
 

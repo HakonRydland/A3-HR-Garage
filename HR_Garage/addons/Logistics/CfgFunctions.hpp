@@ -1,32 +1,33 @@
 class CfgFunctions {
-	class HR
+	class ADDON
 	{
-		class LogisticsPublic
+		class Public
 		{
 			file = QPATHTOFOLDER(Public);
-			class logistics_addLoadAction {};
-			class logistics_getVehCapacity {};
-			class logistics_initNodes { preInit = 1; };
+			class addLoadAction {};
+			class getVehCapacity {};
 		};
-		class LogisticsPrivate
+		class Private
 		{
 			file = QPATHTOFOLDER(Private);
-			class logistics_addAction {};
-			class logistics_addOrRemoveObjectMass {};
-			class logistics_addWeaponAction {};
-			class logistics_canLoad {};
-			class logistics_generateHardPoints {};
-			class logistics_getCargoNodeType {};
-			class logistics_getCargoOffsetAndDir {};
-			class logistics_getVehicleNodes {};
-			class logistics_initMountedWeapon {};
-			class logistics_load {};
-			class logistics_refreshVehicleLoad {};
-			class logistics_removeWeaponAction {};
-			class logistics_toggleAceActions {};
-			class logistics_toggleLock {};
-			class logistics_tryLoad {};
-			class logistics_unload {};
+			class addAction {};
+			class addOrRemoveObjectMass {};
+			class addWeaponAction {};
+			class canLoad {};
+			class generateHardPoints {};
+			class getCargoConfig {};
+			class getCargoNodeType {};
+			class getCargoOffsetAndDir {};
+			class getNodeConfig {};
+			class getVehicleNodes {};
+			class initMountedWeapon {};
+			class load {};
+			class refreshVehicleLoad {};
+			class removeWeaponAction {};
+			class toggleAceActions {};
+			class toggleLock {};
+			class tryLoad {};
+			class unload {};
 		};
 	};
 };

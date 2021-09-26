@@ -13,9 +13,9 @@
     Scope: Any
     Environment: Scheduled
     Public: [No]
-    Dependencies: <Array< <String>model,<Array>blacklisted vehicle models >> HR_logistics_weapons
+    Dependencies:
 
-    Example: [_target] remoteExec ["HR_fnc_logistics_unload",2];
+    Example: [_target] remoteExec ["HR_logistics_fnc_unload",2];
 */
 #include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
@@ -82,19 +82,16 @@ if ((_node#0) isEqualType []) then {
 private _keepUnloading = false;
 if !(_cargo isEqualTo objNull) then {//cargo not deleted
     //check if its a weapon
-    private _model = getText (configFile >> "CfgVehicles" >> typeOf _cargo >> "model");
-    private _weapon = false;
-    {
-        if ((_x#0) isEqualTo _model) exitWith {_weapon = true};
-    } forEach HR_logistics_weapons;
+    private _cargoConfig = [_cargo] call HR_Logistics_fnc_getCargoConfig;
+    private _weapon = 1 == getnumber (_cargoConfig/"isWeapon");
 
     if (_weapon) then {
-        [_vehicle, _cargo] remoteExecCall ["HR_fnc_logistics_removeWeaponAction",0];
+        [_vehicle, _cargo] remoteExecCall ["HR_logistics_fnc_removeWeaponAction",0];
         player setCaptive false; //break undercover for unloading weapon
     };
     _cargo setVariable ["AttachmentOffset", nil, true];
 
-    private _location = ([_cargo] call HR_fnc_logistics_getCargoOffsetAndDir)#0;
+    private _location = ([_cargo] call HR_logistics_fnc_getCargoOffsetAndDir)#0;
     private _location = _location vectorAdd _nodeOffset;
 
     private _bbv = (boundingBoxReal _vehicle select 0 select 1) + ((boundingCenter _vehicle) select 1);
@@ -113,20 +110,20 @@ if !(_cargo isEqualTo objNull) then {//cargo not deleted
     };
     detach _cargo;
 
-    [_cargo] call HR_fnc_logistics_toggleAceActions;
-    [_vehicle, _cargo, true, _instant] call HR_fnc_logistics_addOrRemoveObjectMass;
+    [_cargo] call HR_logistics_fnc_toggleAceActions;
+    [_vehicle, _cargo, true, _instant] call HR_logistics_fnc_addOrRemoveObjectMass;
     _cargo lockDriver false;
 } else {_keepUnloading = true};
 
 //unlock seats
-[_cargo, false] remoteExec ["HR_fnc_logistics_toggleLock", 0, _cargo];
-[_vehicle, false, _seats] remoteExec ["HR_fnc_logistics_toggleLock", 0, _vehicle];
+[_cargo, false] remoteExec ["HR_logistics_fnc_toggleLock", 0, _cargo];
+[_vehicle, false, _seats] remoteExec ["HR_logistics_fnc_toggleLock", 0, _vehicle];
 
 //update list
 _loaded deleteAt 0;
 _vehicle setVariable ["Cargo", _loaded, true];
-[_vehicle] call HR_fnc_logistics_refreshVehicleLoad; //refresh list in case theres more on the list but no actuall cargo loaded
+[_vehicle] call HR_logistics_fnc_refreshVehicleLoad; //refresh list in case theres more on the list but no actuall cargo loaded
 
 _vehicle setVariable ["LoadingCargo",nil,true];
-if (_keepUnloading and !_lastLoaded) then {[_vehicle] spawn HR_fnc_logistics_unload};//if you tried to unload a null obj unload next on list
+if (_keepUnloading and !_lastLoaded) then {[_vehicle] spawn HR_logistics_fnc_unload};//if you tried to unload a null obj unload next on list
 nil

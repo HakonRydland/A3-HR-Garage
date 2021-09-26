@@ -14,13 +14,13 @@
     Public: [No]
     Dependencies:
 
-    Example: [_vehicle] call HR_fnc_logistics_refreshVehicleLoad;
+    Example: [_vehicle] call HR_logistics_fnc_refreshVehicleLoad;
 */
 params ["_vehicle"];
 
 private _cargo = _vehicle getVariable ["Cargo",[]];
 if (_cargo findIf {!((_x#0) isEqualTo objNull)} isEqualTo -1) then { //if all remaining cargo on list is objNull, reset list
-    private _nodes = [_vehicle] call HR_fnc_logistics_getVehicleNodes;
+    private _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
     _vehicle setVariable ["logisticsCargoNodes",_nodes];
     _vehicle setVariable ["Cargo", []];
 };

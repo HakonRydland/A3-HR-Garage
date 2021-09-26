@@ -27,9 +27,10 @@ Trace("Reloading Extras");
 private _disp = findDisplay HR_Garage_IDD_Garage;
 private _ctrl = _disp displayCtrl HR_Garage_IDC_ExtraMounts;
 lbClear _ctrl;
-private _vehNodes = [HR_Garage_previewVeh] call HR_fnc_logistics_getVehicleNodes;
+private _vehConfig = [HR_Garage_previewVeh] call HR_logistics_fnc_getNodeConfig;
+private _capacity = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehCapacity;
+private _vehModel = ((getText (configFile/"CfgVehicles"/_class/"model")) splitString "\.") joinString "_";
 if (_vehNodes isEqualType []) then {
-    private _capacity = count _vehNodes;
     {
         _y params ["_displayName", "_staticClass", "_lockedUID", "_checkedOut"];
 
@@ -39,29 +40,25 @@ if (_vehNodes isEqualType []) then {
         if !(isClass (configFile >> "CfgVehicles" >> _class)) then {_block = true};
 
         //check if its loadable
-        private _model = getText (configFile >> "CfgVehicles" >> _staticClass >> "model");
-        private _type = -1;
-        {
-            if ((_x#0) isEqualTo _model) exitWith {_type = +(_x#3)};
-        }forEach HR_logistics_attachmentOffset;
+        private _cargoConfig = [_staticClass] call HR_Logistics_fnc_getCargoConfig;
+        private _size = if (isNull _cargoConfig) then {-1} else { getNumber (_cargoConfig/"size") };
 
         //is weapon allowed
-        private _vehModel = getText (configFile >> "CfgVehicles" >> typeOf HR_Garage_previewVeh >> "model");
-        private _allowed = true;
-        {
-            _x params ["_wep", "_blacklistVehicles"];
-            if (_wep isEqualTo _model) exitWith {
-                if (_vehModel in _blacklistVehicles) then {_allowed = false};
-            };
-        } forEach HR_logistics_weapons;
+        private _allowed = if (getNumber (_vehConfig/"canLoadWeapon") == 0) then { false } else {
+            private _blackList = getArray (_cargoConfig/"blackList");
+            !(
+                _vehModel in _blackList
+                || _class in _blackList
+            )
+        };
 
         //add entry
-        if ( (_allowed) && (_type != -1) && (_capacity >= _type) && !_block) then { //static is loadable and vehicle can fit it
+        if ( (_allowed) && (_size != -1) && (_capacity >= _size) && !_block) then { //static is loadable and vehicle can fit it
             private _index = _ctrl lbAdd _displayName;
             _ctrl lbSetData [_index, _staticClass];
             _ctrl lbSetValue [_index, _x];
             _ctrl lbsetpicture [_index,checkboxTextures select (_checkedOut isEqualTo HR_Garage_PlayerUID)];
-            _ctrl lbSetTextRight [_index, format ["Size: %1", _type]];
+            _ctrl lbSetTextRight [_index, format ["Size: %1", _size]];
             Trace_4("Mount Added to list | Class: %1 | UID: %2 | Checked: %3 | Size: %4", _staticClass, _x, (_checkedOut isEqualTo HR_Garage_PlayerUID), _type);
         };
     } forEach (HR_Garage_Vehicles#4);//statics
@@ -187,7 +184,7 @@ private _seatsInfo = composeText [
 //Cargo
 private _nodes = HR_Garage_previewVeh getVariable ["logisticsCargoNodes",nil];
 if (isNil "_nodes") then {
-    _nodes = [HR_Garage_previewVeh] call HR_fnc_logistics_getVehicleNodes;
+    _nodes = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehicleNodes;
     HR_Garage_previewVeh setVariable ["logisticsCargoNodes", _nodes];
 };
 if (_nodes isEqualType 0) then {_nodes = []};

@@ -16,7 +16,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_vehicle, _cargo] call HR_fnc_logistics_canLoad;
+    Example: [_vehicle, _cargo] call HR_logistics_fnc_canLoad;
 
     Error codes:
         -1: Vehicle not alive or null
@@ -33,8 +33,14 @@ params [ ["_vehicle", objNull, [objNull] ], ["_object", objNull, [objNull] ] ];
 if !(alive _vehicle) exitWith {-1}; //vehicle destroyed
 if !(alive _object) exitWith {-2}; //cargo destroyed
 
+//check if vehicle can load cargo
+private _vehConfig = [_vehicle] call HR_logistics_fnc_getNodeConfig;
+if (isNull _vehConfig) exitWith {-7};
+
 //get cargo node size
-private _objNodeType = [_object] call HR_fnc_logistics_getCargoNodeType;
+private _cargoConfig = [_object] call HR_logistics_fnc_getCargoConfig;
+if (isNull _cargoConfig) exitWith {-3};
+private _objNodeType = [_object] call HR_logistics_fnc_getCargoNodeType;
 if (_objNodeType isEqualTo -1) exitWith {-3}; //invalid cargo
 
 if !(
@@ -43,16 +49,17 @@ if !(
 ) exitWith {-4}; //gunner in static
 
 //is weapon? and weapon allowed
-private _model = getText (configFile >> "CfgVehicles" >> typeOf _object >> "model");
-private _vehModel = getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "model");
-private _weapon = false;
-private _allowed = true;
-{
-    if ((_x#0) isEqualTo _model) exitWith {
-        _weapon = true;
-        if (_vehModel in (_x#1)) then {_allowed = false};
-    };
-} forEach HR_logistics_weapons;
+private _weapon = 1 == getNumber (_cargoConfig/"isWeapon");
+private _allowed = if (!_weapon) then {true} else {
+    if (0 == getNumber (_vehConfig/"canLoadWeapon")) exitWith {false};
+
+    private _vehModel = ((getText (configFile/"CfgVehicles"/typeOf _vehicle/"model")) splitString "\.") joinString "_";
+    private _blackList = getArray (_cargoConfig/"blackList");
+    !(
+        _vehModel in _blackList
+        || typeOf _vehicle in _blackList
+    )
+};
 if !(_allowed) exitWith {-5}; //weapon not allowed on vehicle
 
 if (_object isKindOf "CAManBase") exitWith {-6}; //conscious man
@@ -62,7 +69,7 @@ private _nodes = _vehicle getVariable ["logisticsCargoNodes",nil];
 
 //if nodes not initilized
 if (isNil "_nodes") then {
-    _nodes = [_vehicle] call HR_fnc_logistics_getVehicleNodes;
+    _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
     _vehicle setVariable ["logisticsCargoNodes", _nodes];
 };
 

@@ -27,7 +27,7 @@ call HR_fnc_detector;
 
 //only server
 if (!isServer) exitWith {};
-[] call HR_fnc_logistics_initNodes;
+[] call HR_logistics_fnc_initNodes;
 
 Trace("Running server init");
 if (!isNil "HR_Garage_Init") exitWith {};//init already run.

@@ -13,9 +13,9 @@
     Scope: Clients
     Environment: Any
     Public: [No]
-    Dependencies: <Array< <String>model,<Array>blacklisted vehicle models >> HR_logistics_weapons
+    Dependencies:
 
-    Example: [_vehicle, _cargo] remoteExecCall ["HR_fnc_logistics_removeWeaponAction",0];
+    Example: [_vehicle, _cargo] remoteExecCall ["HR_logistics_fnc_removeWeaponAction",0];
 */
 params ["_vehicle", "_cargo"];
 
@@ -38,8 +38,7 @@ _cargo setVariable ["GetOutEH", nil];
 //remove Undercover break if last weapon
 private _attachedObjects =  attachedObjects _vehicle;
 private _weaponCount = _attachedObjects findIf {
-    private _model = getText (configFile >> "CfgVehicles" >> typeOf _x >> "model");
-    !(HR_logistics_weapons findIf { (_x#0) isEqualTo _model } isEqualTo -1);
+    !isNull ( [_x] call HR_Logistics_fnc_getCargoConfig )
 };
 if (_weaponCount isEqualTo -1) then {
     private _undercoverBreak = _vehicle getVariable ["undercoverBreak", -1];

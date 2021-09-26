@@ -26,7 +26,7 @@ private _ctrl = _disp displayCtrl HR_Garage_IDC_ExtraMounts;
 private _cat = HR_Garage_vehicles#4;
 //remove old statics
 {
-    [HR_Garage_previewVeh, true] call HR_fnc_logistics_unload;
+    [HR_Garage_previewVeh, true] call HR_logistics_fnc_unload;
     deleteVehicle _x;
 } forEach attachedObjects HR_Garage_previewVeh;
 
@@ -62,9 +62,9 @@ private _usedCapacity = 0;
     [_static, _staticData#4] call HR_Garage_fnc_setState;
     _static enableSimulation false;
     _static allowDamage false;
-    _loadInfo = [HR_Garage_previewVeh, _static] call HR_fnc_logistics_canLoad;
+    _loadInfo = [HR_Garage_previewVeh, _static] call HR_logistics_fnc_canLoad;
     if (_loadInfo isEqualType 0) exitWith {};
-    (_loadInfo + [true]) call HR_fnc_logistics_load;
+    (_loadInfo + [true]) call HR_logistics_fnc_load;
 
     //get new load info
     private _nodes = _loadInfo#2;
@@ -72,7 +72,7 @@ private _usedCapacity = 0;
     {_lockedSeats = _lockedSeats + count (_x#2)} forEach _nodes;
 
     //correct rotation bug
-    private _offsetAndDir = [_static] call HR_fnc_logistics_getCargoOffsetAndDir;
+    private _offsetAndDir = [_static] call HR_logistics_fnc_getCargoOffsetAndDir;
     _static setVectorDir (_offsetAndDir#1);
 } forEach HR_Garage_Mounts;
 HR_Garage_usedCapacity = _usedCapacity;
