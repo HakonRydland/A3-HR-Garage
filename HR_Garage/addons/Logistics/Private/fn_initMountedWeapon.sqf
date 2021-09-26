@@ -12,18 +12,15 @@
     Scope: Clients
     Environment: Any
     Public: [No]
-    Dependencies: <Array< <String>model,<vec3>location,<vec3>rotation,<scalar>size,<scalar>recoil >> HR_logistics_attachmentOffset
+    Dependencies:
 
     Example: _cargo call HR_logistics_fnc_initMountedWeapon;
 */
 params ["_weapon"];
 
 //weapon recoil
-private _model = getText (configFile >> "CfgVehicles" >> typeOf _weapon >> "model");
-private _fireForce = 0;
-{
-    if ((_x#0) isEqualTo _model) exitWith {_fireForce = +(_x#4)};
-}forEach HR_logistics_attachmentOffset;
+private _cargoConfig = [_weapon] call HR_Logistics_fnc_getCargoConfig;
+private _fireForce = if (isNull _cargoConfig) then { 0 } else { getNumber (_cargoConfig/"recoil") };
 _weapon setVariable ["fireForce", _fireForce, true];
 
 //credits to audiocustoms on youtube (Cup dev) for the concept and CalebSerafin for optimisation.

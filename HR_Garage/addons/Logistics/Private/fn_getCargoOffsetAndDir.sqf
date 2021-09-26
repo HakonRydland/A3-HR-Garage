@@ -1,7 +1,7 @@
 /*
     Author: [Håkon]
     [Description]
-        Finds the node offset and rotation from HR_logistics_attachmentOffset
+        Finds the node offset and rotation
 
     Arguments:
     0. <Object> Cargo to retrive the offset and rotation from hardpoint to attach to
@@ -12,19 +12,14 @@
     Scope: Any
     Environment: unscheduled
     Public: [No]
-    Dependencies: HR_logistics_attachmentOffset
+    Dependencies:
 
     Example: private _offsetAndDir = [_cargo] call HR_logistics_fnc_getCargoOffsetAndDir;
 */
 params [["_object", objNull, [objNull, ""]]];
-private _type = if (_object isEqualType objNull) then { typeOf _object } else { _object };
-private _return = [ [0,0,0], [0,0,0] ];
-if (_type isEqualTo "") exitWith {_return};
-if (_object isKindOf "CAManBase") exitWith {_return};//exception for the mdical system
 
-private _model = getText (configFile >> "CfgVehicles" >> _type >> "model");
-{
-    if ( (_x#0) isEqualTo _model ) exitWith { _return = [+_x#1,+_x#2] };
-}forEach HR_logistics_attachmentOffset;
+private _config = [_object] call HR_Logistics_fnc_getCargoConfig;
+if (isNull _config) exitWith { [[0,0,0], [0,0,0]] };
+if (_object isKindOf "CAManBase") exitWith { [[0,0,0], [0,0,0]] };//exception for the mdical system
 
-_return;
+[getArray (_config/"offset"), getArray (_config/"rotation")];

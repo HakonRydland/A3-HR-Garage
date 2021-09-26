@@ -13,10 +13,9 @@ Description:
     * Models have forwardslashes and dots replaced with underscore ( '\' & '.' -> '_' )
 
 Arguments:
-0. <>
+0. <Object/String> Vehicle or classname
 
-Return Value:
-<>
+Return Value: <config> the node config for that vehicle/class
 
 Scope: Any
 Environment: Any
@@ -32,9 +31,9 @@ params [["_class","",["",objNull]]];
 if (_class isEqualType objNull) then {_class = typeOf _class};
 
 #define cgVehicle (configFile/"CfgVehicles"/_class)
-#define VehicleNodes (configFile/"CfgVehicles"/_class/"HR_Logistics_Nodes")
-#define CfgNodes configFile/"HR_Logistics_Nodes"
-#define MissionNodes missionConfigFile/"HR_Logistics_Nodes"
+#define VehicleNodes (configFile/"CfgVehicles"/_class/QDOUBLES(ADDON,Nodes))
+#define CfgNodes configFile/QDOUBLES(ADDON,Nodes)
+#define MissionNodes missionConfigFile/QDOUBLES(ADDON,Nodes)
 
 if !(isClass cgVehicle) exitWith { configNull };
 if (isClass (MissionNodes/_class)) exitWith { (MissionNodes/_class) };

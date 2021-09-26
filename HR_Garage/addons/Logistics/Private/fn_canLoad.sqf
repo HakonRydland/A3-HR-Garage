@@ -34,6 +34,8 @@ if !(alive _vehicle) exitWith {-1}; //vehicle destroyed
 if !(alive _object) exitWith {-2}; //cargo destroyed
 
 //get cargo node size
+private _cargoConfig = [_object] call HR_logistics_fnc_getCargoConfig;
+if (isNull _cargoConfig) exitWith {-3};
 private _objNodeType = [_object] call HR_logistics_fnc_getCargoNodeType;
 if (_objNodeType isEqualTo -1) exitWith {-3}; //invalid cargo
 
@@ -43,16 +45,11 @@ if !(
 ) exitWith {-4}; //gunner in static
 
 //is weapon? and weapon allowed
-private _model = getText (configFile >> "CfgVehicles" >> typeOf _object >> "model");
-private _vehModel = getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "model");
-private _weapon = false;
-private _allowed = true;
-{
-    if ((_x#0) isEqualTo _model) exitWith {
-        _weapon = true;
-        if (_vehModel in (_x#1)) then {_allowed = false};
-    };
-} forEach HR_logistics_weapons;
+private _weapon = 1 == getNumber (_cargoConfig/"isWeapon");
+private _allowed = if (!_weapon) then {true} else {
+    private _vehModel = ((getText (configFile/"CfgVehicles"/typeOf _vehicle/"model")) splitString "\.") joinString "_";
+    _vehModel in (getArray (_cargoConfig/"blackList"))
+};
 if !(_allowed) exitWith {-5}; //weapon not allowed on vehicle
 
 if (_object isKindOf "CAManBase") exitWith {-6}; //conscious man

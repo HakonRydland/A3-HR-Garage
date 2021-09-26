@@ -1,7 +1,7 @@
 /*
     Author: [Håkon]
     [Description]
-        Finds the node type(size) from HR_logistics_attachmentOffset
+        Finds the node type(size)
 
     Arguments:
     0. <Object> Object that is loadable (Cargo)
@@ -12,18 +12,13 @@
     Scope: Any
     Environment: unscheduled
     Public: [Yes]
-    Dependencies: HR_logistics_attachmentOffset
+    Dependencies:
 
     Example: private _objNodeType = [_object] call HR_logistics_fnc_getCargoNodeType;
 */
 params [["_object", objNull, [objNull, ""]]];
-private _type = if (_object isEqualType objNull) then { typeOf _object } else { _object };
-private _size = -1;
-if (_type isEqualTo "") exitWith {_size};
 
-private _model = getText (configFile >> "CfgVehicles" >> _type >> "model");
-{
-    if ((_x#0) isEqualTo _model) exitWith {_size = _x#3};
-}forEach HR_logistics_attachmentOffset;
+private _config = [_object] call HR_Logistics_fnc_getCargoConfig;
+if (isNull _config) exitWith {-1};
 
-_size;
+getNumber (_config/"size");

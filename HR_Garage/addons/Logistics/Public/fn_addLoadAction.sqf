@@ -33,17 +33,5 @@ if (!alive _object) exitWith {
 
 if (([_object] call HR_logistics_fnc_getCargoNodeType) isEqualTo -1) exitWith {nil};
 
-if (isNil "HR_logistics_vehicleHardpoints") exitWith {
-    Error("Logistics nodes not initialized, aborting");
-    nil
-};
-
-private _nonSupportedStatic = false;
-if (_object isKindOf "StaticWeapon") then {
-    private _model = getText (configFile >> "CfgVehicles" >> typeOf _object >> "model");
-    if (HR_logistics_weapons findIf {(_x#0) isEqualTo _model} isEqualTo -1) then {_nonSupportedStatic = true};
-};
-if (_nonSupportedStatic) exitWith {nil};
-
 [_object , _action] remoteExec ["HR_logistics_fnc_addAction", 0, _object];
 nil

@@ -13,7 +13,7 @@
     Scope: Any
     Environment: Scheduled
     Public: [No]
-    Dependencies: <Array< <String>model,<Array>blacklisted vehicle models >> HR_logistics_weapons
+    Dependencies:
 
     Example: [_target] remoteExec ["HR_logistics_fnc_unload",2];
 */
@@ -82,11 +82,8 @@ if ((_node#0) isEqualType []) then {
 private _keepUnloading = false;
 if !(_cargo isEqualTo objNull) then {//cargo not deleted
     //check if its a weapon
-    private _model = getText (configFile >> "CfgVehicles" >> typeOf _cargo >> "model");
-    private _weapon = false;
-    {
-        if ((_x#0) isEqualTo _model) exitWith {_weapon = true};
-    } forEach HR_logistics_weapons;
+    private _cargoConfig = [_cargo] call HR_Logistics_fnc_getCargoConfig;
+    private _weapon = 1 == getnumber (_cargoConfig/"isWeapon");
 
     if (_weapon) then {
         [_vehicle, _cargo] remoteExecCall ["HR_logistics_fnc_removeWeaponAction",0];

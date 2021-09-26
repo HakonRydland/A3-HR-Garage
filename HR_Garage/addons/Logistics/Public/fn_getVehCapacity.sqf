@@ -13,20 +13,14 @@
     Scope: Any
     Environment: unscheduled
     Public: [Yes]
-    Dependencies: <Array< <String>model,<scalar>1,<vec3>location,Array<Scalar>locked seats >> HR_logistics_vehicleHardpoints
+    Dependencies:
 
     Example: [_vehicle] call HR_logistics_fnc_getVehCapacity
 
     License: MIT License
 */
 params [["_vehicle", objNull, [objNull, ""]]];
-private _type = if (_vehicle isEqualType objNull) then { typeOf _vehicle } else { _vehicle };
-private _countNodes = 0;
-if (_type isEqualTo "") exitWith { _countNodes };
+private _config = [_vehicle] call HR_Logistics_fnc_getNodeConfig;
+if (isNull _config) exitWith { 0 };
 
-private _model = getText (configFile >> "CfgVehicles" >> _type >> "model");
-{
-    if ( (_x#0) isEqualTo _model ) exitWith { _countNodes = count (_x#1) };
-}forEach HR_logistics_vehicleHardpoints;
-
-_countNodes;
+count (configProperties [(_config/"Nodes"), "true", true]);
