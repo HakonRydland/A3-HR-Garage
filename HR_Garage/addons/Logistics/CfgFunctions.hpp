@@ -1,5 +1,5 @@
 class CfgFunctions {
-	class HR_logistics
+	class ADDON
 	{
 		class Public
 		{
