@@ -32,6 +32,7 @@ class rhsafrf_addons_rhs_a2port_car_Ural_Ural_open_p3d : TRIPLES(ADDON,Nodes,Bas
 
 class rhsafrf_addons_rhs_a2port_car_Ural_Ural_p3d : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -96,6 +97,7 @@ class rhsafrf_addons_rhs_a2port_car_Ural_Ural_open2_p3d : TRIPLES(ADDON,Nodes,Ba
 
 class rhsafrf_addons_rhs_kamaz_rhs_kamaz5350 : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -133,6 +135,7 @@ class rhsafrf_addons_rhs_kamaz_rhs_kamaz5350 : TRIPLES(ADDON,Nodes,Base)
 
 class rhsafrf_addons_rhs_zil131_rhs_zil131 : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -160,6 +163,7 @@ class rhsafrf_addons_rhs_zil131_rhs_zil131 : TRIPLES(ADDON,Nodes,Base)
 
 class rhsafrf_addons_rhs_gaz66_rhs_gaz66_p3d : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -219,6 +223,7 @@ class rhsafrf_addons_rhs_kraz255_rhs_kraz255b1 : TRIPLES(ADDON,Nodes,Base)
 
 class rhsusf_addons_rhsusf_fmtv_M1078A1P2 : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -251,6 +256,7 @@ class rhsusf_addons_rhsusf_fmtv_M1078A1P2 : TRIPLES(ADDON,Nodes,Base)
 
 class rhsusf_addons_rhsusf_fmtv_M1078A1P2_B : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -283,6 +289,7 @@ class rhsusf_addons_rhsusf_fmtv_M1078A1P2_B : TRIPLES(ADDON,Nodes,Base)
 
 class rhsusf_addons_rhsusf_fmtv_M1078A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -315,6 +322,7 @@ class rhsusf_addons_rhsusf_fmtv_M1078A1P2_B_M2 : TRIPLES(ADDON,Nodes,Base)
 
 class rhsusf_addons_rhsusf_fmtv_M1083A1P2 : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1

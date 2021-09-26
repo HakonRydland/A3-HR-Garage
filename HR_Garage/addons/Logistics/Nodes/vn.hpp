@@ -12,6 +12,7 @@ class vn_wheeled_f_vietnam_m151_vn_wheeled_m151_01_p3d : TRIPLES(ADDON,Nodes,Bas
 
 class vn_wheeled_f_vietnam_btr40_vn_wheeled_btr40_02 : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -102,6 +103,7 @@ class vn_wheeled_f_vietnam_m54_vn_wheeled_m54_01_p3d : TRIPLES(ADDON,Nodes,Base)
 
 class vn_wheeled_f_vietnam_m54_vn_wheeled_m54_repair_p3d : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1

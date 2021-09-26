@@ -88,6 +88,7 @@ class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehic
 
 class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_m939_uk3cb_m939_closed_p3d : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -231,6 +232,7 @@ class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehic
 
 class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_mtvr_uk3cb_mtvr_closed_p3d : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
@@ -369,6 +371,7 @@ class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehic
 
 class UK3CB_Factions_addons_UK3CB_Factions_Vehicles_wheeled_UK3CB_Factions_Vehicles_v3s_uk3cb_v3s_transport_p3d : TRIPLES(ADDON,Nodes,Base)
 {
+    canLoadWeapon = 0;
     class Nodes
     {
         class Node1
