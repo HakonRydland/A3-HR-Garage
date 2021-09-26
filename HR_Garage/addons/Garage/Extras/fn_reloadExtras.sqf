@@ -29,7 +29,7 @@ private _ctrl = _disp displayCtrl HR_Garage_IDC_ExtraMounts;
 lbClear _ctrl;
 private _vehConfig = [HR_Garage_previewVeh] call HR_logistics_fnc_getNodeConfig;
 private _capacity = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehCapacity;
-private _vehModel = ((getText (configFile/"CfgVehicles"/class/"model")) splitString "\.") joinString "_";
+private _vehModel = ((getText (configFile/"CfgVehicles"/_class/"model")) splitString "\.") joinString "_";
 if (_vehNodes isEqualType []) then {
     {
         _y params ["_displayName", "_staticClass", "_lockedUID", "_checkedOut"];
@@ -45,7 +45,11 @@ if (_vehNodes isEqualType []) then {
 
         //is weapon allowed
         private _allowed = if (getNumber (_vehConfig/"canLoadWeapon") == 0) then { false } else {
-            !(_vehModel in (getArray (_cargoConfig/"blackList")))
+            private _blackList = getArray (_cargoConfig/"blackList");
+            !(
+                _vehModel in _blackList
+                || _class in _blackList
+            )
         };
 
         //add entry
