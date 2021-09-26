@@ -16,6 +16,7 @@ class CfgFunctions {
 			class addWeaponAction {};
 			class canLoad {};
 			class generateHardPoints {};
+			class getCargoConfig {};
 			class getCargoNodeType {};
 			class getCargoOffsetAndDir {};
 			class getNodeConfig {};
