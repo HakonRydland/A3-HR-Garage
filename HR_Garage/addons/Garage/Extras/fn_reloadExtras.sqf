@@ -30,7 +30,7 @@ lbClear _ctrl;
 private _vehConfig = [HR_Garage_previewVeh] call HR_logistics_fnc_getNodeConfig;
 private _capacity = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehCapacity;
 private _vehModel = ((getText (configFile/"CfgVehicles"/_class/"model")) splitString "\.") joinString "_";
-if (_vehNodes isEqualType []) then {
+if (!isNull _vehConfig) then {
     {
         _y params ["_displayName", "_staticClass", "_lockedUID", "_checkedOut"];
 
