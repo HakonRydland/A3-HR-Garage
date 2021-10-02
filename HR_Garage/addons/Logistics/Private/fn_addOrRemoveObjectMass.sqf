@@ -21,6 +21,7 @@
 
     License: MIT License
 */
+#include "..\script_component.hpp"
 params["_vehicle","_object", ["_removeObject", false, [true]], ["_dontMsg", false, [true]]];
 
 //------------------\\
@@ -53,7 +54,7 @@ if (_dontMsg) exitWith {};
 //------------------\\
 
 //Pull data on available nodes, so we can display it to the user.
-private _nodes = _vehicle getVariable ["logisticsCargoNodes",[]];
+private _nodes = _vehicle getVariable [QGVAR(Nodes),[]];
 private _availableNodes = { (_x#0) isEqualTo 1 } count _nodes;
 
 private _objectName = getText (configFile >> "cfgVehicles" >> typeOf _object >> "displayName");

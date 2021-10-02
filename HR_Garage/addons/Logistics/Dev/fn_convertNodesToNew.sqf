@@ -1,7 +1,7 @@
 //generate node classes from old hardpoints list
 private _entries = [];
 {
-    _nodes = [];
+    private _nodes = [];
     {
         private _offsetArray = str (_x#1);
         private _seatArray = str (_x#2);

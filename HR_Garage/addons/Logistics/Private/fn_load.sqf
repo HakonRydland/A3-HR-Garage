@@ -20,6 +20,7 @@
 
     Example:
 */
+#include "..\script_component.hpp"
 params ["_cargo", "_vehicle", "_node", "_weapon", ["_instant", false, [true]]];
 
 if (_vehicle getVariable ["LoadingCargo", false]) exitWith {["Cargo is already being loaded into the vehicle"] remoteExec ["hint", remoteExecutedOwner]; nil};
@@ -28,11 +29,11 @@ _vehicle setVariable ["LoadingCargo",true,true];
 //update list of nodes on vehicle
 _updateList = {
     params ["_vehicle", "_node"];
-    private _list = _vehicle getVariable ["logisticsCargoNodes",[]];
+    private _list = _vehicle getVariable [QGVAR(Nodes),[]];
     private _index = _list find _node;
     _node set [0,0];
     _list set [_index, _node];
-    _vehicle setVariable ["logisticsCargoNodes", _list];
+    _vehicle setVariable [QGVAR(Nodes), _list];
 };
 
 //find node point and seats

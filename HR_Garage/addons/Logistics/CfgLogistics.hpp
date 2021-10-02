@@ -18,7 +18,7 @@ class DOUBLES(ADDON,Cargo)
     class TRIPLES(ADDON,Cargo,Base)
     {
         offset[] = {0,0,0}; //the offset from the node(s) to load the cargo on too
-        rotation[] = {0,0,0}; //the rotation from the vehicle model front
+        rotation[] = {0,1,0}; //the rotation from the vehicle model front
         size = 1; //the amount of nodes it occupies
         recoil = 0; //the recoil a weapon impacts on the vehicle when fired (per projectile)
         isWeapon = 0; //if the cargo is a weapon (needed for proper handling of mounted weapon)

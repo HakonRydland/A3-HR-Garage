@@ -15,6 +15,7 @@
     0. <Object> Vehicle your generating the nodes for
     1. <Array>  Model relativ position of cargo plane start position
     2. <Int>    The lenght of the cargo plane
+    3. <Bool>   Return preped for model based definition instead of class based
 
     Return Value:
     <Array> vehicle hardpoint point [model, node array]
@@ -26,15 +27,13 @@
 
     Example: [cursorTarget, [0,-0.7,-0.7], 2.1] call HR_logistics_fnc_generateHardPoints;
 */
-params [["_vehicle", objNull, [objNull]], ["_planeStart", [], [[]], 3], ["_planeSpan", 0, [0]]];
+#include "..\script_component.hpp"
+params [["_vehicle", objNull, [objNull]], ["_planeStart", [], [[]], 3], ["_planeSpan", 0, [0]], ["_defineWithModel", true, [true]]];
 
 //validate input
 if (isNull _vehicle) exitWith {"Null vehicle"};
 if (_planeStart isEqualTo []) exitWith {"Invalid start off plane"};
 if (_planeSpan < 0) exitWith {"Plane length cannot be negative"};
-
-//get model
-private _model = getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "model");
 
 //calculate nodes
 private _planeEnd = +_planeStart;
@@ -51,16 +50,34 @@ while {(_radius*1.5) < (_plane#1)} do {
     _node = _node vectorDiff [0,_diameter,0];
 };
 
-//fix nodeArray with rest of information
-HR_Logistics_nodeArray = _nodeArray apply {[1, _x, []]};
+//construct output string
+private _nodes = [];
+{
+    private _offsetArray = str _x;
+
+    _nodes pushBack text (format [
+        "        class %1%3        {%3            offset[] = {%2};%3        };",
+        "Node"+ str (_forEachIndex + 1),
+        _offsetArray select [1, count _offsetArray - 2],
+        endl
+    ]);
+} forEach _nodeArray;
+private _nodesString = "    class Nodes" + endl + "    {" + endl + (_nodes joinString endl) + endl + "    };";
+
+private _return = format ["class %1 : TRIPLES(ADDON,Nodes,Base)%3{%3    %2%3};%3",
+    if (_defineWithModel) then { modelOfClass(typeOf _vehicle) } else { typeOf _vehicle },
+    _nodesString,
+    endl
+];
 
 //Rendering visuals
+HR_Logistics_nodeArray = _nodeArray;
 HR_Logistics_vehicle = _vehicle;
 HR_Logistics_pStart = _planeStart;
 HR_Logistics_pEnd = _planeEnd;
 HR_Logistics_RenderTime = time + 60;
 
-if !(isNil "HR_Logistics_RenderCP") exitWith {[_model, HR_Logistics_nodeArray]};
+if !(isNil "HR_Logistics_RenderCP") exitWith {_return};
 HR_Logistics_RenderCP = addMissionEventHandler ["Draw3D", {
     //get the render position of the start and end cargo plane positions
     private _startPos = HR_Logistics_vehicle modelToWorldVisual HR_Logistics_pStart;
@@ -90,7 +107,7 @@ HR_Logistics_RenderCP = addMissionEventHandler ["Draw3D", {
 
     //nodes
     {
-        drawIcon3D ["\a3\ui_f\data\map\markers\military\dot_ca.paa", [0.9,0.9,0.9,1], HR_Logistics_vehicle modelToWorldVisual (_x#1), 0.6, 0.6, 0, "", true, 0.03, "TahomaB", "center"];
+        drawIcon3D ["\a3\ui_f\data\map\markers\military\dot_ca.paa", [0.9,0.9,0.9,1], HR_Logistics_vehicle modelToWorldVisual _x, 0.6, 0.6, 0, "", true, 0.03, "TahomaB", "center"];
     } forEach HR_Logistics_nodeArray;
 
 
@@ -105,4 +122,4 @@ HR_Logistics_RenderCP = addMissionEventHandler ["Draw3D", {
     };
 }];
 
-[_model, HR_Logistics_nodeArray];
+_return;

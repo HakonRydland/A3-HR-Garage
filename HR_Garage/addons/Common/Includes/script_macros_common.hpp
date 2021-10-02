@@ -983,6 +983,13 @@ Author:
     CFGFUNCTION_HEADER;\
     RECOMPILE;\
 }
+#define DFUNC(func) class func {\
+    RECOMPILE;\
+};
+#define DFUNCP(func, properties) class func {\
+    RECOMPILE;\
+    properties\
+};
 
 #define FUNC(var1) TRIPLES(ADDON,fnc,var1)
 #define FUNCMAIN(var1) TRIPLES(PREFIX,fnc,var1)

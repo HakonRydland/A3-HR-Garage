@@ -29,6 +29,7 @@
         -8: Not enough space to load cargo onto vehicle
         -9: Units in cargo seats blocking loading
 */
+#include "..\script_component.hpp"
 params [ ["_vehicle", objNull, [objNull] ], ["_object", objNull, [objNull] ] ];
 if !(alive _vehicle) exitWith {-1}; //vehicle destroyed
 if !(alive _object) exitWith {-2}; //cargo destroyed
@@ -65,12 +66,12 @@ if !(_allowed) exitWith {-5}; //weapon not allowed on vehicle
 if (_object isKindOf "CAManBase") exitWith {-6}; //conscious man
 
 //get vehicle nodes
-private _nodes = _vehicle getVariable ["logisticsCargoNodes",nil];
+private _nodes = _vehicle getVariable [QGVAR(Nodes),nil];
 
 //if nodes not initilized
 if (isNil "_nodes") then {
     _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
-    _vehicle setVariable ["logisticsCargoNodes", _nodes];
+    _vehicle setVariable [QGVAR(Nodes), _nodes];
 };
 
 //Vehicle not able to carry cargo

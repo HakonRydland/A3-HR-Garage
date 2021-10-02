@@ -182,10 +182,10 @@ private _seatsInfo = composeText [
 ];
 
 //Cargo
-private _nodes = HR_Garage_previewVeh getVariable ["logisticsCargoNodes",nil];
+private _nodes = HR_Garage_previewVeh getVariable [QEGVAR(Logistics,Nodes),nil];
 if (isNil "_nodes") then {
     _nodes = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehicleNodes;
-    HR_Garage_previewVeh setVariable ["logisticsCargoNodes", _nodes];
+    HR_Garage_previewVeh setVariable [QEGVAR(Logistics,Nodes), _nodes];
 };
 if (_nodes isEqualType 0) then {_nodes = []};
 private _cargoCapacity = count _nodes;

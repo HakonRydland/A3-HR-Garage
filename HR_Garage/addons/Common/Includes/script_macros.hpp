@@ -1,8 +1,5 @@
 #include "script_macros_common.hpp"
 
-#define DFUNC(fncName) TRIPLES(ADDON,fnc,fncName)
-#define DEFUNC(comp,fncName) TRIPLES(DOUBLES(PREFIX,comp),fnc,fncName)
-
 #undef QFUNC
 #undef QEFUNC
 #define QFUNC(fncName) QOUTE(DFUNC(fncName))

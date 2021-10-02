@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = { "cba_xeh" };
+        requiredAddons[] = { "cba_xeh", QDOUBLES(PREFIX,Common) };
         author = AUTHOR
         authors[] = { AUTHORS };
         authorUrl = "";

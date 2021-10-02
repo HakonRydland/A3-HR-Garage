@@ -1,33 +1,49 @@
 class CfgFunctions {
-	class ADDON
-	{
-		class Public
-		{
-			file = QPATHTOFOLDER(Public);
-			class addLoadAction {};
-			class getVehCapacity {};
-		};
-		class Private
-		{
-			file = QPATHTOFOLDER(Private);
-			class addAction {};
-			class addOrRemoveObjectMass {};
-			class addWeaponAction {};
-			class canLoad {};
-			class generateHardPoints {};
-			class getCargoConfig {};
-			class getCargoNodeType {};
-			class getCargoOffsetAndDir {};
-			class getNodeConfig {};
-			class getVehicleNodes {};
-			class initMountedWeapon {};
-			class load {};
-			class refreshVehicleLoad {};
-			class removeWeaponAction {};
-			class toggleAceActions {};
-			class toggleLock {};
-			class tryLoad {};
-			class unload {};
-		};
-	};
+    class ADDON
+    {
+
+#if __A3_DEBUG__
+
+    #undef RECOMPILE
+    #define RECOMPILE recompile = 1
+
+        class Dev
+        {
+            file = QPATHTOFOLDER(Dev);
+            DFUNC(convertCargoToNew)
+            DFUNC(convertNodesToNew)
+            DFUNC(generateCargoOffset)
+            DFUNC(generateHardPoints)
+        };
+
+#endif
+
+        class Public
+        {
+            file = QPATHTOFOLDER(Public);
+            DFUNC(addLoadAction)
+            DFUNC(getVehCapacity)
+        };
+        class Private
+        {
+            file = QPATHTOFOLDER(Private);
+            DFUNC(addAction)
+            DFUNC(addOrRemoveObjectMass)
+            DFUNC(addWeaponAction)
+            DFUNC(canLoad)
+            DFUNC(getCargoConfig)
+            DFUNC(getCargoNodeType)
+            DFUNC(getCargoOffsetAndDir)
+            DFUNC(getNodeConfig)
+            DFUNC(getVehicleNodes)
+            DFUNC(initMountedWeapon)
+            DFUNC(load)
+            DFUNC(refreshVehicleLoad)
+            DFUNC(removeWeaponAction)
+            DFUNC(toggleAceActions)
+            DFUNC(toggleLock)
+            DFUNC(tryLoad)
+            DFUNC(unload)
+        };
+    };
 };
