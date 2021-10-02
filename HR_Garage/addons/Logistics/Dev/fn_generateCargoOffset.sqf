@@ -119,7 +119,7 @@ GVAR(render) = addMissionEventHandler ["Draw3D", {
 
     //draw cargo bb
     {
-        drawLine3D  [GVAR(cargo) modelToWorldVisual (_x#0), GVAR(cargo) modelToWorldVisual (_x#1), COLORRED];
+        drawLine3D  [GVAR(cargo) modelToWorldVisual (_x#0), GVAR(cargo) modelToWorldVisual (_x#1), COLORWHITE];
     } forEach GVAR(renderLinePairs_cargo);
 
     //draw hardpoint and cargo base
