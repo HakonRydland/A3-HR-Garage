@@ -7,7 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"A3_Modules_F", "cba_xeh", QDOUBLES(PREFIX,Logistics)};
-        author = AUTHOR
+        author = AUTHOR;
         authors[] = { AUTHORS };
         authorUrl = "";
         VERSION_CONFIG;
