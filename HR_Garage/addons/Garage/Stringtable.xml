@@ -18,6 +18,10 @@
             <Original>Cars</Original>
             <English>Cars</English>
         </Key>
+        <Key ID="STR_HR_Garage_Generic_capacity">
+            <Original>Available space in garage</Original>
+            <English>Available space in garage</English>
+        </Key>
         <Key ID="STR_HR_Garage_Generic_Armored">
             <Original>Armor</Original>
             <English>Armor</English>

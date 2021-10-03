@@ -58,6 +58,7 @@
 #define HR_Garage_IDC_CatText 170016
 #define HR_Garage_IDC_ExtrasText 170017
 #define HR_Garage_IDC_KeyBindHint 170018
+#define HR_Garage_IDC_CapacityCount 170019
 
 //icons
 #define CheckOutIcon "\a3\ui_f\data\Map\Diary\Icons\diaryLocateTask_ca.paa"

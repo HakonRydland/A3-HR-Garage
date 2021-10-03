@@ -125,6 +125,7 @@ if (
 } forEach [HR_Garage_IDC_ExtraMounts,HR_Garage_IDC_ExtraTexture,HR_Garage_IDC_ExtraAnim,HR_Garage_IDC_ExtraPylonsContainer];
 [0] call HR_Garage_fnc_switchExtrasMenu;
 [] call HR_Garage_fnc_reloadPylons;
+call HR_Garage_fnc_updateVehicleCount;
 
 
 HR_Garage_EachFrame = addMissionEventHandler ["EachFrame", {

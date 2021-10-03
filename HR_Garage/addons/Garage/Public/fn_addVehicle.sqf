@@ -114,6 +114,7 @@ private _refreshCode = {
     private _disp = findDisplay HR_Garage_IDD_Garage;
     private _cats = _this apply { HR_Garage_Cats#_x };
     {
+        call HR_Garage_fnc_updateVehicleCount;
         if (ctrlEnabled _x) then {
             [_x, _this#_forEachIndex] call HR_Garage_fnc_reloadCategory;
         };

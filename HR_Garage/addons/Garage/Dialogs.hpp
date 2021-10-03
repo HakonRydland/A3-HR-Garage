@@ -21,9 +21,20 @@ class HR_Garage_VehicleSelect
             idc = HR_Garage_IDC_CatText;
             x = SCREEN_LEFT;
             y = SCREEN_TOP;
-            w = 39 * GRID_NOUISCALE_W;
+            w = 30 * GRID_NOUISCALE_W;
             h = 4 * GRID_NOUISCALE_H;
             size = TEXT_SIZE_LARGE;
+        };
+        class HR_Garage_CapacityCount: HR_Garage_RscStructuredText
+        {
+            idc = HR_Garage_IDC_CapacityCount;
+            x = SCREEN_LEFT + 30 * GRID_NOUISCALE_W;
+            y = SCREEN_TOP;
+            w = 9 * GRID_NOUISCALE_W;
+            h = 4 * GRID_NOUISCALE_H;
+            size = TEXT_SIZE_SMALL;
+            tooltip = $STR_HR_Garage_Generic_capacity;
+            align = "right";
         };
 
         // Vehicle listboxes

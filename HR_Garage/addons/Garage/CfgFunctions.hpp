@@ -28,6 +28,7 @@ class CfgFunctions {
             class toggleConfirmBttn {};
             class toggleLock {};
             class updateCamPos {};
+            class updateVehicleCount {};
             class validateGarage {};
         };
         class Extras
