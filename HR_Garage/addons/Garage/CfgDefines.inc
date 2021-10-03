@@ -53,6 +53,8 @@
 #define HR_Garage_IDC_SourcePanelAmmo 1700141
 #define HR_Garage_IDC_SourcePanelFuel 1700142
 #define HR_Garage_IDC_SourcePanelRepair 1700143
+#define HR_Garage_IDC_SourcePanelTopLine 1700144
+#define HR_Garage_IDC_SourcePanelBottomLine 1700145
 #define HR_Garage_IDC_CatText 170016
 #define HR_Garage_IDC_ExtrasText 170017
 #define HR_Garage_IDC_KeyBindHint 170018
@@ -75,6 +77,7 @@
 #define CommanderIcon "\a3\ui_f\data\IGUI\RscIngameUI\RscUnitInfo\role_commander_ca.paa"
 #define CargoIcon "\a3\ui_f\data\IGUI\RscIngameUI\RscUnitInfo\role_cargo_ca.paa"
 
+#define LineIcon "\a3\ui_f\data\IGUI\Cfg\HelicopterHUD\border_line_ca.paa"
 #define CrateIcon "\a3\ui_f\data\Map\VehicleIcons\iconCrateWpns_ca.paa"
 #define VehCargoIcon "\a3\ui_f\data\IGUI\Cfg\VehicleToggles\VehicleCargoIconOn2_ca.paa"
 #define SpeedIcon "\a3\ui_f\data\GUI\Rsc\RscDisplayOptionsVideo\icon_performance.paa"
