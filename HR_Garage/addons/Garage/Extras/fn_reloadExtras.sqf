@@ -62,6 +62,7 @@ if (!isNull _vehConfig) then {
             Trace_4("Mount Added to list | Class: %1 | UID: %2 | Checked: %3 | Size: %4", _staticClass, _x, (_checkedOut isEqualTo HR_Garage_PlayerUID), _type);
         };
     } forEach (HR_Garage_Vehicles#4);//statics
+    lbSort _ctrl;
 };
 if (_reloadMounts) then { [] call HR_Garage_fnc_reloadMounts };
 

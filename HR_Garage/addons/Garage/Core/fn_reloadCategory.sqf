@@ -26,7 +26,6 @@ if (isNil "HR_Garage_Vehicles") exitWith {Trace("Reloading category canceled no 
 Trace("Reloading category");
 
 lbClear _ctrl;
-private _selected = -1;
 private _HR_Garage_SelectedVehicles = [-1,-1,""];
 {
     _y params ["_displayName", "_class", "_lockedUID", "_checkedOut", "", ["_lockName", ""]];
@@ -41,7 +40,6 @@ private _HR_Garage_SelectedVehicles = [-1,-1,""];
     if !( _checkedOut isEqualTo "" ) then {
         private _color = [1,0.1,0.1,1];
         if ( (HR_Garage_SelectedVehicles#1) isEqualTo _x ) then {
-            _selected = _index;
             _color = [1,1,1,1];
         };
         _ctrl lbSetPictureRight [_index, CheckOutIcon];
@@ -59,4 +57,13 @@ private _HR_Garage_SelectedVehicles = [-1,-1,""];
     _ctrl lbSetPictureRightColorSelected [_index, [0.85,0.85,0.55,1]];
 
 } forEach (HR_Garage_Vehicles#_catIndex);
+
+//sort and find selected item to re-select it after the clear
+lbSort _ctrl;
+private _selected = -1;
+for "_i" from 0 to (lbSize _ctrl) -1 do {
+    if ( (HR_Garage_SelectedVehicles#1) isEqualTo (_ctrl lbValue _i) ) then {
+        _selected = _i;
+    };
+};
 _ctrl lbSetCurSel _selected;
