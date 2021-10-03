@@ -193,7 +193,7 @@ private _vehicleState = composeText [
     , _vehDmgState setAttributes ["color", _avgDmg call _selectStateColor]
 ] setAttributes ["align", "center"];
 
-Debug_3("Vehicle state: [Ammo %1] [Fuel %2] [Dmg %3]", _avgAmmo, _avgFuel, _avgDmg);
+Trace_3("Vehicle state: [Ammo %1] [Fuel %2] [Dmg %3]", _avgAmmo, _avgFuel, _avgDmg);
 
 //Crew
 private _fullCrew = fullCrew [HR_Garage_previewVeh, "", true];
