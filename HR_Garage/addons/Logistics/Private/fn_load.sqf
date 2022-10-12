@@ -33,7 +33,7 @@ _updateList = {
     private _index = _list find _node;
     _node set [0,0];
     _list set [_index, _node];
-    _vehicle setVariable [QGVAR(Nodes), _list];
+    _vehicle setVariable [QGVAR(Nodes), _list, true];
 };
 
 //find node point and seats

@@ -32,4 +32,5 @@ if (isNil "HR_Garage_Users") then {HR_Garage_Users = []};
 Trace_1("Adding user: %1", _client);
 HR_Garage_Users pushBack _client;
 _client publicVariableClient "HR_Garage_Vehicles";
+_client publicVariableClient "HR_Garage_Sources";
 true

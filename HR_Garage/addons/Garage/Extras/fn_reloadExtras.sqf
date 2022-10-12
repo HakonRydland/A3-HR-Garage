@@ -50,7 +50,7 @@ if (!isNull _vehConfig) then {
                 _vehModel in _blackList
                 || _class in _blackList
             )
-        };
+            };
 
         //add entry
         if ( (_allowed) && (_size != -1) && (_capacity >= _size) && !_block) then { //static is loadable and vehicle can fit it
@@ -108,28 +108,28 @@ HR_Garage_curAnims = _customisation#1;
 
 //update source panel
 private _ctrl = _disp displayCtrl HR_Garage_IDC_SourcePanelAmmo;
-_ctrl ctrlSetStructuredText composeText ["   ", image RearmIcon, " ", image (checkboxTextures select (HR_Garage_ServiceBehaviour_Rearm isEqualTo 0 && HR_Garage_hasAmmoSource || HR_Garage_ServiceBehaviour_Rearm isEqualTo 1))];
+_ctrl ctrlSetStructuredText composeText ["   ", image RearmIcon, " ", image (checkboxTextures select (HR_Garage_hasAmmoSource && !HR_Garage_ServiceDisabled_Rearm))];
 _ctrl ctrlSetTooltip ([
     localize "STR_HR_Garage_SourcePanel_toolTip_Ammo_Unavailable"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Ammo_Available"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Ammo_Disabled"
-] select (if (HR_Garage_ServiceBehaviour_Rearm isEqualTo 0) then {HR_Garage_hasAmmoSource} else {HR_Garage_ServiceBehaviour_Rearm}));
+] select (if (HR_Garage_ServiceDisabled_Rearm) then {2} else {HR_Garage_hasAmmoSource}));
 
 private _ctrl = _disp displayCtrl HR_Garage_IDC_SourcePanelFuel;
-_ctrl ctrlSetStructuredText composeText ["   ", image RefuelIcon, " ", image (checkboxTextures select (HR_Garage_ServiceBehaviour_Refuel isEqualTo 0 && HR_Garage_hasAmmoSource || HR_Garage_ServiceBehaviour_Refuel isEqualTo 1))];
+_ctrl ctrlSetStructuredText composeText ["   ", image RefuelIcon, " ", image (checkboxTextures select (HR_Garage_hasFuelSource && !HR_Garage_ServiceDisabled_Refuel))];
 _ctrl ctrlSetTooltip ([
     localize "STR_HR_Garage_SourcePanel_toolTip_Fuel_Unavailable"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Fuel_Available"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Fuel_Disabled"
-] select (if (HR_Garage_ServiceBehaviour_Refuel isEqualTo 0) then {HR_Garage_hasFuelSource} else {HR_Garage_ServiceBehaviour_Refuel}));
+] select (if (HR_Garage_ServiceDisabled_Refuel) then {2} else {HR_Garage_hasFuelSource}));
 
 private _ctrl = _disp displayCtrl HR_Garage_IDC_SourcePanelRepair;
-_ctrl ctrlSetStructuredText composeText ["   ", image RepairIcon, " ", image (checkboxTextures select (HR_Garage_ServiceBehaviour_Repair isEqualTo 0 && HR_Garage_hasAmmoSource || HR_Garage_ServiceBehaviour_Repair isEqualTo 1))];
+_ctrl ctrlSetStructuredText composeText ["   ", image RepairIcon, " ", image (checkboxTextures select (HR_Garage_hasRepairSource && !HR_Garage_ServiceDisabled_Repair))];
 _ctrl ctrlSetTooltip ([
     localize "STR_HR_Garage_SourcePanel_toolTip_Repair_Unavailable"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Repair_Available"
     , localize "STR_HR_Garage_SourcePanel_toolTip_Repair_Disabled"
-] select (if (HR_Garage_ServiceBehaviour_Repair isEqualTo 0) then {HR_Garage_hasRepairSource} else {HR_Garage_ServiceBehaviour_Repair}));
+] select (if (HR_Garage_ServiceDisabled_Repair) then {2} else {HR_Garage_hasRepairSource}));
 
 if (isNull HR_Garage_previewVeh) exitWith {};
 //update info panel
@@ -152,10 +152,12 @@ private _typeSource = switch (_source find true) do {
     default {localize "STR_HR_Garage_InfoPanel_isNotSource"};
 };
 
+
 //state indicator
-private _getPrecentageAmmo = {
+private _getPercentageAmmo = {
     if (count _this isEqualTo 0) exitWith {0};
     private _sumPercent = 0;
+    private _weaponsWithAmmo = 0;
     {
         (if (_x#0) then { //pylon
             [_x#1#3, _x#1#4]
@@ -164,15 +166,17 @@ private _getPrecentageAmmo = {
         }) params ["_mag", "_count"];
 
         private _maxAmmo = getNumber (configFile/"CfgMagazines"/_mag/"count");
+        if (_maxAmmo <= 0) then { continue };
         _sumPercent = _sumPercent + (_count/_maxAmmo);
+        _weaponsWithAmmo = _weaponsWithAmmo + 1;
     } forEach _this;
-    _sumPercent / count _this;
+    if (_weaponsWithAmmo > 0) then { _sumPercent / _weaponsWithAmmo } else { 1 };
 };
 
-private _hasAmmo = (HR_Garage_previewVehState#2) isNotEqualTo [];
-private _avgAmmo = (HR_Garage_previewVehState#2) call _getPrecentageAmmo;
-private _avgFuel = HR_Garage_previewVehState#0#0;
-private _avgDmg = 1 - (HR_Garage_previewVehState#1#0);
+private _hasAmmo = (HR_Garage_previewVehState#2) isNotEqualTo [];//Preview state >> Ammo data
+private _avgAmmo = (HR_Garage_previewVehState#2) call _getPercentageAmmo; //Preview state >> Ammo data
+private _avgFuel = HR_Garage_previewVehState#0#0; //Preview state >> Fuel data >> Fuel
+private _avgDmg = 1 - (HR_Garage_previewVehState#1#0); //Preview state >> Damage data >> Damage
 private _selectStateColor = {
     switch true do {
         case (_this > 0.5): {"#ffffff"}; // white
@@ -193,7 +197,20 @@ private _vehicleState = composeText [
     , _vehDmgState setAttributes ["color", _avgDmg call _selectStateColor]
 ] setAttributes ["align", "center"];
 
-Trace_3("Vehicle state: [Ammo %1] [Fuel %2] [Dmg %3]", _avgAmmo, _avgFuel, _avgDmg);
+// update remainingfuel from sources available for refueling
+private _availableFuel = call HR_Garage_fnc_getTotalFuelCargo;
+private _maxFuel = getNumber ( configOf HR_Garage_previewVeh / (if (HR_hasACE) then {"ace_refuel_fuelCapacity"} else {"fuelCapacity"}) );
+private _requiredFuel = _maxFuel - (fuel HR_Garage_previewVeh * _maxFuel);
+private _refuelHintText = if (_requiredFuel < _availableFuel) then {
+    localize "STR_HR_Garage_Refuel_fullRefuel" + " " + str _requiredFuel + "L"
+} else {
+    if (_availableFuel > 0) then {
+        (localize "STR_HR_Garage_Refuel_partialRefuel") + " " + str((_maxFuel - _requiredFuel) + (_availableFuel/_maxFuel*100)) + "% "
+    } else {
+        localize "STR_HR_Garage_Refuel_noRefuel"
+    }
+};
+private _refuelInfo = composeText [_refuelHintText, lineBreak, localize "STR_HR_Garage_Refuel_factionFuel", " ", [_availableFuel, "L"] call HR_Garage_fnc_prefix];
 
 //Crew
 private _fullCrew = fullCrew [HR_Garage_previewVeh, "", true];
@@ -255,4 +272,4 @@ _generalInfo = composeText [
     ,image MassIcon," ",localize "STR_HR_Garage_InfoPanel_Mass"," ", str _mass
 ];
 
-_ctrl ctrlSetStructuredText composeText [_topBar, lineBreak, _typeSource, _spacer, "Vehicle state:", lineBreak, _vehicleState, _spacer, _seatsInfo, _spacer, _cargoInfo, _spacer, _generalInfo];
+_ctrl ctrlSetStructuredText composeText [_topBar, lineBreak, _typeSource, _spacer, "Vehicle state:", lineBreak, _vehicleState,lineBreak,_refuelInfo, _spacer, _seatsInfo, _spacer, _cargoInfo, _spacer, _generalInfo];

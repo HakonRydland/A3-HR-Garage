@@ -22,12 +22,10 @@
 
     License: APL-ND
 */
-params [["_vehicle",objnull,[objNull]], "_dmgStats"];
-if (isNull _vehicle) exitWith {};
+params ["_vehicle", "_dmgStats"];
 if !(local _vehicle) exitWith {};
-if (isNil "_dmgStats") exitWith {};
 _dmgStats params [["_dmg",0,[0]], ["_hitDmg", [], [[]]], ["_repairCargo", -1, [0]]];
-private _restoreState = [0,1] select (HR_Garage_ServiceBehaviour_Repair isEqualTo 1 || HR_Garage_ServiceBehaviour_Repair isEqualTo 0 && HR_Garage_hasRepairSource);
+private _restoreState = [0,1] select (HR_Garage_hasRepairSource && !HR_Garage_ServiceDisabled_Repair);
 _vehicle setDamage ([_dmg, 0] # _restoreState);
 
 if (_hitDmg#0 isEqualTo []) then {_hitDmg = _hitDmg#1}; //temp compat while testing, old had selection names we no longer care about those

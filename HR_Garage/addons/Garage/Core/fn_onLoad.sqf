@@ -113,7 +113,7 @@ if (
     private _pylonBttn = _disp displayCtrl HR_Garage_IDC_BttnPylons;
     _pylonBttn ctrlEnable false;
     _pylonBttn ctrlSetTextColor [0.7,0,0,1];
-    _pylonBttn ctrlSetTooltip localize (["STR_HR_Garage_Generic_PylonDisabled", "STR_HR_Garage_Generic_PylonLackingSource"] select HR_Garage_Pylons_Enabled);
+    _pylonBttn ctrlSetTooltip localize "STR_HR_Garage_Generic_PylonDisabled";
 };
 [false] call HR_Garage_fnc_reloadExtras;
 

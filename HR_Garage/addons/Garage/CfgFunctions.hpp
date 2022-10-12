@@ -70,6 +70,16 @@ class CfgFunctions {
             class setState {};
         };
 
+        class Refuel
+        {
+            file = QPATHTOFOLDER(Refuel);
+            class broadcastStateUpdate {};
+            class getTotalFuelCargo {};
+            class prefix {};
+            class reciveStateUpdate {};
+            class refuelVehicleFromSources {};
+        };
+
         class Modules {
             file = QPATHTOFOLDER(Modules);
             class initModule_addGarage {};

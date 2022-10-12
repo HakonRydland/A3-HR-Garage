@@ -15,7 +15,7 @@
     Scope: Server
     Environment: Any
     Public: [Yes]
-    Dependencies: TeamPlayer, nameTeamPlayer, Invaders, Occupants, HR_Garage_Sources, HR_Garage_Vehicles
+    Dependencies: TeamPlayer, FactionGet(reb,"name"), Invaders, Occupants, HR_Garage_Sources, HR_Garage_Vehicles
 
     Example: [cursorObject, clientOwner, call HR_Garage_dLock, _player] remoteExecCall ["HR_Garage_fnc_addVehicle",2];
 
@@ -57,6 +57,15 @@ private _capacity = 0;
 private _countStatics = {_x isKindOf "StaticWeapon"} count (attachedObjects _vehicle);
 if ((call HR_Garage_VehCap - _capacity) < (_countStatics + 1)) exitWith { ["STR_HR_Garage_Feedback_addVehicle_Capacity"] remoteExec ["HR_Garage_fnc_Hint", _client]; false };//HR_Garage_VehCap is defined in config.inc
 
+//_this is vehicle
+private _unloadAceCargo = {
+    {
+        if !(_x isEqualType objNull) then { continue };
+        if (typeOf _x in ["ACE_Wheel", "ACE_Track"]) then { continue };
+        [_x, _this] call ace_cargo_fnc_unloadItem;
+    } forEach (_this getVariable ["ace_cargo_loaded", []]);
+};
+
 //---------------------------------------------------------|
 // Everything above this line is under the license: MIT    |
 // Everything under this line is under the license: APL-ND |
@@ -83,6 +92,8 @@ private _addVehicle = {
     private _stateData = [_this] call HR_Garage_fnc_getState;
     private _customisation = [_this] call BIS_fnc_getVehicleCustomization;
 
+    _this call _unloadAceCargo;
+
     deleteVehicle _this;
 
     //Add vehicle to garage
@@ -99,7 +110,7 @@ private _addVehicle = {
 };
 
 private _locking = if (_lockUID isEqualTo "") then {false} else {true};
-private _lockName = if (_locking && !isNull _player) then { name _player } else { "" };
+private _lockName = if (_locking) then { name _player } else { "" };
 private _catsRequiringUpdate = [];
 {
     detach _x;
@@ -114,11 +125,11 @@ private _refreshCode = {
     private _disp = findDisplay HR_Garage_IDD_Garage;
     private _cats = _this apply { HR_Garage_Cats#_x };
     {
-        call HR_Garage_fnc_updateVehicleCount;
         if (ctrlEnabled _x) then {
             [_x, _this#_forEachIndex] call HR_Garage_fnc_reloadCategory;
         };
     } forEach _cats;
+    call HR_Garage_fnc_updateVehicleCount;
 };
 [ _catsRequiringUpdate, _refreshCode ] remoteExecCall ["call", HR_Garage_Users];
 

@@ -13,7 +13,7 @@
     Public: Yes
     Dependencies:
 
-    Example: "Some string to log" call A3A_fnc_localLog;
+    Example: "Some string to log" call HR_fnc_localLog;
 
     License: MIT License
 */

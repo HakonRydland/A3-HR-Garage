@@ -34,7 +34,7 @@ private _nodes = if (_newIconIndex isEqualTo 1) then { //load static
     private _static = _class createVehicleLocal [0,0,41764];
     _static enableSimulation false;
     _static allowDamage false;
-    _nodes = [HR_Garage_previewVeh, _static] call HR_logistics_fnc_canLoad;
+    _nodes = [HR_Garage_previewVeh, _static] call HR_Logistics_fnc_canLoad;
     deleteVehicle _static;
     _nodes;
 } else { [] }; //unload static

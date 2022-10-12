@@ -297,6 +297,7 @@ class HR_Garage_VehicleSelect
             };
         };
 
+        // Source pannel
         class HR_Garage_SourcePanel: HR_Garage_RscControlsGroup
         {
             x = SCREEN_RIGHT - 39 * GRID_NOUISCALE_W;
@@ -342,38 +343,30 @@ class HR_Garage_VehicleSelect
                     h = 4 * GRID_NOUISCALE_H;
                     size = TEXT_SIZE_MEDIUM;
                 };
-                class HR_Garage_sourceTopLine: HR_Garage_RscStructuredText
-                {
-                    idc = HR_Garage_IDC_SourcePanelTopLine;
-                    x = 1 * GRID_NOUISCALE_W;
-                    y = 0 * GRID_NOUISCALE_H;
-                    w = 37 * GRID_NOUISCALE_W;
-                    h = 0.1 * GRID_NOUISCALE_H;
-                    size = TEXT_SIZE_MEDIUM;
-                    colorBackground[] = {1,1,1,1};
-                };
-                class HR_Garage_sourceBottomLine: HR_Garage_RscStructuredText
-                {
-                    idc = HR_Garage_IDC_SourcePanelBottomLine;
-                    x = 1 * GRID_NOUISCALE_W;
-                    y = 6.9 * GRID_NOUISCALE_H;
-                    w = 37 * GRID_NOUISCALE_W;
-                    h = 0.1 * GRID_NOUISCALE_H;
-                    size = TEXT_SIZE_MEDIUM;
-                    colorBackground[] = {1,1,1,1};
-                };
             };
         };
 
         // Info Panel
-        class HR_Garage_InfoPanel: HR_Garage_RscStructuredText
+        class HR_Garage_InfoPanelWrapper: HR_Garage_RscControlsGroup
         {
-            idc = HR_Garage_IDC_InfoPanel;
             x = SCREEN_RIGHT - 39 * GRID_NOUISCALE_W;
             y = SCREEN_BOTTOM - 45 * GRID_NOUISCALE_H;
             w = 39 * GRID_NOUISCALE_W;
             h = 45 * GRID_NOUISCALE_H;
             size = TEXT_SIZE_MEDIUM;
+
+            class controls
+            {
+                class HR_Garage_InfoPanel: HR_Garage_RscStructuredText
+                {
+                    idc = HR_Garage_IDC_InfoPanel;
+                    x = 0;
+                    y = 0;
+                    w = 39 * GRID_NOUISCALE_W;
+                    h = 45 * GRID_NOUISCALE_H;
+                    size = TEXT_SIZE_MEDIUM;
+                };
+            };
         };
 
         // Camera controls hint

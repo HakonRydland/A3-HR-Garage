@@ -11,6 +11,7 @@
     4. <Array>  Pylons (optional)
     5. <Struct/nil> Vehicle state (optional)
     6. <Bool>   use garage vehicle pool for placement (optional: default false)
+    7. <String> extra text which will be shown together with the vehicle placement hint (optional)
 
     Return Value:
     <nil>
@@ -20,10 +21,11 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [_class, [], [], nil, false] call HR_Garage_fnc_confirmPlacement;
+    Example: [_class, "BUYFIA", [], nil, nil, nil, false, _extraText] call HR_Garage_fnc_confirmPlacement;
 
     License: APL-ND
 */
+#include "..\script_component.hpp"
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 params [
     ["_class", "", [""]]
@@ -33,17 +35,18 @@ params [
     , ["_pylons", [], [[]]]
     , "_state"
     , ["_useGRGPool", false, [false]]
+    , ["_extraText", "", [""]]
 ];
 
 if (!isClass (configFile >> "CfgVehicles" >> _class)) exitWith {HR_Garage_placing = false};
 if (isNil "HR_Garage_curTexture") then {HR_Garage_curTexture = []};
 if (isNil "HR_Garage_curAnims") then {HR_Garage_curAnims = []};
+if (!isNil "HR_Garage_placing" && {HR_Garage_placing}) exitWith {Error_1("already placing, params: %1", _this)};
 HR_Garage_placing = true;
 
 //define global variables
 HR_Garage_pos = screenToWorld [0.5,0.5];
 HR_Garage_dir = 0;
-HR_Garage_keyPause = time;
 HR_Garage_keyQ = false;
 HR_Garage_keyE = false;
 HR_Garage_validPlacement = 0;
@@ -51,15 +54,18 @@ HR_Garage_CP_mounts = _mounts;
 HR_Garage_CP_pylons = _pylons;
 HR_Garage_usePool = _useGRGPool;
 HR_Garage_CP_callBack = [_callBack, _callBackArgs];
+HR_Garage_CP_extraText = _extraText;
 HR_Garage_callBackFeedback = "";
 HR_Garage_EH_EF = -1;
 HR_Garage_EH_keyDown = -1;
+HR_Garage_EH_KeyUp = -1;
 
 //define private use function
 HR_Garage_cleanUp = {
     //remove EH's
     removeMissionEventHandler ["EachFrame", HR_Garage_EH_EF];
     findDisplay 46 displayRemoveEventHandler ["KeyDown", HR_Garage_EH_keyDown];
+    findDisplay 46 displayRemoveEventHandler ["KeyUp", HR_Garage_EH_keyUp];
     terminate HR_Garage_keyHint;
 
     //remove display vehicle
@@ -71,7 +77,6 @@ HR_Garage_cleanUp = {
     HR_Garage_pos = nil;
     HR_Garage_dir = nil;
     HR_Garage_bb = nil;
-    HR_Garage_keyPause = nil;
     HR_Garage_keyQ = nil;
     HR_Garage_keyE = nil;
     HR_Garage_EH_EF = nil;
@@ -99,12 +104,12 @@ HR_Garage_dispMounts = [];
     _static enableSimulation false;
     _static allowDamage false;
 
-    private _nodes = [HR_Garage_dispVehicle, _static] call HR_logistics_fnc_canLoad;
+    private _nodes = [HR_Garage_dispVehicle, _static] call HR_Logistics_fnc_canLoad;
     if (_nodes isEqualType 0) exitWith {};
-    (_nodes + [true]) call HR_logistics_fnc_load; //we know we can load it, just need the nodes from can load
+    (_nodes + [true]) call HR_Logistics_fnc_load; //we know we can load it, just need the nodes from can load
     hintSilent ""; //clear load hint
 
-    private _offsetAndDir = [_static] call HR_logistics_fnc_getCargoOffsetAndDir;
+    private _offsetAndDir = [_static] call HR_Logistics_fnc_getCargoOffsetAndDir;
     private _node = _nodes#2;
     private _nodeOffset = if ((_node#0) isEqualType []) then {
         private _lastNode = (count _node) -1;
@@ -208,20 +213,30 @@ private _adjustment = (_bb#1) vectorDiff _diff;
 HR_Garage_dispSquare = [_adjustment, _diff apply {_x + 0.6}, (_bb#2)]; //square offset from center, square radius [x,y], bb diameter
 
 //add EH's (data is set on the display vehicle)
+HR_Garage_EH_KeyUp = findDisplay 46 displayAddEventHandler ["KeyUp", {
+    params ["", "_key"];
+
+    if (_key isEqualTo DIK_Q) then {
+        HR_Garage_keyQ = false;
+    };
+
+    if (_key isEqualTo DIK_E) then {
+        HR_Garage_keyE = false;
+    };
+}];
+
 HR_Garage_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
     params ["", "_key"];
     private _return = false;
 
     //rotate vehicle
-    if (_key isEqualTo DIK_Q && HR_Garage_keyPause < time) then {
+    if (_key isEqualTo DIK_Q) then {
         _return = true;
-        HR_Garage_keyPause = time + 0.01;
         HR_Garage_keyQ = true;
     };
 
-    if (_key isEqualTo DIK_E && HR_Garage_keyPause < time) then {
+    if (_key isEqualTo DIK_E) then {
         _return = true;
-        HR_Garage_keyPause = time + 0.01;
         HR_Garage_keyE = true;
     };
 
@@ -236,7 +251,7 @@ HR_Garage_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
     };
 
     //complete or cancel placement
-    if (_key in [DIK_ESCAPE, DIK_RETURN, DIK_SPACE, DIK_Y]) then {
+    if (_key in [DIK_ESCAPE, DIK_RETURN, DIK_SPACE]) then {
         _return = true;
 
         //get type from display vehicle, and private copies of pos and dir
@@ -252,21 +267,26 @@ HR_Garage_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
             private _veh = _class createVehicle [0,0,10000];
             [_veh] call HR_Garage_fnc_prepPylons;
             [_veh, _state] call HR_Garage_fnc_setState;
-            _veh enableSimulation false;
-            _veh allowDamage false;
-            [_veh, HR_Garage_curTexture, HR_Garage_curAnims] call BIS_fnc_initVehicle;
+            if (HR_Garage_usePool && !HR_Garage_ServiceDisabled_Refuel) then {
+                [_veh] remoteExecCall ["HR_Garage_fnc_refuelVehicleFromSources", 2];
+            };
+
             _veh setDir _dir;
             _veh setPos _pos;
             _veh setVectorUp surfaceNormal position _veh;
+
+            _veh enableSimulation false;
+            _veh allowDamage false;
+            [_veh, HR_Garage_curTexture, HR_Garage_curAnims] call BIS_fnc_initVehicle;
 
             //create and load cargo
             {
                 private _static = (_x#0) createVehicle _pos;
                 [_static, _x#2] call HR_Garage_fnc_setState;
                 _static allowDamage false;
-                private _nodes = [_veh, _static] call HR_logistics_fnc_canLoad;
+                private _nodes = [_veh, _static] call HR_Logistics_fnc_canLoad;
                 if (_nodes isEqualType 0) exitWith {};
-                (_nodes + [true]) call HR_logistics_fnc_load;
+                (_nodes + [true]) call HR_Logistics_fnc_load;
                 _static call HR_Garage_fnc_vehInit;
             } forEach HR_Garage_CP_mounts;
 
@@ -279,9 +299,9 @@ HR_Garage_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
             };
             _veh spawn {sleep 0.5;_this allowDamage true;_this enableSimulation true; { _x allowDamage true; } forEach (attachedObjects _this); };
             _veh call HR_Garage_fnc_vehInit;
-            if !(HR_Garage_usePool) then { [_veh,HR_Garage_CP_callBack, "Placed"] call HR_Garage_fnc_callbackHandler };
+            if !(HR_Garage_usePool) then {[_veh,HR_Garage_CP_callBack, "Placed"] call HR_Garage_fnc_callbackHandler};
 
-            true && (_key isNotEqualTo DIK_Y);
+            true;
         } else { false };
         //handle garage pool changes
         if (HR_Garage_usePool) then {
@@ -304,14 +324,12 @@ HR_Garage_EH_EF = addMissionEventHandler ["EachFrame", {
     };
 
     if (HR_Garage_keyQ) then {
-        HR_Garage_keyQ = false;
-        HR_Garage_dir = HR_Garage_dir - 1;
+        HR_Garage_dir = HR_Garage_dir - diag_deltaTime * 120;     // full rotation in three seconds
         _updateState = true;
     };
 
     if (HR_Garage_keyE) then {
-        HR_Garage_keyE = false;
-        HR_Garage_dir = HR_Garage_dir + 1;
+        HR_Garage_dir = HR_Garage_dir + diag_deltaTime * 120;
         _updateState = true;
     };
 
@@ -368,7 +386,12 @@ HR_Garage_EH_EF = addMissionEventHandler ["EachFrame", {
 
     //render keybind hint
     private _text = switch HR_Garage_validPlacement do {
-        case 0: {localize "STR_HR_Garage_Feedback_CP_Rotation"};
+        case 0: {
+            [
+                localize "STR_HR_Garage_Feedback_CP_Rotation",
+                format ["%1<br/>%2", HR_Garage_CP_extraText, localize "STR_HR_Garage_Feedback_CP_Rotation"]
+            ] select (HR_Garage_CP_extraText isNotEqualTo "");
+        };
         case 1: {localize "STR_HR_Garage_Feedback_CP_TooFar"};
         case 2: {localize "STR_HR_Garage_Feedback_CP_Blocked"};
         case 3: { HR_Garage_callBackFeedback };
@@ -384,22 +407,20 @@ HR_Garage_EH_EF = addMissionEventHandler ["EachFrame", {
         ,17001
     ] spawn BIS_fnc_dynamicText;
 
-    if (call HR_Garage_CP_closeCnd) exitWith {
-        call HR_Garage_cleanUp;
-        if (HR_Garage_usePool) then {
-            [clientOwner, player, "HR_Garage_fnc_releaseAllVehicles"] remoteExecCall ["HR_Garage_fnc_execForGarageUsers", 2];
-        };
+    if (call HR_Garage_CP_closeCnd || EGVAR(core,keys_battleMenu)) exitWith {
+        [clientOwner, player, "HR_Garage_fnc_releaseAllVehicles"] remoteExecCall ["HR_Garage_fnc_execForGarageUsers", 2];
+        call HR_Garage_cleanUp
     };
 
-    #ifdef Debug //Debug render
-    HR_Garage_dispSquare params ["_adjustment", "_square"];
-    _square params ["_a","_b"];
-    drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [_a,0,0]), [0.9,0,0,1]];
-    drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,_b,0]), [0.9,0,0,1]];
-    drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,0,_c]), [0.9,0,0,1]];
-    drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [-_a,0,0]), [0.9,0,0,1]];
-    drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,-_b,0]), [0.9,0,0,1]];
-    drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,0,-_c]), [0.9,0,0,1]];
-    { drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _x#0,HR_Garage_dispVehicle modelToWorldVisual _x#1, [0.9,0,0,1]] } forEach HR_Garage_rays;
-    #endif
+    if (HR_Garage_renderPlacementRays) then { //Debug render
+        HR_Garage_dispSquare params ["_adjustment", "_square"];
+        _square params ["_a","_b"];
+        drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [_a,0,0]), [0.9,0,0,1]];
+        drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,_b,0]), [0.9,0,0,1]];
+        drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,0,_c]), [0.9,0,0,1]];
+        drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [-_a,0,0]), [0.9,0,0,1]];
+        drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,-_b,0]), [0.9,0,0,1]];
+        drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _adjustment,HR_Garage_dispVehicle modelToWorldVisual (_adjustment vectorAdd [0,0,-_c]), [0.9,0,0,1]];
+        { drawLine3D [HR_Garage_dispVehicle modelToWorldVisual _x#0,HR_Garage_dispVehicle modelToWorldVisual _x#1, [0.9,0,0,1]] } forEach HR_Garage_rays;
+    };
 }];

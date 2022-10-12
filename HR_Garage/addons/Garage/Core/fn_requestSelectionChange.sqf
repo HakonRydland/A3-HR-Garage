@@ -34,12 +34,12 @@ if (-1 in [_catIndex, _vehUID]) exitWith _exit;
 private _cat = HR_Garage_Vehicles#_catIndex;
 private _vehicle = _cat get _vehUID;
 
-if !( ((_vehicle#2) in ["", _UID]) || (_player isEqualTo (_player call HR_Garage_cmdClient)) ) exitWith _exit;
+if !( ((_vehicle#2) in ["", _UID]) || (_player call HR_Garage_isCmdClient) ) exitWith _exit;
 if !((_vehicle#3) in ["", _UID] ) exitWith _exit;
 
 [_UID] call HR_Garage_fnc_releaseAllVehicles;
 _vehicle set [3, _UID];
 
-Trace_4("Vehicle at | Cat: %1 | Vehicle ID: %2 | At Index: %3 | checked out by UID: %4", _catIndex, _vehUID, _UID);
+Trace_3("Vehicle at | Cat: %1 | Vehicle ID: %2 | checked out by UID: %3", _catIndex, _vehUID, _UID);
 [nil,_UID, _catIndex, _vehUID, _player, true] call HR_Garage_fnc_broadcast;
 true
