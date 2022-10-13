@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project name="A3-Antistasi">
-    <Package name="A3-Antistasi Mission">
+<Project name="HR-Garage">
+    <Package name="HR-Garage">
         <Container name="HR_Garage">
             <Key ID="STR_HR_Garage_Generic_Cancel">
                 <Original>Cancel</Original>
