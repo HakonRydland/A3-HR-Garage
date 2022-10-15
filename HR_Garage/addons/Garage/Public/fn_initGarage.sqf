@@ -35,4 +35,9 @@ private _id = _object addAction [
     ", 6
 ];
 _object setVariable ["HR_Garage_GarageID", _id, true];
+
+//add it to the registra of access points
+if (isNil "HR_Garage_accessPoints") then {HR_Garage_accessPoints = []};
+HR_Garage_accessPoints pushBack _object;
+
 true;

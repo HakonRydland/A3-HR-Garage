@@ -1,7 +1,7 @@
 #define MAINPREFIX x
 #define MODFOLDER HR_Garage
 #ifndef PREFIX
-    #define PREFIX HR
+    #define PREFIX HR_Garage
 #endif
 
 #include "common.inc"

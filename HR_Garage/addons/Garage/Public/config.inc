@@ -34,22 +34,6 @@ HR_Garage_CP_closeCnd = {
 
 HR_Garage_Cnd_canAccessAir = { true };
 
-//Lock on garaged vehicles ( Values: [{""}, { getPlayerUID player }] )
-HR_Garage_dLock = {""};
-
-HR_Garage_renderPlacementRays = false;
-
-//garage pool cap
-if (isNil "HR_Garage_PoolBase") then { HR_Garage_PoolBase = 10 }; //can be overwritten by CBA settings
-if (isNil "HR_Garage_PoolIncr") then { HR_Garage_PoolIncr = 2 }; //can be overwritten by CBA settings
-HR_Garage_VehCap = { (HR_Garage_PoolBase * HR_Garage_PoolIncr) min HR_Garage_PoolBase };
-
-//Pylon config
-if (isNil "HR_Garage_Pylons_Enabled") then { HR_Garage_Pylons_Enabled = true }; //can be overwritten by CBA settings
-if (isNil "HR_Garage_ServiceDisabled_Rearm") then {HR_Garage_ServiceDisabled_Rearm = false};
-if (isNil "HR_Garage_ServiceDisabled_Refuel") then {HR_Garage_ServiceDisabled_Refuel = false};
-if (isNil "HR_Garage_ServiceDisabled_Repair") then {HR_Garage_ServiceDisabled_Repair = false};
-
 //camo blacklist (display name, case sensitive)
 HR_Garage_blackListCamo = ["IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02",
 "African Desert Extremists Alt", "Middle East Extremists", "Middle East Extremists Alt", "Middle East Extremists 1", "Middle East Extremists 2",

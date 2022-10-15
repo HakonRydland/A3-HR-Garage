@@ -104,12 +104,12 @@ HR_Garage_dispMounts = [];
     _static enableSimulation false;
     _static allowDamage false;
 
-    private _nodes = [HR_Garage_dispVehicle, _static] call HR_Logistics_fnc_canLoad;
+    private _nodes = [HR_Garage_dispVehicle, _static] call EFUNC(Logistics,canLoad);
     if (_nodes isEqualType 0) exitWith {};
-    (_nodes + [true]) call HR_Logistics_fnc_load; //we know we can load it, just need the nodes from can load
+    (_nodes + [true]) call EFUNC(Logistics,load); //we know we can load it, just need the nodes from can load
     hintSilent ""; //clear load hint
 
-    private _offsetAndDir = [_static] call HR_Logistics_fnc_getCargoOffsetAndDir;
+    private _offsetAndDir = [_static] call EFUNC(Logistics,getCargoOffsetAndDir);
     private _node = _nodes#2;
     private _nodeOffset = if ((_node#0) isEqualType []) then {
         private _lastNode = (count _node) -1;
@@ -284,9 +284,9 @@ HR_Garage_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
                 private _static = (_x#0) createVehicle _pos;
                 [_static, _x#2] call HR_Garage_fnc_setState;
                 _static allowDamage false;
-                private _nodes = [_veh, _static] call HR_Logistics_fnc_canLoad;
+                private _nodes = [_veh, _static] call EFUNC(Logistics,canLoad);
                 if (_nodes isEqualType 0) exitWith {};
-                (_nodes + [true]) call HR_Logistics_fnc_load;
+                (_nodes + [true]) call EFUNC(Logistics,load);
                 _static call HR_Garage_fnc_vehInit;
             } forEach HR_Garage_CP_mounts;
 
@@ -342,7 +342,8 @@ HR_Garage_EH_EF = addMissionEventHandler ["EachFrame", {
     };
     if (_updateState) then {
         //if invalid position, block placement
-        if (HR_Garage_pos distance player > 50) exitWith { true call _hide; HR_Garage_validPlacement = 1 }; //distance
+        if (HR_Garage_pos distance player > 50) exitWith { true call _hide; HR_Garage_validPlacement = 1 }; //distance from player
+        if (player distance HR_Garage_accessPoint > 25) exitWith { true call _hide; HR_Garage_validPlacement = 4 }; //player distance from garage
 
         private _exit = false;
         {
@@ -395,6 +396,7 @@ HR_Garage_EH_EF = addMissionEventHandler ["EachFrame", {
         case 1: {localize "STR_HR_Garage_Feedback_CP_TooFar"};
         case 2: {localize "STR_HR_Garage_Feedback_CP_Blocked"};
         case 3: { HR_Garage_callBackFeedback };
+        case 4: { localize "STR_HR_Garage_Feedback_CP_PlayerTooFar" };
         default {localize "STR_HR_Garage_Feedback_CallbackFailed"};
     };
 

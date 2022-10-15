@@ -14,10 +14,10 @@
     Public: [No]
     Dependencies:
 
-    Example: private _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
+    Example: private _nodes = [_vehicle] call HR_Garage_Logistics_fnc_getVehicleNodes;
 */
 params [["_vehicle", objNull, [objNull, ""]]];
-private _config = [_vehicle] call HR_Logistics_fnc_getNodeConfig;
+private _config = [_vehicle] call HR_Garage_Logistics_fnc_getNodeConfig;
 if (isNull _config) exitWith { [] };
 
 private _nodes = configProperties [(_config/"Nodes"), "true", true];

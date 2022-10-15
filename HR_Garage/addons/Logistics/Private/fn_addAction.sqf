@@ -15,7 +15,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_object , _action] remoteExec ["HR_logistics_fnc_addAction", 0, _object];
+    Example: [_object , _action] remoteExec ["HR_Garage_Logistics_fnc_addAction", 0, _object];
 */
 params [["_object", objNull, [objNull]], "_action"];
 if (isNull _object) exitWith {};
@@ -30,7 +30,7 @@ switch (_action) do {
             _loadText,
             {
                 params ["_target"];
-                [_target] remoteExecCall ["HR_logistics_fnc_tryLoad",2];
+                [_target] remoteExecCall ["HR_Garage_Logistics_fnc_tryLoad",2];
             },
             nil,
             -5,
@@ -58,7 +58,7 @@ switch (_action) do {
             _text,
             {
                 params ["_target"];
-                [_target] remoteExec ["HR_logistics_fnc_unload",2];
+                [_target] remoteExec ["HR_Garage_Logistics_fnc_unload",2];
             },
             nil,
             -5,

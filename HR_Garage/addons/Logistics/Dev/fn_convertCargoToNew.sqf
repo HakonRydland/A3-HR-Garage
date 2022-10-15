@@ -11,9 +11,9 @@ private _entries = [];
         "    rotation[] = {" + (_rotation select [1, count _rotation - 2]) + "};" + endl,
         "    size = "+ str (_x#3) + ";",
         ["", endl + "    recoil = " + str (_x#4) + ";"] select (count _x > 4),
-        ["", endl + "    isWeapon = 1;"] select (-1 != HR_logistics_weapons findIf {(_x#0) isEqualTo _model}),
+        ["", endl + "    isWeapon = 1;"] select (-1 != HR_Garage_Logistics_weapons findIf {(_x#0) isEqualTo _model}),
         endl
     ]);
-} forEach HR_logistics_attachmentOffset;
+} forEach HR_Garage_Logistics_attachmentOffset;
 
 text (_entries joinString endl);

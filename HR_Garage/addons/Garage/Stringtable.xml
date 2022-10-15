@@ -285,6 +285,11 @@
                 <Original>&lt;t size='0.6'&gt;Can't place vehicle that far away &lt;br/&gt;Cancel: Enter/ESC &lt;/t&gt;</Original>
                 <French>&lt;t size='0.6'&gt;Impossible de placer un véhicule aussi loin &lt;br/&gt;Annuler: Entrer/ESC &lt;/t&gt;</French>
             </Key>
+            <Key ID="STR_HR_Garage_Feedback_CP_PlayerTooFar">
+                <Original>&lt;t size='0.6'&gt;You're to far from the garage to place a vehicle &lt;br/&gt;Cancel: Enter/ESC &lt;/t&gt;</Original>
+                <French>&lt;t size='0.6'&gt;
+Vous êtes trop loin du garage pour placer un véhicule &lt;br/&gt;Annuler: Entrer/ESC &lt;/t&gt;</French>
+            </Key>
             <Key ID="STR_HR_Garage_Feedback_CP_Blocked">
                 <Original>&lt;t size='0.6'&gt;Something is blocking placement &lt;br/&gt; Rotate Left: Q &lt;br/&gt;Rotate Right: E &lt;br/&gt;Cancel: Enter/ESC &lt;/t&gt;</Original>
                 <French>&lt;t size='0.6'&gt;Quelque chose bloque l'emplacement &lt;br/&gt; Tourner à gauche: Q &lt;br/&gt;Tourner à droite: E &lt;br/&gt;Annuler: Entrer/ESC &lt;/t&gt;</French>

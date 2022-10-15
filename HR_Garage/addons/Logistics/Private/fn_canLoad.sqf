@@ -16,7 +16,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_vehicle, _cargo] call HR_logistics_fnc_canLoad;
+    Example: [_vehicle, _cargo] call HR_Garage_Logistics_fnc_canLoad;
 
     Error codes:
         -1: Vehicle not alive or null
@@ -35,13 +35,13 @@ if !(alive _vehicle) exitWith {-1}; //vehicle destroyed
 if !(alive _object) exitWith {-2}; //cargo destroyed
 
 //check if vehicle can load cargo
-private _vehConfig = [_vehicle] call HR_logistics_fnc_getNodeConfig;
+private _vehConfig = [_vehicle] call HR_Garage_Logistics_fnc_getNodeConfig;
 if (isNull _vehConfig) exitWith {-7};
 
 //get cargo node size
-private _cargoConfig = [_object] call HR_logistics_fnc_getCargoConfig;
+private _cargoConfig = [_object] call HR_Garage_Logistics_fnc_getCargoConfig;
 if (isNull _cargoConfig) exitWith {-3};
-private _objNodeType = [_object] call HR_logistics_fnc_getCargoNodeType;
+private _objNodeType = [_object] call HR_Garage_Logistics_fnc_getCargoNodeType;
 if (_objNodeType isEqualTo -1) exitWith {-3}; //invalid cargo
 
 if !(
@@ -70,7 +70,7 @@ private _nodes = _vehicle getVariable [QGVAR(Nodes),nil];
 
 //if nodes not initilized
 if (isNil "_nodes") then {
-    _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
+    _nodes = [_vehicle] call HR_Garage_Logistics_fnc_getVehicleNodes;
     _vehicle setVariable [QGVAR(Nodes), _nodes];
 };
 

@@ -15,12 +15,12 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [_vehicle] call HR_logistics_fnc_getVehCapacity
+    Example: [_vehicle] call HR_Garage_Logistics_fnc_getVehCapacity
 
     License: MIT License
 */
 params [["_vehicle", objNull, [objNull, ""]]];
-private _config = [_vehicle] call HR_Logistics_fnc_getNodeConfig;
+private _config = [_vehicle] call HR_Garage_Logistics_fnc_getNodeConfig;
 if (isNull _config) exitWith { 0 };
 
 count (configProperties [(_config/"Nodes"), "true", true]);

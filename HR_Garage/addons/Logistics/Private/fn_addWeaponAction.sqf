@@ -15,7 +15,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_cargo, _vehicle] remoteExec ["HR_logistics_fnc_addWeaponAction", 0, _cargo];
+    Example: [_cargo, _vehicle] remoteExec ["HR_Garage_Logistics_fnc_addWeaponAction", 0, _cargo];
 */
 params ["_cargo", "_vehicle"];
 
@@ -55,7 +55,7 @@ _cargo setVariable ["getInAction", _actionID];
 private _KilledEH = _cargo addEventHandler ["Killed", {
     params ["_cargo"];
     private _vehicle = attachedTo _cargo;
-    [_vehicle, _cargo] remoteExecCall ["HR_logistics_fnc_removeWeaponAction",0]
+    [_vehicle, _cargo] remoteExecCall ["HR_Garage_Logistics_fnc_removeWeaponAction",0]
 }];
 _cargo setVariable ["KilledEH", _KilledEH];
 _cargo enableWeaponDisassembly false;
@@ -80,4 +80,4 @@ private _undercoverBreak = _vehicle addEventHandler ["GetIn", {
 _vehicle setVariable ["undercoverBreak", _undercoverBreak];
 
 //init unneccesary but nice features
-[_cargo] call HR_logistics_fnc_initMountedWeapon;
+[_cargo] call HR_Garage_Logistics_fnc_initMountedWeapon;

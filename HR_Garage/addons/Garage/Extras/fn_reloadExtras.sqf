@@ -27,8 +27,8 @@ Trace("Reloading Extras");
 private _disp = findDisplay HR_Garage_IDD_Garage;
 private _ctrl = _disp displayCtrl HR_Garage_IDC_ExtraMounts;
 lbClear _ctrl;
-private _vehConfig = [HR_Garage_previewVeh] call HR_logistics_fnc_getNodeConfig;
-private _capacity = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehCapacity;
+private _vehConfig = [HR_Garage_previewVeh] call EFUNC(Logistics,getNodeConfig);
+private _capacity = [HR_Garage_previewVeh] call EFUNC(Logistics,getVehCapacity);
 private _vehModel = ((getText (configFile/"CfgVehicles"/_class/"model")) splitString "\.") joinString "_";
 if (!isNull _vehConfig) then {
     {
@@ -40,7 +40,7 @@ if (!isNull _vehConfig) then {
         if !(isClass (configFile >> "CfgVehicles" >> _class)) then {_block = true};
 
         //check if its loadable
-        private _cargoConfig = [_staticClass] call HR_Logistics_fnc_getCargoConfig;
+        private _cargoConfig = [_staticClass] call EFUNC(Logistics,getCargoConfig);
         private _size = if (isNull _cargoConfig) then {-1} else { getNumber (_cargoConfig/"size") };
 
         //is weapon allowed
@@ -245,7 +245,7 @@ private _seatsInfo = composeText [
 //Cargo
 private _nodes = HR_Garage_previewVeh getVariable [QEGVAR(Logistics,Nodes),nil];
 if (isNil "_nodes") then {
-    _nodes = [HR_Garage_previewVeh] call HR_logistics_fnc_getVehicleNodes;
+    _nodes = [HR_Garage_previewVeh] call EFUNC(Logistics,getVehicleNodes);
     HR_Garage_previewVeh setVariable [QEGVAR(Logistics,Nodes), _nodes];
 };
 if (_nodes isEqualType 0) then {_nodes = []};

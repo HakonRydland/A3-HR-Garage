@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {QDOUBLES(ADDON,Module_addGarage), QDOUBLES(ADDON,Module_removeGarage), QDOUBLES(ADDON,Module_addVehicle)};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"A3_Modules_F", "cba_xeh", QDOUBLES(PREFIX,Logistics)};
+        requiredAddons[] = {"A3_Modules_F", "cba_main", QDOUBLES(PREFIX,Logistics)};
         author = AUTHOR;
         authors[] = { AUTHORS };
         authorUrl = "";
