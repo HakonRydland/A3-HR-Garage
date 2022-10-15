@@ -75,7 +75,7 @@ lbClear _ctrl;
 {
     private _displayName = getText (_x >> "displayName");
     private _cfgName = configname _x;
-    if (_displayName != "" && {!(_displayName in HR_Garage_blackListCamo)}) then {
+    if (_displayName != "" && {!(_displayName in call FUNC(getBlackListCamo))}) then {
         private _index = _ctrl lbAdd _displayName;
         _ctrl lbsetdata [_index,_cfgName];
         if (_badInit) then {

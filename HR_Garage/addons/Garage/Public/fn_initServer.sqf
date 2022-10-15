@@ -20,8 +20,8 @@
 */
 
 //init stuff on client and server
-#include "config.inc"
 #include "defines.inc"
+#include "config.inc"
 FIX_LINE_NUMBERS()
 call HR_fnc_detector;
 

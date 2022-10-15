@@ -31,8 +31,18 @@
                 <French>Aéronefs</French>
             </Key>
             <Key ID="STR_HR_Garage_Generic_AirDisabled">
-                <Original>You can only access aircrafts from a friendly airbase</Original>
-                <French>Vous ne pouvez accéder aux aéronefs qu'à partir d'une base aérienne alliée</French>
+                <Original>You can't access aircraft from this location</Original>
+                <French>Vous ne pouvez pas accéder aux avions depuis cet emplacement</French>
+            </Key>
+            <Key ID="STR_HR_Garage_Generic_NavalDisabled">
+                <Original>You can't access ships from this location</Original>
+                <French>
+Vous ne pouvez pas accéder aux navires à partir de cet emplacement</French>
+            </Key>
+            <Key ID="STR_HR_Garage_Generic_ArmorDisabled">
+                <Original>You can't access armor from this location</Original>
+                <French>
+Vous ne pouvez pas accéder à l'armure à partir de cet endroit</French>
             </Key>
             <Key ID="STR_HR_Garage_Generic_Boat">
                 <Original>Ships</Original>

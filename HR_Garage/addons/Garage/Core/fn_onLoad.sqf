@@ -104,6 +104,18 @@ if !(call HR_Garage_Cnd_canAccessAir) then {
     _airBttn ctrlSetTextColor [0.7,0,0,1];
     _airBttn ctrlSetTooltip localize "STR_HR_Garage_Generic_AirDisabled";
 };
+if !(call HR_Garage_Cnd_canAccessNaval) then {
+    private _btn = _disp displayCtrl HR_Garage_IDC_BttnBoats;
+    _btn ctrlEnable false;
+    _btn ctrlSetTextColor [0.7,0,0,1];
+    _btn ctrlSetTooltip localize "STR_HR_Garage_Generic_NavalDisabled";
+};
+if !(call HR_Garage_Cnd_canAccessArmor) then {
+    private _btn = _disp displayCtrl HR_Garage_IDC_BttnArmor;
+    _btn ctrlEnable false;
+    _btn ctrlSetTextColor [0.7,0,0,1];
+    _btn ctrlSetTooltip localize "STR_HR_Garage_Generic_ArmorDisabled";
+};
 
 //extras list init
 if (

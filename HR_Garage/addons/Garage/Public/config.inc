@@ -16,8 +16,6 @@
 
     License: MIT
 */
-HR_Garage_Prefix = "HR Garage";
-
 // Condition for whether the player can override garage locks
 HR_Garage_isCmdClient = {
     (isServer && hasInterface && _this isEqualTo player) //Lan host
@@ -32,7 +30,17 @@ HR_Garage_CP_closeCnd = {
     }
 };
 
-HR_Garage_Cnd_canAccessAir = { true };
+HR_Garage_Cnd_canAccessAir = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessAir", true]; };
+HR_Garage_Cnd_canAccessNaval = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessNaval", true]; };
+HR_Garage_Cnd_canAccessArmor = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessArmor", true]; };
+
+FUNC(getBlackListCamo) = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["blackListCamo", [
+        "IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02"
+        ,"African Desert Extremists Alt", "Middle East Extremists", "Middle East Extremists Alt",
+        "Middle East Extremists 1", "Middle East Extremists 2","Middle East Extremists 3", "Middle East Extremists 4",
+        "Middle East Extremists 5", "Middle East Extremists 6"
+    ]];
+};
 
 //camo blacklist (display name, case sensitive)
 HR_Garage_blackListCamo = ["IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02",
@@ -44,7 +52,7 @@ HR_Garage_fnc_Hint = {
     hintSilent (if (_arguments isEqualTo []) then {localize _key} else {format ( [localize _key] + _arguments )});
 };
 HR_Garage_fnc_vehInit = {
-    { _x addCuratorEditableObjects [_this,false] } forEach allCurators; //add vehicle to zeus
+    { _x addCuratorEditableObjects [[_this],false] } forEach allCurators; //add vehicle to zeus
 }; //is passed vehicle as _this
 HR_Garage_onOpenEvent = {};
 HR_Garage_onCloseEvent = {};
