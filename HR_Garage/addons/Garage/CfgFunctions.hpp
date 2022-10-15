@@ -85,6 +85,7 @@ class CfgFunctions {
             class initModule_addGarage {};
             class initModule_removeGarage {};
             class initModule_addVehicle {};
+            class ZM_confirmSettings {};
         };
 
     //public functions
@@ -103,6 +104,7 @@ class CfgFunctions {
             };
             class loadSaveData {};
             class removeGarage {};
+            class toggleGarageAccess {};
         };
     };
 };

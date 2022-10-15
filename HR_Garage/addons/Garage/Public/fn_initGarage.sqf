@@ -38,6 +38,6 @@ _object setVariable ["HR_Garage_GarageID", _id, true];
 
 //add it to the registra of access points
 if (isNil "HR_Garage_accessPoints") then {HR_Garage_accessPoints = []};
-HR_Garage_accessPoints pushBack _object;
+HR_Garage_accessPoints pushBackUnique _object;
 
 true;

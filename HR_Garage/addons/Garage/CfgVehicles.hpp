@@ -26,7 +26,7 @@ class CfgVehicles {
         displayName = $STR_HR_Garage_Modules_addAccess;
         description = "Example description 1";
         function = "HR_Garage_fnc_initModule_addGarage";
-        //curatorInfoType = "RscDisplayAttributeModuleNuke"; //displayed when placed by zeus
+        curatorInfoType = "HR_Garage_ZM"; //displayed when placed by zeus
         //ToDo: create a simple UI for settings when adding a garage access point with zeus
         //      alternativly add another zues only module to configure the garage
 

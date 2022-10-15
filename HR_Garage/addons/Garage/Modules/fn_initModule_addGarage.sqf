@@ -3,7 +3,10 @@ params ["_module", "_accessObjects"];
 
 //add vehicle if zues vehicle
 private _attached = _module getvariable ["bis_fnc_curatorAttachObject_object",objnull];
-if (!isNull _attached) then { _accessObjects pushBackUnique _attached };
+if (!isNull _attached) then {
+    _accessObjects pushBackUnique _attached;
+    HR_Garage_ZM_AP = _attached; //set so we can ref the AP in the zeus menu
+};
 
 //transfere arguments to object
 private _moduleArguments = createHashMap;
