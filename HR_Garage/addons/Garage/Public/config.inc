@@ -59,6 +59,8 @@ HR_Garage_fnc_Hint = {
     params ["_key", ["_arguments", []]];
     hintSilent (if (_arguments isEqualTo []) then {localize _key} else {format ( [localize _key] + _arguments )});
 };
-HR_Garage_fnc_vehInit = {}; //is passed vehicle as _this
+HR_Garage_fnc_vehInit = {
+    { _x addCuratorEditableObjects [_this,false] } forEach allCurators; //add vehicle to zeus
+}; //is passed vehicle as _this
 HR_Garage_onOpenEvent = {};
 HR_Garage_onCloseEvent = {};
