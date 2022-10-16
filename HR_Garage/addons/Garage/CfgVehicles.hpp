@@ -15,7 +15,7 @@ class CfgVehicles {
         author = AUTHOR;
         vehicleClass = "Modules";
         category = QUOTE(ADDON);
-        isGlobal = 0;
+        isGlobal = 0; // 0 = server, 1 = everyone
         functionPriority = 1;
         curatorCanAttach = 1;
         class Units;
