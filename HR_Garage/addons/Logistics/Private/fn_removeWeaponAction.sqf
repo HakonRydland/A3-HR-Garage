@@ -15,7 +15,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_vehicle, _cargo] remoteExecCall ["HR_logistics_fnc_removeWeaponAction",0];
+    Example: [_vehicle, _cargo] remoteExecCall ["HR_Garage_Logistics_fnc_removeWeaponAction",0];
 */
 params ["_vehicle", "_cargo"];
 
@@ -38,7 +38,7 @@ _cargo setVariable ["GetOutEH", nil];
 //remove Undercover break if last weapon
 private _attachedObjects =  attachedObjects _vehicle;
 private _weaponCount = _attachedObjects findIf {
-    !isNull ( [_x] call HR_Logistics_fnc_getCargoConfig )
+    !isNull ( [_x] call HR_Garage_Logistics_fnc_getCargoConfig )
 };
 if (_weaponCount isEqualTo -1) then {
     private _undercoverBreak = _vehicle getVariable ["undercoverBreak", -1];

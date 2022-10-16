@@ -297,6 +297,7 @@ class HR_Garage_VehicleSelect
             };
         };
 
+        // Source pannel
         class HR_Garage_SourcePanel: HR_Garage_RscControlsGroup
         {
             x = SCREEN_RIGHT - 39 * GRID_NOUISCALE_W;
@@ -342,38 +343,30 @@ class HR_Garage_VehicleSelect
                     h = 4 * GRID_NOUISCALE_H;
                     size = TEXT_SIZE_MEDIUM;
                 };
-                class HR_Garage_sourceTopLine: HR_Garage_RscStructuredText
-                {
-                    idc = HR_Garage_IDC_SourcePanelTopLine;
-                    x = 1 * GRID_NOUISCALE_W;
-                    y = 0 * GRID_NOUISCALE_H;
-                    w = 37 * GRID_NOUISCALE_W;
-                    h = 0.1 * GRID_NOUISCALE_H;
-                    size = TEXT_SIZE_MEDIUM;
-                    colorBackground[] = {1,1,1,1};
-                };
-                class HR_Garage_sourceBottomLine: HR_Garage_RscStructuredText
-                {
-                    idc = HR_Garage_IDC_SourcePanelBottomLine;
-                    x = 1 * GRID_NOUISCALE_W;
-                    y = 6.9 * GRID_NOUISCALE_H;
-                    w = 37 * GRID_NOUISCALE_W;
-                    h = 0.1 * GRID_NOUISCALE_H;
-                    size = TEXT_SIZE_MEDIUM;
-                    colorBackground[] = {1,1,1,1};
-                };
             };
         };
 
         // Info Panel
-        class HR_Garage_InfoPanel: HR_Garage_RscStructuredText
+        class HR_Garage_InfoPanelWrapper: HR_Garage_RscControlsGroup
         {
-            idc = HR_Garage_IDC_InfoPanel;
             x = SCREEN_RIGHT - 39 * GRID_NOUISCALE_W;
             y = SCREEN_BOTTOM - 45 * GRID_NOUISCALE_H;
             w = 39 * GRID_NOUISCALE_W;
             h = 45 * GRID_NOUISCALE_H;
             size = TEXT_SIZE_MEDIUM;
+
+            class controls
+            {
+                class HR_Garage_InfoPanel: HR_Garage_RscStructuredText
+                {
+                    idc = HR_Garage_IDC_InfoPanel;
+                    x = 0;
+                    y = 0;
+                    w = 39 * GRID_NOUISCALE_W;
+                    h = 45 * GRID_NOUISCALE_H;
+                    size = TEXT_SIZE_MEDIUM;
+                };
+            };
         };
 
         // Camera controls hint
@@ -385,6 +378,89 @@ class HR_Garage_VehicleSelect
             w = 36 * GRID_NOUISCALE_W;
             h = 7 * GRID_NOUISCALE_H;
             size = TEXT_SIZE_SMALL;
+        };
+    };
+};
+
+
+//menu for AP settings when placing it with zeus
+class HR_Garage_ZM {
+    idd = HR_Garage_ZM_IDD;
+    movingenable=false;
+    class controls {
+        class HR_Garage_ZM_Box: HR_Garage_RscControlsGroup {
+            x = CENTER_X(60);
+            y = CENTER_Y(80);
+            w = PX_W(56);
+            h = PX_H(80);
+            size = TEXT_SIZE_MEDIUM;
+
+            class controls {
+                class textHeader: HR_Garage_RscText {
+                    x = PX_W(1);
+                    y = PX_H(2);
+                    w = PX_W(53);
+                    h = PX_H(3);
+                    text = "Garage access settings for vehicle types";
+                };
+
+                class cbAir: HR_Garage_RscCheckBox {
+                    idc = HR_Garage_ZM_IDC_cbAir;
+                    x = PX_W(1);
+                    y = PX_H(7);
+                    w = PX_W(3);
+                    h = PX_H(3);
+                    checked = 1;
+                };
+                class textAir: HR_Garage_RscText {
+                    x = PX_W(4);
+                    y = PX_H(7);
+                    w = PX_W(50);
+                    h = PX_H(3);
+                    text = "Allow access to air vehicles";
+                };
+
+                class cbNaval: HR_Garage_RscCheckBox {
+                    idc = HR_Garage_ZM_IDC_cbNaval;
+                    x = PX_W(1);
+                    y = PX_H(12);
+                    w = PX_W(3);
+                    h = PX_H(3);
+                    checked = 1;
+                };
+                class textNaval: HR_Garage_RscText {
+                    x = PX_W(4);
+                    y = PX_H(12);
+                    w = PX_W(50);
+                    h = PX_H(3);
+                    text = "Allow access to naval vehicles";
+                };
+
+                class cbArmor: HR_Garage_RscCheckBox {
+                    idc = HR_Garage_ZM_IDC_cbArmor;
+                    x = PX_W(1);
+                    y = PX_H(17);
+                    w = PX_W(3);
+                    h = PX_H(3);
+                    checked = 1;
+                };
+                class textArmor: HR_Garage_RscText {
+                    x = PX_W(4);
+                    y = PX_H(17);
+                    w = PX_W(50);
+                    h = PX_H(3);
+                    text = "Allow access to armored vehicles";
+                };
+
+                class confirmBtn: HR_Garage_RscButton {
+                    x = PX_W(11);
+                    y = PX_H(22);
+                    w = PX_W(32);
+                    h = PX_H(4);
+                    action = "call HR_Garage_fnc_ZM_confirmSettings";
+                    text = "Confirm access settings";
+                };
+            };
         };
     };
 };

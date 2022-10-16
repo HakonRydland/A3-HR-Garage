@@ -33,7 +33,7 @@ _updateList = {
     private _index = _list find _node;
     _node set [0,0];
     _list set [_index, _node];
-    _vehicle setVariable [QGVAR(Nodes), _list];
+    _vehicle setVariable [QGVAR(Nodes), _list, true];
 };
 
 //find node point and seats
@@ -67,7 +67,7 @@ if ((_node#0) isEqualType []) then {
 };
 
 //attach data
-private _offsetAndDir = [_cargo] call HR_logistics_fnc_getCargoOffsetAndDir;
+private _offsetAndDir = [_cargo] call HR_Garage_Logistics_fnc_getCargoOffsetAndDir;
 private _location = _offsetAndDir#0;
 private _location = _location vectorAdd _nodeOffset;
 
@@ -78,8 +78,8 @@ private _yEnd = _location#1;
 _cargo setVariable ["AttachmentOffset", _location];
 
 //block seats
-[_cargo, true] remoteExec ["HR_logistics_fnc_toggleLock", 0, _cargo];
-[_vehicle, true, _seats] remoteExecCall ["HR_logistics_fnc_toggleLock", 0, _vehicle];
+[_cargo, true] remoteExec ["HR_Garage_Logistics_fnc_toggleLock", 0, _cargo];
+[_vehicle, true, _seats] remoteExecCall ["HR_Garage_Logistics_fnc_toggleLock", 0, _vehicle];
 _cargo engineOn false;
 
 //break undercover
@@ -114,12 +114,12 @@ private _loadedCargo = [[_cargo,_node]] + _previousLoaded;
 _vehicle setVariable ["Cargo", _loadedCargo, true];
 
 //misc
-[_cargo] call HR_logistics_fnc_toggleAceActions;
-[_vehicle, _cargo, nil, _instant] call HR_logistics_fnc_addOrRemoveObjectMass;
+[_cargo] call HR_Garage_Logistics_fnc_toggleAceActions;
+[_vehicle, _cargo, nil, _instant] call HR_Garage_Logistics_fnc_addOrRemoveObjectMass;
 if (_weapon) then {
-    [_cargo, _vehicle] remoteExec ["HR_logistics_fnc_addWeaponAction", 0, _cargo];
+    [_cargo, _vehicle] remoteExec ["HR_Garage_Logistics_fnc_addWeaponAction", 0, _cargo];
 };
 
 _vehicle setVariable ["LoadingCargo",nil,true];
-[_vehicle, "unload"] remoteExec ["HR_logistics_fnc_addAction", 0 ,_vehicle];
+[_vehicle, "unload"] remoteExec ["HR_Garage_Logistics_fnc_addAction", 0 ,_vehicle];
 nil

@@ -14,7 +14,7 @@ Dependencies:
 
 Example:
 
-License: MIT License
+License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()

@@ -22,7 +22,7 @@ Environment: Any
 Public: Yes
 Dependencies:
 
-Example: private _cfgNodes = [_vehicle] call HR_Logistics_getNodeConfig;
+Example: private _cfgNodes = [_vehicle] call HR_Garage_Logistics_getNodeConfig;
 
 License: MIT License
 */

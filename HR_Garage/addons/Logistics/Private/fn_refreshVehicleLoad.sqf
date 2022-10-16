@@ -14,14 +14,14 @@
     Public: [No]
     Dependencies:
 
-    Example: [_vehicle] call HR_logistics_fnc_refreshVehicleLoad;
+    Example: [_vehicle] call HR_Garage_Logistics_fnc_refreshVehicleLoad;
 */
 #include "..\script_component.hpp"
 params ["_vehicle"];
 
 private _cargo = _vehicle getVariable ["Cargo",[]];
 if (_cargo findIf {!((_x#0) isEqualTo objNull)} isEqualTo -1) then { //if all remaining cargo on list is objNull, reset list
-    private _nodes = [_vehicle] call HR_logistics_fnc_getVehicleNodes;
+    private _nodes = [_vehicle] call HR_Garage_Logistics_fnc_getVehicleNodes;
     _vehicle setVariable [QGVAR(Nodes),_nodes];
     _vehicle setVariable ["Cargo", []];
 };

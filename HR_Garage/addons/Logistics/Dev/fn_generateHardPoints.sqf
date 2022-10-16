@@ -25,7 +25,7 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [cursorTarget, [0,-0.7,-0.7], 2.1] call HR_logistics_fnc_generateHardPoints;
+    Example: [cursorTarget, [0,-0.7,-0.7], 2.1] call HR_Garage_Logistics_fnc_generateHardPoints;
 */
 #include "..\script_component.hpp"
 params [["_vehicle", objNull, [objNull]], ["_planeStart", [], [[]], 3], ["_planeSpan", 0, [0]], ["_defineWithModel", true, [true]]];
@@ -71,25 +71,25 @@ private _return = format ["class %1 : TRIPLES(ADDON,Nodes,Base)%3{%3    %2%3};%3
 ];
 
 //Rendering visuals
-HR_Logistics_nodeArray = _nodeArray;
-HR_Logistics_vehicle = _vehicle;
-HR_Logistics_pStart = _planeStart;
-HR_Logistics_pEnd = _planeEnd;
-HR_Logistics_RenderTime = time + 60;
+HR_Garage_Logistics_nodeArray = _nodeArray;
+HR_Garage_Logistics_vehicle = _vehicle;
+HR_Garage_Logistics_pStart = _planeStart;
+HR_Garage_Logistics_pEnd = _planeEnd;
+HR_Garage_Logistics_RenderTime = time + 60;
 
-if !(isNil "HR_Logistics_RenderCP") exitWith {_return};
-HR_Logistics_RenderCP = addMissionEventHandler ["Draw3D", {
+if !(isNil "HR_Garage_Logistics_RenderCP") exitWith {_return};
+HR_Garage_Logistics_RenderCP = addMissionEventHandler ["Draw3D", {
     //get the render position of the start and end cargo plane positions
-    private _startPos = HR_Logistics_vehicle modelToWorldVisual HR_Logistics_pStart;
-    private _startPosASL = HR_Logistics_vehicle modelToWorldVisualWorld HR_Logistics_pStart;
-    private _endPos = HR_Logistics_vehicle modelToWorldVisual HR_Logistics_pEnd;
-    private _endPosASL = HR_Logistics_vehicle modelToWorldVisualWorld HR_Logistics_pEnd;
+    private _startPos = HR_Garage_Logistics_vehicle modelToWorldVisual HR_Garage_Logistics_pStart;
+    private _startPosASL = HR_Garage_Logistics_vehicle modelToWorldVisualWorld HR_Garage_Logistics_pStart;
+    private _endPos = HR_Garage_Logistics_vehicle modelToWorldVisual HR_Garage_Logistics_pEnd;
+    private _endPosASL = HR_Garage_Logistics_vehicle modelToWorldVisualWorld HR_Garage_Logistics_pEnd;
 
     //plane boundries corner positions
-    private _startGuide1 = HR_Logistics_vehicle modelToWorldVisual (HR_Logistics_pStart vectorAdd [-0.6,0,0]);
-    private _startGuide2 = HR_Logistics_vehicle modelToWorldVisual (HR_Logistics_pStart vectorAdd [0.6,0,0]);
-    private _endGuide1 = HR_Logistics_vehicle modelToWorldVisual (HR_Logistics_pEnd vectorAdd [-0.6,0,0]);
-    private _endGuide2 = HR_Logistics_vehicle modelToWorldVisual (HR_Logistics_pEnd vectorAdd [0.6,0,0]);
+    private _startGuide1 = HR_Garage_Logistics_vehicle modelToWorldVisual (HR_Garage_Logistics_pStart vectorAdd [-0.6,0,0]);
+    private _startGuide2 = HR_Garage_Logistics_vehicle modelToWorldVisual (HR_Garage_Logistics_pStart vectorAdd [0.6,0,0]);
+    private _endGuide1 = HR_Garage_Logistics_vehicle modelToWorldVisual (HR_Garage_Logistics_pEnd vectorAdd [-0.6,0,0]);
+    private _endGuide2 = HR_Garage_Logistics_vehicle modelToWorldVisual (HR_Garage_Logistics_pEnd vectorAdd [0.6,0,0]);
 
     //Plane Start and end
     if (count (lineIntersectsSurfaces [eyePos player, _startPosASL, player]) isEqualTo 0) then {
@@ -107,18 +107,18 @@ HR_Logistics_RenderCP = addMissionEventHandler ["Draw3D", {
 
     //nodes
     {
-        drawIcon3D ["\a3\ui_f\data\map\markers\military\dot_ca.paa", [0.9,0.9,0.9,1], HR_Logistics_vehicle modelToWorldVisual _x, 0.6, 0.6, 0, "", true, 0.03, "TahomaB", "center"];
-    } forEach HR_Logistics_nodeArray;
+        drawIcon3D ["\a3\ui_f\data\map\markers\military\dot_ca.paa", [0.9,0.9,0.9,1], HR_Garage_Logistics_vehicle modelToWorldVisual _x, 0.6, 0.6, 0, "", true, 0.03, "TahomaB", "center"];
+    } forEach HR_Garage_Logistics_nodeArray;
 
 
     //remove if render time is out
-    if (HR_Logistics_RenderTime < time || isNull HR_Logistics_vehicle) then {
-        removeMissionEventHandler ["Draw3D", HR_Logistics_RenderCP];
-        HR_Logistics_RenderCP = nil;
-        HR_Logistics_vehicle = nil;
-        HR_Logistics_pStart = nil;
-        HR_Logistics_pEnd = nil;
-        HR_Logistics_RenderTime = nil;
+    if (HR_Garage_Logistics_RenderTime < time || isNull HR_Garage_Logistics_vehicle) then {
+        removeMissionEventHandler ["Draw3D", HR_Garage_Logistics_RenderCP];
+        HR_Garage_Logistics_RenderCP = nil;
+        HR_Garage_Logistics_vehicle = nil;
+        HR_Garage_Logistics_pStart = nil;
+        HR_Garage_Logistics_pEnd = nil;
+        HR_Garage_Logistics_RenderTime = nil;
     };
 }];
 

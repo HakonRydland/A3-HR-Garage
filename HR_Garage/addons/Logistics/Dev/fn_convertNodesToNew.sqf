@@ -20,10 +20,10 @@ private _entries = [];
     _entries pushBack text (format [
         "class %1 : TRIPLES(ADDON,Nodes,Base) %4{%4%2%3%4};%4",
         ((_x#0) splitString "\.") joinString "_",
-        ["","    canLoadWeapon = 0;"+endl] select ((_x#0) in A3A_logistics_coveredVehicles),
+        ["","    canLoadWeapon = 0;"+endl] select ((_x#0) in HR_Garage_Logistics_coveredVehicles),
         _nodesString,
         endl
     ])
-} forEach A3A_logistics_vehicleHardpoints;
+} forEach HR_Garage_Logistics_vehicleHardpoints;
 
 text (_entries joinString endl);

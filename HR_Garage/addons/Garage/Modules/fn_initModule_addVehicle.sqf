@@ -13,7 +13,8 @@ if (!isMultiplayer) exitWith {
 };
 {
     if (isServer) then {
-        [_x, clientOwner] call HR_Garage_fnc_addVehicle;
+        [_x, clientOwner] call HR_Garage_fnc_addVehicle; //will always use this one
+        hintSilent "";
     } else {
         [_x, clientOwner] remoteExecCall ["HR_Garage_fnc_addVehicle",2];
     };

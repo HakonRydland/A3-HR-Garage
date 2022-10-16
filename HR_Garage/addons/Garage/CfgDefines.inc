@@ -1,10 +1,25 @@
 //-- display --\\
 #define HR_Garage_IDD_Garage 17001
 
-//-- pixelGrid --\\
-#define pixelScale    0.50
+///////////////
+// PIXELGRID //
+///////////////
+
+#define pixelScale 0.5  // Was originally 0.5.
+#define PixelGridScaler pixelGridNoUIScale
+#define GRID_W (pixelW * PixelGridScaler * pixelScale)
+#define GRID_H (pixelH * PixelGridScaler * pixelScale)
+
 #define GRID_NOUISCALE_W (pixelW * pixelGridNoUIScale * pixelScale)
 #define GRID_NOUISCALE_H (pixelH * pixelGridNoUIScale * pixelScale)
+
+// Converts pixelGrid units to GUI coordinates
+#define PX_W(n) n*GRID_W
+#define PX_H(n) n*GRID_H
+
+// Gets origin (top-left) in GUI coordinates of a centered box defined by pixelGrid units
+#define CENTER_X(n) ((getResolution select 2) * 0.5 * pixelW) - (0.5 * (PX_W(n)))
+#define CENTER_Y(n) ((getResolution select 3) * 0.5 * pixelH) - (0.5 * (PX_H(n)))
 
 //-- Screen edge coordinates --\\
 #define SCREEN_TOP safeZoneY
@@ -59,6 +74,12 @@
 #define HR_Garage_IDC_ExtrasText 170017
 #define HR_Garage_IDC_KeyBindHint 170018
 #define HR_Garage_IDC_CapacityCount 170019
+
+//-- ID's for ZM --\\
+#define HR_Garage_ZM_IDD 171001
+#define HR_Garage_ZM_IDC_cbAir 171002
+#define HR_Garage_ZM_IDC_cbNaval 171003
+#define HR_Garage_ZM_IDC_cbArmor 171004
 
 //icons
 #define CheckOutIcon "\a3\ui_f\data\Map\Diary\Icons\diaryLocateTask_ca.paa"

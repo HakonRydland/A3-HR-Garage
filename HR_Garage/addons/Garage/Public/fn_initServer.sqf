@@ -20,14 +20,13 @@
 */
 
 //init stuff on client and server
-#include "config.inc"
 #include "defines.inc"
+#include "config.inc"
 FIX_LINE_NUMBERS()
 call HR_fnc_detector;
 
 //only server
 if (!isServer) exitWith {};
-[] call HR_logistics_fnc_initNodes;
 
 Trace("Running server init");
 if (!isNil "HR_Garage_Init") exitWith {};//init already run.

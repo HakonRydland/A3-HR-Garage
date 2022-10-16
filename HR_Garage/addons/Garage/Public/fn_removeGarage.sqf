@@ -26,7 +26,7 @@ private _oldID = _object getVariable ["HR_Garage_GarageID", -1];
 _object removeAction _oldID;
 _object setVariable ["HR_Garage_GarageID", nil];
 
-//add it to the registra of access points
+//remove it from the registra of access points
 if (isNil "HR_Garage_accessPoints") exitWith {true};
 HR_Garage_accessPoints deleteAt (HR_Garage_accessPoints find _object);
 HR_Garage_accessPoints = HR_Garage_accessPoints select {!isNull _x};

@@ -70,11 +70,22 @@ class CfgFunctions {
             class setState {};
         };
 
+        class Refuel
+        {
+            file = QPATHTOFOLDER(Refuel);
+            class broadcastStateUpdate {};
+            class getTotalFuelCargo {};
+            class prefix {};
+            class reciveStateUpdate {};
+            class refuelVehicleFromSources {};
+        };
+
         class Modules {
             file = QPATHTOFOLDER(Modules);
             class initModule_addGarage {};
             class initModule_removeGarage {};
             class initModule_addVehicle {};
+            class ZM_confirmSettings {};
         };
 
     //public functions
@@ -85,7 +96,7 @@ class CfgFunctions {
             class addVehicle {};
             class addVehicleAction {};
             class callbackHandler {};
-            class cba_settings { preInit = 1; };
+            class cba_settings {};
             class getSaveData {};
             class initGarage {};
             class initServer {
@@ -93,6 +104,7 @@ class CfgFunctions {
             };
             class loadSaveData {};
             class removeGarage {};
+            class toggleGarageAccess {};
         };
     };
 };

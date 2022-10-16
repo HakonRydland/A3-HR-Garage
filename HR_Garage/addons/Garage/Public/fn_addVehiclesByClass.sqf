@@ -25,10 +25,12 @@ FIX_LINE_NUMBERS()
 if (!isServer) exitWith {false};
 if (isNil "HR_Garage_Vehicles") then { [] call HR_Garage_fnc_initServer };
 
+private _catsRequiringUpdate = [];
 private _cfg = configFile >> "CfgVehicles";
 {
     if (!isClass (_cfg >> _x)) then {Info_1("Invalid class: %1", str _x); continue};
     private _cat = [_x] call HR_Garage_fnc_getCatIndex;
+    _catsRequiringUpdate pushBackUnique _cat;
     if (_cat < 0) then {Info_1("Unsoported category: %1", str _x); continue};
     private _vehUID = [] call HR_Garage_fnc_genVehUID;
     (HR_Garage_Vehicles#_cat) set [_vehUID, [cfgDispName(_x), _x, _lockUID, "", [[1,-1,nil],[0,[[],[]],-1],[]], "", [false, false]]];
@@ -46,4 +48,19 @@ private _cfg = configFile >> "CfgVehicles";
 
     Info_2("Vehicle added to garage: %1 | Lock UID: %2", str _x, str _lockUID);
 } forEach _vehicles;
+
+//refresh category for active users
+private _refreshCode = {
+    #include "defines.inc"
+    FIX_LINE_NUMBERS()
+    private _disp = findDisplay HR_Garage_IDD_Garage;
+    private _cats = _this apply { HR_Garage_Cats#_x };
+    {
+        if (ctrlEnabled _x) then {
+            [_x, _this#_forEachIndex] call HR_Garage_fnc_reloadCategory;
+        };
+    } forEach _cats;
+    call HR_Garage_fnc_updateVehicleCount;
+};
+[ _catsRequiringUpdate, _refreshCode ] remoteExecCall ["call", HR_Garage_Users];
 true
