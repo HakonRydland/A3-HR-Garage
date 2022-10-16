@@ -14,11 +14,11 @@
     Public: [Yes]
     Dependencies:
 
-    Example: private _objNodeType = [_object] call HR_logistics_fnc_getCargoNodeType;
+    Example: private _objNodeType = [_object] call HR_Garage_Logistics_fnc_getCargoNodeType;
 */
 params [["_object", objNull, [objNull, ""]]];
 
-private _config = [_object] call HR_Logistics_fnc_getCargoConfig;
+private _config = [_object] call HR_Garage_Logistics_fnc_getCargoConfig;
 if (isNull _config) exitWith {-1};
 
 getNumber (_config/"size");

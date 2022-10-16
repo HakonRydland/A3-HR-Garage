@@ -16,7 +16,7 @@
     Public: [No]
     Dependencies:
 
-    Example: [_vehicle, true, _seats] remoteExecCall ["HR_logistics_fnc_toggleLock", 0, _vehicle];
+    Example: [_vehicle, true, _seats] remoteExecCall ["HR_Garage_Logistics_fnc_toggleLock", 0, _vehicle];
 */
 params ["_vehicle", "_lock", "_seats"];
 

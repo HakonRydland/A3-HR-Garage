@@ -15,7 +15,7 @@
     Public: [Yes]
     Dependencies:
 
-    Example: [_object] call HR_logistics_fnc_addLoadAction;
+    Example: [_object] call HR_Garage_Logistics_fnc_addLoadAction;
 */
 #include "..\script_component.hpp"
 FIX_LINE_NUMBERS()
@@ -31,7 +31,7 @@ if (!alive _object) exitWith {
     nil
 };
 
-if (([_object] call HR_logistics_fnc_getCargoNodeType) isEqualTo -1) exitWith {nil};
+if (([_object] call HR_Garage_Logistics_fnc_getCargoNodeType) isEqualTo -1) exitWith {nil};
 
-[_object , _action] remoteExec ["HR_logistics_fnc_addAction", 0, _object];
+[_object , _action] remoteExec ["HR_Garage_Logistics_fnc_addAction", 0, _object];
 nil

@@ -7,7 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
-        author = AUTHOR
+        author = AUTHOR;
         authors[] = { AUTHORS };
         authorUrl = "";
         VERSION_CONFIG;

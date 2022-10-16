@@ -14,12 +14,12 @@
     Public: [No]
     Dependencies:
 
-    Example: _cargo call HR_logistics_fnc_initMountedWeapon;
+    Example: _cargo call HR_Garage_Logistics_fnc_initMountedWeapon;
 */
 params ["_weapon"];
 
 //weapon recoil
-private _cargoConfig = [_weapon] call HR_Logistics_fnc_getCargoConfig;
+private _cargoConfig = [_weapon] call HR_Garage_Logistics_fnc_getCargoConfig;
 private _fireForce = if (isNull _cargoConfig) then { 0 } else { getNumber (_cargoConfig/"recoil") };
 _weapon setVariable ["fireForce", _fireForce, true];
 

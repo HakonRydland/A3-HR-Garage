@@ -16,10 +16,10 @@
 
     License: MIT
 */
-HR_Garage_Prefix = "HR Garage";
-//Overwrite client
-HR_Garage_cmdClient = {
-    if ((isServer && hasInterface) || {admin owner _this > 0}) then {_this} else {objNull}; //LAN Host or admin on DS or commander
+// Condition for whether the player can override garage locks
+HR_Garage_isCmdClient = {
+    (isServer && hasInterface && _this isEqualTo player) //Lan host
+    || {admin owner _this > 0} //admin
 };
 
 //condition to automatically close garage/placement as if canceled
@@ -30,31 +30,29 @@ HR_Garage_CP_closeCnd = {
     }
 };
 
-HR_Garage_Cnd_canAccessAir = {
-    true
+HR_Garage_Cnd_canAccessAir = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessAir", true]; };
+HR_Garage_Cnd_canAccessNaval = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessNaval", true]; };
+HR_Garage_Cnd_canAccessArmor = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessArmor", true]; };
+
+FUNC(getBlackListCamo) = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["blackListCamo", [
+        "IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02"
+        ,"African Desert Extremists Alt", "Middle East Extremists", "Middle East Extremists Alt",
+        "Middle East Extremists 1", "Middle East Extremists 2","Middle East Extremists 3", "Middle East Extremists 4",
+        "Middle East Extremists 5", "Middle East Extremists 6"
+    ]];
 };
 
-//Lock on garaged vehicles ( Values: [{""}, { getPlayerUID player }] )
-HR_Garage_dLock = {""};
-
-//garage pool cap
-if (isNil "HR_Garage_PoolBase") then { HR_Garage_PoolBase = 10 }; //can be overwritten by CBA settings
-if (isNil "HR_Garage_PoolIncr") then { HR_Garage_PoolIncr = 2 }; //can be overwritten by CBA settings
-HR_Garage_VehCap = { HR_Garage_PoolBase * HR_Garage_PoolIncr max HR_Garage_PoolBase };
-
-//Pylon config
-if (isNil "HR_Garage_Pylons_Enabled") then { HR_Garage_Pylons_Enabled = true }; //can be overwritten by CBA settings
-if (isNil "HR_Garage_ServiceBehaviour_Rearm") then {HR_Garage_ServiceBehaviour_Rearm = 0};
-if (isNil "HR_Garage_ServiceBehaviour_Refuel") then {HR_Garage_ServiceBehaviour_Refuel = 0};
-if (isNil "HR_Garage_ServiceBehaviour_Repair") then {HR_Garage_ServiceBehaviour_Repair = 0};
-
 //camo blacklist (display name, case sensitive)
-HR_Garage_blackListCamo = ["IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02", "African Desert Extremists Alt"];
+HR_Garage_blackListCamo = ["IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02",
+"African Desert Extremists Alt", "Middle East Extremists", "Middle East Extremists Alt", "Middle East Extremists 1", "Middle East Extremists 2",
+"Middle East Extremists 3", "Middle East Extremists 4", "Middle East Extremists 5", "Middle East Extremists 6"];
 //proxies
 HR_Garage_fnc_Hint = {
     params ["_key", ["_arguments", []]];
     hintSilent (if (_arguments isEqualTo []) then {localize _key} else {format ( [localize _key] + _arguments )});
 };
-HR_Garage_fnc_vehInit = {}; //is passed vehicle as _this
+HR_Garage_fnc_vehInit = {
+    { _x addCuratorEditableObjects [[_this],false] } forEach allCurators; //add vehicle to zeus
+}; //is passed vehicle as _this
 HR_Garage_onOpenEvent = {};
 HR_Garage_onCloseEvent = {};

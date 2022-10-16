@@ -14,11 +14,11 @@
     Public: [No]
     Dependencies:
 
-    Example: private _offsetAndDir = [_cargo] call HR_logistics_fnc_getCargoOffsetAndDir;
+    Example: private _offsetAndDir = [_cargo] call HR_Garage_Logistics_fnc_getCargoOffsetAndDir;
 */
 params [["_object", objNull, [objNull, ""]]];
 
-private _config = [_object] call HR_Logistics_fnc_getCargoConfig;
+private _config = [_object] call HR_Garage_Logistics_fnc_getCargoConfig;
 if (isNull _config) exitWith { [[0,0,0], [0,0,0]] };
 if (_object isKindOf "CAManBase") exitWith { [[0,0,0], [0,0,0]] };//exception for the mdical system
 

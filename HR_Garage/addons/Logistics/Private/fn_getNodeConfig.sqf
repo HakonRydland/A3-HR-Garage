@@ -22,7 +22,7 @@ Environment: Any
 Public: Yes
 Dependencies:
 
-Example: private _cfgNodes = [_vehicle] call HR_Logistics_getNodeConfig;
+Example: private _cfgNodes = [_vehicle] call HR_Garage_Logistics_getNodeConfig;
 
 License: MIT License
 */
@@ -31,9 +31,9 @@ params [["_class","",["",objNull]]];
 if (_class isEqualType objNull) then {_class = typeOf _class};
 
 #define cgVehicle (configFile/"CfgVehicles"/_class)
-#define VehicleNodes (configFile/"CfgVehicles"/_class/QDOUBLES(ADDON,Nodes))
-#define CfgNodes configFile/QDOUBLES(ADDON,Nodes)
-#define MissionNodes missionConfigFile/QDOUBLES(ADDON,Nodes)
+#define VehicleNodes (configFile/"CfgVehicles"/_class/QGVAR(Nodes))
+#define CfgNodes configFile/QGVAR(Nodes)
+#define MissionNodes missionConfigFile/QGVAR(Nodes)
 
 if !(isClass cgVehicle) exitWith { configNull };
 if (isClass (MissionNodes/_class)) exitWith { (MissionNodes/_class) };
