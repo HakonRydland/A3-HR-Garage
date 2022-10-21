@@ -24,6 +24,10 @@
 #include "defines.inc"
 FIX_LINE_NUMBERS()
 ['HR_Garage','Loading Garage, please wait...'] call BIS_fnc_startLoadingScreen;
+[] spawn {
+    sleep 3;
+    'HR_Garage' call BIS_fnc_endLoadingScreen;
+};
 Trace("Opening Garage");
 
 //if for some reason the server init has not been done, do it now
