@@ -30,9 +30,22 @@ HR_Garage_CP_closeCnd = {
     }
 };
 
-HR_Garage_Cnd_canAccessAir = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessAir", true]; };
-HR_Garage_Cnd_canAccessNaval = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessNaval", true]; };
-HR_Garage_Cnd_canAccessArmor = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["accessArmor", true]; };
+//proxy function to gather similar code for access condition functions
+HR_Garage_Cnd_canAccessX = {
+    //sanity checking
+    if (isNil "HR_Garage_accessPoint" || {isNull HR_Garage_accessPoint}) then {
+        HR_Garage_accessPoint = (HR_Garage_accessPoints inAreaArray [getPos player, 25,25])#0;
+    };
+    if (isNil "HR_Garage_accessPoint") exitWith {false};
+
+    // bool and number flag safe
+    private _tmp = (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault [_this, 0];
+    if (_tmp isEqualType 0) exitwith {_tmp>0};
+    _tmp;
+};
+HR_Garage_Cnd_canAccessAir = { "accessAir" call HR_Garage_Cnd_canAccessX };
+HR_Garage_Cnd_canAccessNaval = { "accessNaval" call HR_Garage_Cnd_canAccessX };
+HR_Garage_Cnd_canAccessArmor = { "accessArmor" call HR_Garage_Cnd_canAccessX };
 
 FUNC(getBlackListCamo) = { (HR_Garage_accessPoint getVariable QGVAR(ModuleArguments)) getOrDefault ["blackListCamo", [
         "IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02"
